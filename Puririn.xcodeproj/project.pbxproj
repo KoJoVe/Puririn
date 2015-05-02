@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF9191AF56B1D00A356CE /* AppDelegate.swift */; };
-		516EF91C1AF56B1D00A356CE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 516EF91B1AF56B1D00A356CE /* GameScene.sks */; };
 		516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91D1AF56B1D00A356CE /* GameScene.swift */; };
 		516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91F1AF56B1D00A356CE /* GameViewController.swift */; };
 		516EF9231AF56B1D00A356CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 516EF9211AF56B1D00A356CE /* Main.storyboard */; };
 		516EF9251AF56B1D00A356CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 516EF9241AF56B1D00A356CE /* Images.xcassets */; };
 		516EF9281AF56B1D00A356CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516EF9261AF56B1D00A356CE /* LaunchScreen.xib */; };
 		516EF9341AF56B1D00A356CE /* PuririnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF9331AF56B1D00A356CE /* PuririnTests.swift */; };
+		941047851AF5749000683E02 /* Puririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941047841AF5749000683E02 /* Puririn.swift */; };
+		94FB5C301AF586AD000B99F9 /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C2E1AF586AD000B99F9 /* Trail.sks */; };
+		94FB5C311AF586AD000B99F9 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C2F1AF586AD000B99F9 /* spark.png */; };
+		94FB5C331AF58D33000B99F9 /* puririn.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C321AF58D33000B99F9 /* puririn.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +34,6 @@
 		516EF9141AF56B1D00A356CE /* Puririn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puririn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516EF9181AF56B1D00A356CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516EF9191AF56B1D00A356CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		516EF91B1AF56B1D00A356CE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		516EF91D1AF56B1D00A356CE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		516EF91F1AF56B1D00A356CE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		516EF9221AF56B1D00A356CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,6 +42,10 @@
 		516EF92D1AF56B1D00A356CE /* PuririnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuririnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		516EF9321AF56B1D00A356CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516EF9331AF56B1D00A356CE /* PuririnTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuririnTests.swift; sourceTree = "<group>"; };
+		941047841AF5749000683E02 /* Puririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puririn.swift; sourceTree = "<group>"; };
+		94FB5C2E1AF586AD000B99F9 /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
+		94FB5C2F1AF586AD000B99F9 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		94FB5C321AF58D33000B99F9 /* puririn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puririn.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +87,13 @@
 		516EF9161AF56B1D00A356CE /* Puririn */ = {
 			isa = PBXGroup;
 			children = (
+				94FB5C211AF57DC7000B99F9 /* Particles */,
+				94FB5C201AF57DBB000B99F9 /* Images */,
 				516EF9191AF56B1D00A356CE /* AppDelegate.swift */,
-				516EF91B1AF56B1D00A356CE /* GameScene.sks */,
-				516EF91D1AF56B1D00A356CE /* GameScene.swift */,
 				516EF91F1AF56B1D00A356CE /* GameViewController.swift */,
+				941047831AF5746500683E02 /* Controller */,
+				941047821AF5746100683E02 /* View */,
+				941047811AF5745A00683E02 /* Model */,
 				516EF9211AF56B1D00A356CE /* Main.storyboard */,
 				516EF9241AF56B1D00A356CE /* Images.xcassets */,
 				516EF9261AF56B1D00A356CE /* LaunchScreen.xib */,
@@ -116,6 +125,46 @@
 				516EF9321AF56B1D00A356CE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		941047811AF5745A00683E02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		941047821AF5746100683E02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				941047841AF5749000683E02 /* Puririn.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		941047831AF5746500683E02 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				516EF91D1AF56B1D00A356CE /* GameScene.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		94FB5C201AF57DBB000B99F9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				94FB5C321AF58D33000B99F9 /* puririn.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		94FB5C211AF57DC7000B99F9 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				94FB5C2E1AF586AD000B99F9 /* Trail.sks */,
+				94FB5C2F1AF586AD000B99F9 /* spark.png */,
+			);
+			name = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,8 +248,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				516EF9281AF56B1D00A356CE /* LaunchScreen.xib in Resources */,
+				94FB5C311AF586AD000B99F9 /* spark.png in Resources */,
+				94FB5C331AF58D33000B99F9 /* puririn.png in Resources */,
+				94FB5C301AF586AD000B99F9 /* Trail.sks in Resources */,
 				516EF9251AF56B1D00A356CE /* Images.xcassets in Resources */,
-				516EF91C1AF56B1D00A356CE /* GameScene.sks in Resources */,
 				516EF9231AF56B1D00A356CE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */,
+				941047851AF5749000683E02 /* Puririn.swift in Sources */,
 				516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */,
 				516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */,
 			);
@@ -419,6 +471,7 @@
 				516EF9391AF56B1D00A356CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		516EF93A1AF56B1D00A356CE /* Build configuration list for PBXNativeTarget "PuririnTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +480,7 @@
 				516EF93C1AF56B1D00A356CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
