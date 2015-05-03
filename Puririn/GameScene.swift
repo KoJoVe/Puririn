@@ -29,6 +29,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var vortex: Vortex!
     var star: Star!
     
+    var background = SKSpriteNode()
+    
     var sizeClean = CGFloat(0)
     
     var wayPoints: [CGPoint] = []
@@ -50,11 +52,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var error:NSError?
         bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
         
+        self.background = SKSpriteNode(imageNamed: "fundo_level_cleared")
+        self.background.hidden = true
+        self.background.zPosition = 0
+        self.background.size = CGSize(width: self.size.width, height: self.size.height)
+        self.background.anchorPoint = CGPoint(x: 0, y: 0)
+        self.addChild(self.background)
+        
         self.backgroundColor = UIColor.whiteColor()
         self.newGame()
     }
     
     func newGame() {
+        
+        self.background.hidden = true
+        self.background.zPosition = 0
         
         var bc = SKSpriteNode(imageNamed: "Metal")
         bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
@@ -392,17 +404,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 cleanPuririn.runAction(move)
                 cleanPuririn.removeAllChildren()
                 cleanPuririn.rotateAndShrink()
-                    
-                var window = completeWindow(size:10,currentLevel:1,totalLevel:30)
+                
+                var window = completeWindow(size:100,currentLevel:1,totalLevel:30)
+                window.position = CGPoint(x: 100, y: 100)
+                window.zPosition = 20
                 
                 var showWindow = SKAction.runBlock({
-                    window = SKShapeNode(rect: CGRect(x: self.size.width/2 - 50, y: self.size.height/2 - 50, width: 100, height: 100), cornerRadius: 5)
-                    window.strokeColor = UIColor.redColor()
-                    window.lineWidth = 5
-                    window.fillColor = UIColor.blueColor()
-                    window.name = "window"
-                    window.zPosition = 12
+                    
                     self.addChild(window)
+                    self.background.zPosition = 19
+                    self.background.hidden = false
                 })
                 var wait = SKAction.waitForDuration(1.5)
                 var increase = SKAction.resizeToWidth(100, height: 100, duration: 0.5)

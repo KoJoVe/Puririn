@@ -17,6 +17,8 @@ class completeWindow: SKSpriteNode {
         
         super.init(texture: texture, color: nil, size: sizeWH)
         
+        self.name = "window"
+        
         var level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
         level.position = CGPoint(x: 10, y: 10)
         self.addChild(level)
