@@ -13,15 +13,25 @@ class LevelSelector: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor(red: 204, green: 231, blue: 235, alpha: 0.73)
         
-        var userLevel = 30
+        var bc = SKSpriteNode(imageNamed: "Background")
+        bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+
+        self.addChild(bc)
+        
+        var userLevel = 1
         var nLevels = 40
+    
+        var espacoVer:CGFloat = 10
         
-        var espacoHor:CGFloat = 40
-        var espacoVer:CGFloat = 20
+        var levelsByLine:CGFloat = 5
         
-        var diam = (self.frame.size.width - espacoHor)/6
+        var lines = CGFloat(nLevels)/levelsByLine
+        
+        var diam = (self.frame.size.height - 100)/lines
+        
+        var offset:CGFloat = (self.frame.size.width - levelsByLine*diam)/2
         
         var line = 0
         var n = 0
@@ -32,7 +42,7 @@ class LevelSelector: SKScene {
             
             var size = CGSizeMake(diam, diam)
             
-            var x = CGFloat(n)*diam + diam/2 + espacoHor/2
+            var x = CGFloat(n)*diam + diam/2 + offset
             var y = self.frame.size.height - (CGFloat(line)*diam + diam/2 + espacoVer)
             
 //            var text = SKLabelNode(text: "1")
@@ -40,18 +50,28 @@ class LevelSelector: SKScene {
 //            text.fontColor = SKColor.whiteColor()
             
             var level = SKSpriteNode(texture: SKTexture(imageNamed: "BallLock"), color: nil, size: size)
+            if(k<userLevel) {
+               level = SKSpriteNode(texture: SKTexture(imageNamed: "BallOk"), color: nil, size: size)
+            }
             level.position = CGPoint(x: x, y: y)
             level.name = "\(k)"
             self.addChild(level)
             //self.addChild(text)
             
             n++
-            if(n>=6) {
+            if(n>=Int(levelsByLine)) {
                 n = 0
                 line++
             }
             
         }
+        
+        var ng = SKSpriteNode(imageNamed: "back")
+        ng.size = CGSizeMake(ng.frame.size.width/6, ng.frame.size.height/6)
+        ng.position = CGPointMake(CGRectGetMidX(self.frame), 30 + ng.frame.size.height/2)
+        ng.name = "BackMenu"
+        
+        self.addChild(ng)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -62,13 +82,24 @@ class LevelSelector: SKScene {
             
             if theName != nil {
                 
-                var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
-                var scene = GameScene(size:self.size)
-                scene.scaleMode = .AspectFill
-                var theNumber = theName!.toInt()!
-                scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
-                self.removeFromParent()
-                self.scene!.view?.presentScene(scene, transition: transition)
+                if(theName == "BackMenu") {
+                    
+                    var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+                    var scene = StartScreen(size:self.size)
+                    scene.scaleMode = .AspectFill
+                    self.removeFromParent()
+                    self.scene!.view?.presentScene(scene, transition: transition)
+                
+                } else {
+                  
+                    var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
+                    var scene = GameScene(size:self.size)
+                    scene.scaleMode = .AspectFill
+                    var theNumber = theName!.toInt()!
+                    scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
+                    self.removeFromParent()
+                    self.scene!.view?.presentScene(scene, transition: transition)
+                }
                 
             }
             

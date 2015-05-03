@@ -12,7 +12,7 @@ class Vortex: SKSpriteNode {
     
     init(size: CGFloat) {
         
-        let texture = SKTexture(imageNamed: "puririn")
+        let texture = SKTexture(imageNamed: "Vortex")
         let sizeWH = CGSize(width: size, height: size)
         
         super.init(texture: texture, color: nil, size: sizeWH)

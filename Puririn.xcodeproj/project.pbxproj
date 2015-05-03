@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5153E9F11AF612A800CEB2FE /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5153E9F01AF612A800CEB2FE /* back.png */; };
+		5153E9F31AF613F100CEB2FE /* Metal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5153E9F21AF613F100CEB2FE /* Metal.png */; };
+		5153E9F51AF6158D00CEB2FE /* pbr.png in Resources */ = {isa = PBXBuildFile; fileRef = 5153E9F41AF6158D00CEB2FE /* pbr.png */; };
+		5153E9F71AF6185600CEB2FE /* pbr2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5153E9F61AF6185600CEB2FE /* pbr2.png */; };
 		516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF9191AF56B1D00A356CE /* AppDelegate.swift */; };
 		516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91D1AF56B1D00A356CE /* GameScene.swift */; };
 		516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91F1AF56B1D00A356CE /* GameViewController.swift */; };
@@ -17,6 +21,12 @@
 		516EF94A1AF5F36800A356CE /* BallLock.png in Resources */ = {isa = PBXBuildFile; fileRef = 516EF9481AF5F36800A356CE /* BallLock.png */; };
 		516EF94C1AF5FA9500A356CE /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF94B1AF5FA9500A356CE /* StartScreen.swift */; };
 		516EF94E1AF5FB6000A356CE /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 516EF94D1AF5FB6000A356CE /* Background.png */; };
+		517207981AF5FE9E00702425 /* Barrier.png in Resources */ = {isa = PBXBuildFile; fileRef = 517207961AF5FE9E00702425 /* Barrier.png */; };
+		5172079F1AF602C200702425 /* Vortex.png in Resources */ = {isa = PBXBuildFile; fileRef = 5172079E1AF602C200702425 /* Vortex.png */; };
+		517207A11AF6033100702425 /* BallOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 517207A01AF6033100702425 /* BallOk.png */; };
+		517207A31AF603F900702425 /* UserLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517207A21AF603F900702425 /* UserLevel.swift */; };
+		517207A61AF6058B00702425 /* Play Game.png in Resources */ = {isa = PBXBuildFile; fileRef = 517207A41AF6058B00702425 /* Play Game.png */; };
+		517207A91AF6064900702425 /* LogoInicio.png in Resources */ = {isa = PBXBuildFile; fileRef = 517207A81AF6064900702425 /* LogoInicio.png */; };
 		941047851AF5749000683E02 /* Puririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941047841AF5749000683E02 /* Puririn.swift */; };
 		941F0A641AF5F8D9006B13EC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941F0A631AF5F8D9006B13EC /* Ball.swift */; };
 		94C2236F1AF5BF610083873C /* Vortex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C2236E1AF5BF610083873C /* Vortex.swift */; };
@@ -41,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5153E9F01AF612A800CEB2FE /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		5153E9F21AF613F100CEB2FE /* Metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Metal.png; sourceTree = "<group>"; };
+		5153E9F41AF6158D00CEB2FE /* pbr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbr.png; sourceTree = "<group>"; };
+		5153E9F61AF6185600CEB2FE /* pbr2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pbr2.png; sourceTree = "<group>"; };
 		516EF9141AF56B1D00A356CE /* Puririn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puririn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516EF9181AF56B1D00A356CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516EF9191AF56B1D00A356CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +69,12 @@
 		516EF9481AF5F36800A356CE /* BallLock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BallLock.png; sourceTree = "<group>"; };
 		516EF94B1AF5FA9500A356CE /* StartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		516EF94D1AF5FB6000A356CE /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		517207961AF5FE9E00702425 /* Barrier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barrier.png; sourceTree = "<group>"; };
+		5172079E1AF602C200702425 /* Vortex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vortex.png; sourceTree = "<group>"; };
+		517207A01AF6033100702425 /* BallOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BallOk.png; sourceTree = "<group>"; };
+		517207A21AF603F900702425 /* UserLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLevel.swift; sourceTree = "<group>"; };
+		517207A41AF6058B00702425 /* Play Game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play Game.png"; sourceTree = "<group>"; };
+		517207A81AF6064900702425 /* LogoInicio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoInicio.png; sourceTree = "<group>"; };
 		941047841AF5749000683E02 /* Puririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puririn.swift; sourceTree = "<group>"; };
 		941F0A631AF5F8D9006B13EC /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		94C2236E1AF5BF610083873C /* Vortex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vortex.swift; sourceTree = "<group>"; };
@@ -151,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				94FB5C361AF5AFF1000B99F9 /* LevelMatrixes.swift */,
+				517207A21AF603F900702425 /* UserLevel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -181,8 +202,16 @@
 		94FB5C201AF57DBB000B99F9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5153E9F61AF6185600CEB2FE /* pbr2.png */,
+				5153E9F41AF6158D00CEB2FE /* pbr.png */,
+				5153E9F21AF613F100CEB2FE /* Metal.png */,
+				5153E9F01AF612A800CEB2FE /* back.png */,
+				517207A81AF6064900702425 /* LogoInicio.png */,
+				517207A41AF6058B00702425 /* Play Game.png */,
+				517207A01AF6033100702425 /* BallOk.png */,
+				5172079E1AF602C200702425 /* Vortex.png */,
+				517207961AF5FE9E00702425 /* Barrier.png */,
 				516EF94D1AF5FB6000A356CE /* Background.png */,
-				516EF9471AF5F36800A356CE /* BallOk.png */,
 				516EF9481AF5F36800A356CE /* BallLock.png */,
 				94FB5C321AF58D33000B99F9 /* puririn.png */,
 			);
@@ -279,13 +308,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				516EF9281AF56B1D00A356CE /* LaunchScreen.xib in Resources */,
+				5172079F1AF602C200702425 /* Vortex.png in Resources */,
 				94FB5C311AF586AD000B99F9 /* spark.png in Resources */,
 				516EF94A1AF5F36800A356CE /* BallLock.png in Resources */,
 				94FB5C331AF58D33000B99F9 /* puririn.png in Resources */,
+				517207981AF5FE9E00702425 /* Barrier.png in Resources */,
+				5153E9F71AF6185600CEB2FE /* pbr2.png in Resources */,
+				517207A11AF6033100702425 /* BallOk.png in Resources */,
 				94FB5C301AF586AD000B99F9 /* Trail.sks in Resources */,
 				516EF94E1AF5FB6000A356CE /* Background.png in Resources */,
 				516EF9251AF56B1D00A356CE /* Images.xcassets in Resources */,
+				5153E9F31AF613F100CEB2FE /* Metal.png in Resources */,
+				5153E9F11AF612A800CEB2FE /* back.png in Resources */,
+				517207A91AF6064900702425 /* LogoInicio.png in Resources */,
 				516EF9231AF56B1D00A356CE /* Main.storyboard in Resources */,
+				5153E9F51AF6158D00CEB2FE /* pbr.png in Resources */,
+				517207A61AF6058B00702425 /* Play Game.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +346,7 @@
 				516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */,
 				94C223751AF5E6FD0083873C /* completeWindow.swift in Sources */,
 				94C223711AF5C9D30083873C /* CleanPuririn.swift in Sources */,
+				517207A31AF603F900702425 /* UserLevel.swift in Sources */,
 				941047851AF5749000683E02 /* Puririn.swift in Sources */,
 				94FB5C351AF5AC8B000B99F9 /* LevelSelector.swift in Sources */,
 				516EF94C1AF5FA9500A356CE /* StartScreen.swift in Sources */,

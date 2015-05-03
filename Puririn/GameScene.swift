@@ -36,18 +36,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        
+        self.backgroundColor = UIColor.whiteColor()
         self.newGame()
     }
     
     func newGame() {
         
+        var bc = SKSpriteNode(imageNamed: "Metal")
+        bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        bc.name = "Back"
+        bc.zPosition = 0
+        
+        self.addChild(bc)
+        
+        self.removeAllActions()
+        
         self.physicsWorld.gravity = CGVectorMake(0.0, 0.0)
         self.physicsWorld.contactDelegate = self
-        self.view!.showsPhysics = true
+        self.view!.showsPhysics = false
         
         self.movePuririn = true
-        println(self.movePuririn)
+        //println(self.movePuririn)
         self.firstPoint = true
         self.speedForce = CGVector(dx: 0, dy: 0)
         self.dx = CGFloat(0)
@@ -67,8 +76,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var sSize = (screenHeight-100)/nHeight
         
         var offset = (screenWidth - (sSize*nWidth))/2
+
+        var hoffset = (screenHeight - (sSize*nHeight)) - 30
         
-        var hoffset = (screenHeight - (sSize*nHeight)) - 15
+        var wall1 = SKSpriteNode(imageNamed: "pbr")
+        wall1.size = CGSizeMake(offset,(screenHeight-100))
+        wall1.position = CGPointMake(wall1.size.width/2, screenHeight - wall1.size.height/2)
+        wall1.name = "Back"
+        wall1.zPosition = 12
+        
+        self.addChild(wall1)
+        
+        var wall2 = SKSpriteNode(imageNamed: "pbr2")
+        wall2.size = CGSizeMake(offset,(screenHeight-100))
+        wall2.position = CGPointMake(screenWidth - wall2.size.width/2, screenHeight - wall2.size.height/2)
+        wall2.name = "Back"
+        wall2.zPosition = 12
+        
+        self.addChild(wall2)
         
         for var i=0; i<Int(nWidth); i++ {
             
@@ -104,8 +129,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     self.puririn = Puririn(size:puririnSize)
                     self.puririn.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.puririn.zPosition = 11
                     self.addChild(self.puririn)
-                    println(self.puririn.physicsBody?.collisionBitMask)
+                    //println(self.puririn.physicsBody?.collisionBitMask)
                     
                 } else if(levelMatrix[k][i] == 3) {
                     //draw vortex at matrix[i][k]["X"],matrix[i][k]["Y"]
@@ -115,8 +141,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
                     
+                    var revolution = SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 2.0)
+                    var repeat = SKAction.repeatActionForever(revolution)
+                    
                     self.vortex = Vortex(size:puririnSize)
                     self.vortex.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.vortex.runAction(repeat)
                     self.addChild(self.vortex)
                     
                 } else if(levelMatrix[k][i] == 4) {
@@ -141,12 +171,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = Ball(size: starSize)
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(ball)
-                    println(ball.physicsBody?.categoryBitMask)
+                    //println(ball.physicsBody?.categoryBitMask)
                 }
             }
         }
         
-        self.backgroundColor = UIColor.blackColor()
+        //self.backgroundColor = UIColor.blackColor()
         
         //        Edges
         
@@ -260,6 +290,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didBeginContact(contact: SKPhysicsContact) {
         
+          //println("FAS")
+        
 //        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
 //            
 //            let firstNode = contact.bodyA.node as! SKSpriteNode
@@ -296,6 +328,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     window.lineWidth = 5
                     window.fillColor = UIColor.blueColor()
                     window.name = "window"
+                    window.zPosition = 12
                     self.addChild(window)
                 })
                 var wait = SKAction.waitForDuration(1.5)
@@ -334,6 +367,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.line = SKShapeNode(path: linePath)
             self.line.strokeColor = UIColor.whiteColor()
             self.line.lineWidth = 10
+            self.line.zPosition = 10
             self.addChild(self.line)
             
             self.speedForce = CGVector(dx: self.dx, dy: self.dy)
