@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var puririnTouched: Bool!
     
     var audioPlayer = AVAudioPlayer()
-    
+    var shotPlay = AVAudioPlayer()
     var bouncePlay = AVAudioPlayer()
     
     var level: Int!
@@ -322,7 +322,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             else if name == "puririn" {
-                playSound("charge")
+                if(self.puririnTouched==false) {
+                    playSound("charge")    
+                }
                 self.puririnTouched = true
             }
         }
@@ -564,10 +566,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //println(alertSound)
             
             var error:NSError?
-            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
             
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
+            shotPlay.prepareToPlay()
+            shotPlay.play()
         }
         
         if(sound=="charge") {
@@ -576,10 +578,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //println(alertSound)
             
             var error:NSError?
-            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
             
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
+            shotPlay.prepareToPlay()
+            shotPlay.play()
         }
         
         if(sound=="bounce") {
