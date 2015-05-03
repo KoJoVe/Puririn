@@ -19,12 +19,14 @@ class completeWindow: SKSpriteNode {
         super.init(texture: texture, color: nil, size: texture.size())
         
         self.name = "window"
+        self.zPosition = 1
         
         level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
         level.fontSize = 16
         level.fontName = "HelveticaNeue-Bold"
         level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 70)
         level.hidden = true
+        level.zPosition = 2
         self.addChild(level)
         
     }

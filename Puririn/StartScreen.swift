@@ -10,6 +10,8 @@ import SpriteKit
 
 class StartScreen: SKScene {
     
+    var complete: Bool = false
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         var bc = SKSpriteNode(imageNamed: "Background")
@@ -32,6 +34,11 @@ class StartScreen: SKScene {
         
         self.addChild(ng)
         
+        if self.complete == true {
+            
+            let alert = UIAlertView(title: "Congrats", message: "You finished the game, more levels coming soon", delegate: self, cancelButtonTitle: "Dismiss")
+            alert.show()
+        }
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

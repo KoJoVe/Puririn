@@ -525,22 +525,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             () -> Void in
             
             var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
-            var scene = GameScene(size:self.size)
-            scene.level = self.level + 1
             
-            if(UserLevel.getUserLevel()<scene.level) {
-                UserLevel.setUserLevel(scene.level)
-            }
             
-            scene.scaleMode = .AspectFill
             
             for child in self.children {
                 child.removeFromParent()
             }
-            scene.levelMatrix = LevelMatrixes.getMatrixLevel(scene.level)
             
-            self.removeFromParent()
-            self.scene!.view?.presentScene(scene, transition: transition)
+            if self.level + 1 < 40 {
+                
+                var scene = GameScene(size:self.size)
+                scene.level = self.level + 1
+                
+                scene.scaleMode = .AspectFill
+                
+                if(UserLevel.getUserLevel()<scene.level) {
+                    UserLevel.setUserLevel(scene.level)
+                }
+                
+                scene.levelMatrix = LevelMatrixes.getMatrixLevel(scene.level)
+                
+                self.removeFromParent()
+                self.scene!.view?.presentScene(scene, transition: transition)
+            }
+            
+            else {
+                
+                var scene = StartScreen(size:self.size)
+                scene.complete = true
+                scene.scaleMode = .AspectFill
+                
+                self.removeFromParent()
+                self.scene!.view?.presentScene(scene, transition: transition)
+            }
         
         }
         
