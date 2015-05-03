@@ -30,6 +30,7 @@
 		517207A91AF6064900702425 /* LogoInicio.png in Resources */ = {isa = PBXBuildFile; fileRef = 517207A81AF6064900702425 /* LogoInicio.png */; };
 		941047851AF5749000683E02 /* Puririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941047841AF5749000683E02 /* Puririn.swift */; };
 		941F0A641AF5F8D9006B13EC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941F0A631AF5F8D9006B13EC /* Ball.swift */; };
+		941F0A661AF61BD7006B13EC /* qualquerCoisa.plist in Resources */ = {isa = PBXBuildFile; fileRef = 941F0A651AF61BD7006B13EC /* qualquerCoisa.plist */; };
 		94C2236F1AF5BF610083873C /* Vortex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C2236E1AF5BF610083873C /* Vortex.swift */; };
 		94C223711AF5C9D30083873C /* CleanPuririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223701AF5C9D30083873C /* CleanPuririn.swift */; };
 		94C223731AF5DDDA0083873C /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223721AF5DDDA0083873C /* Star.swift */; };
@@ -79,6 +80,7 @@
 		517207A81AF6064900702425 /* LogoInicio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoInicio.png; sourceTree = "<group>"; };
 		941047841AF5749000683E02 /* Puririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puririn.swift; sourceTree = "<group>"; };
 		941F0A631AF5F8D9006B13EC /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		941F0A651AF61BD7006B13EC /* qualquerCoisa.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = qualquerCoisa.plist; sourceTree = "<group>"; };
 		94C2236E1AF5BF610083873C /* Vortex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vortex.swift; sourceTree = "<group>"; };
 		94C223701AF5C9D30083873C /* CleanPuririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanPuririn.swift; sourceTree = "<group>"; };
 		94C223721AF5DDDA0083873C /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		516EF9161AF56B1D00A356CE /* Puririn */ = {
 			isa = PBXGroup;
 			children = (
+				941F0A651AF61BD7006B13EC /* qualquerCoisa.plist */,
 				94FB5C211AF57DC7000B99F9 /* Particles */,
 				94FB5C201AF57DBB000B99F9 /* Images */,
 				516EF9191AF56B1D00A356CE /* AppDelegate.swift */,
@@ -310,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				941F0A661AF61BD7006B13EC /* qualquerCoisa.plist in Resources */,
 				516EF9281AF56B1D00A356CE /* LaunchScreen.xib in Resources */,
 				5172079F1AF602C200702425 /* Vortex.png in Resources */,
 				94FB5C311AF586AD000B99F9 /* spark.png in Resources */,
