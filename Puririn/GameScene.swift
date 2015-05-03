@@ -13,6 +13,8 @@ class GameScene: SKScene {
     var movePuririn = false
     var firstPoint = true
     
+    var levelMatrix: Array<Array<Int>> = []
+    
     var touchLocation = CGPoint()
     
     var puririn: Puririn!
@@ -30,11 +32,100 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        levelMatrix = [[2,2,2,2,2,2,2],
+                       [2,0,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2],
+                       [2,2,2,2,2,2,2]]
+        
+//        levelMatrix = [[0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [0,0,0,0,0,0,0],
+//            [2,0,0,0,0,0,0],
+//            [0,2,0,0,0,0,0]]
+        
+        var screenWidth = self.frame.size.width
+        var screenHeight = self.frame.size.height
+        
+        var nWidth:CGFloat = 7
+        
+        var nHeight:CGFloat = 12
+        
+        var matrix:Array<Array<NSDictionary>> = []
+        
+        var sSize = (screenHeight-100)/nHeight
+        
+        var offset = (screenWidth - (sSize*nWidth))/2
+        
+        var hoffset = (screenHeight - (sSize*nHeight)) - 15
+        
+        for var i=0; i<Int(nWidth); i++ {
+            
+            var lineArray:Array<NSDictionary> = []
+            
+            for var k=0; k<Int(nHeight); k++ {
+                
+                var x = CGFloat(i)*sSize + offset
+                var y = CGFloat(Int(nHeight-1)-k)*sSize + hoffset
+                
+                var dictionary = ["X": x, "Y": y, "View": SKSpriteNode()]
+                
+                lineArray.append(dictionary)
+                
+                var quadrado = dictionary["View"] as! SKSpriteNode
+            }
+            
+            matrix.append(lineArray)
+        }
+        
+        for var i=0; i<Int(nWidth); i++ {
+            
+            for var k=0; k<Int(nHeight); k++ {
+                
+                if(levelMatrix[k][i] == 0) {
+                    //do nothing
+                } else if(levelMatrix[k][i] == 1) {
+                    //draw obstacle at matrix[i][k]["X"],matrix[i][k]["Y"]
+                } else if(levelMatrix[k][i] == 2) {
+                    
+                    var puririnSize = sSize
+                    
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    
+                    self.puririn = Puririn(size:puririnSize)
+                    self.puririn.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.addChild(self.puririn)
+                    
+                    println(self.puririn.anchorPoint)
+                    
+                } else if(levelMatrix[i][k] == 3) {
+                    //draw vortex at matrix[i][k]["X"],matrix[i][k]["Y"]
+                }
+                
+            }
+        }
+        
+        
         self.backgroundColor = UIColor.blackColor()
         
 //        Edges
         
-        var playable = CGRect(x: 0, y: self.frame.size.height/3, width: self.frame.size.width, height: 2*self.frame.size.height/3)
+        var playable = CGRect(x: offset, y: hoffset, width: sSize*nWidth, height: sSize*nHeight)
         
         var borderBody = SKPhysicsBody(edgeLoopFromRect: playable)
         self.physicsBody = borderBody;
@@ -46,11 +137,7 @@ class GameScene: SKScene {
         
 //        Puririn
         
-        var puririnSize = ((self.frame.height - 100)/12) - 2
-        
-        self.puririn = Puririn(size:puririnSize)
-        self.puririn.position = CGPoint(x: 100, y: 300)
-        self.addChild(self.puririn)
+      
         
 //        Trail
         
