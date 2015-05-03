@@ -67,15 +67,71 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.background.size = CGSize(width: self.size.width, height: self.size.height)
         self.background.anchorPoint = CGPoint(x: 0, y: 0)
         self.background.hidden = true
-        self.addChild(self.background)
+//        self.addChild(self.background)
+        
+        var screenWidth = self.frame.size.width
+        var screenHeight = self.frame.size.height
+        
+        var nWidth:CGFloat = 7
+        
+        var nHeight:CGFloat = 12
+        
+        var matrix:Array<Array<NSDictionary>> = []
+        
+        var sSize = (screenHeight-100)/nHeight
+        
+        var offset = (screenWidth - (sSize*nWidth))/2
+        
+        var hoffset = (screenHeight - (sSize*nHeight)) - 30
+
         
         var bc = SKSpriteNode(imageNamed: "Metal")
+        bc.size = CGSizeMake(self.frame.size.width, self.frame.size.height)
         bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         bc.name = "Back"
-        bc.zPosition = 0
-        
+        bc.zPosition = -1
         
         self.addChild(bc)
+        
+        var wall1 = SKSpriteNode(imageNamed: "bg2")
+        wall1.size = CGSizeMake(nWidth*sSize + 12,nHeight*sSize + 12)
+        wall1.position = CGPointMake(offset + wall1.size.width/2 - 6, screenHeight - (wall1.size.height/2 + 30) + 6)
+        wall1.name = "Fundo"
+        wall1.zPosition = 0
+        
+        self.addChild(wall1)
+        
+        var parafuso1 = SKSpriteNode(imageNamed: "parafuso")
+        parafuso1.size = CGSizeMake(25,25)
+        parafuso1.position = CGPointMake(offset, screenHeight - (parafuso1.size.height/2 + 15))
+        parafuso1.name = "Fundo"
+        parafuso1.zPosition = 15
+        
+        self.addChild(parafuso1)
+        
+        var parafuso2 = SKSpriteNode(imageNamed: "parafuso")
+        parafuso2.size = CGSizeMake(25,25)
+        parafuso2.position = CGPointMake(screenWidth - offset, screenHeight - (parafuso1.size.height/2 + 15))
+        parafuso2.name = "Fundo"
+        parafuso2.zPosition = 15
+        
+        self.addChild(parafuso2)
+        
+        var parafuso3 = SKSpriteNode(imageNamed: "parafuso")
+        parafuso3.size = CGSizeMake(25,25)
+        parafuso3.position = CGPointMake(offset, screenHeight - (nHeight*sSize + 30))
+        parafuso3.name = "Fundo"
+        parafuso3.zPosition = 15
+        
+        self.addChild(parafuso3)
+        
+        var parafuso4 = SKSpriteNode(imageNamed: "parafuso")
+        parafuso4.size = CGSizeMake(25,25)
+        parafuso4.position = CGPointMake(screenWidth - offset, screenHeight - (nHeight*sSize + 30))
+        parafuso4.name = "Fundo"
+        parafuso4.zPosition = 15
+    
+        self.addChild(parafuso4)
         
         self.removeAllActions()
         
@@ -92,84 +148,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.wayPoints.removeAll(keepCapacity: false)
         self.angularVelocityPuririn = 0
         
-        var screenWidth = self.frame.size.width
-        var screenHeight = self.frame.size.height
-        
-        var nWidth:CGFloat = 7
-        
-        var nHeight:CGFloat = 12
-        
-        var matrix:Array<Array<NSDictionary>> = []
-        
-        var sSize = (screenHeight-100)/nHeight
-        
-        var offset = (screenWidth - (sSize*nWidth))/2
-
-        var hoffset = (screenHeight - (sSize*nHeight)) - 30
-        
-        var wall1 = SKSpriteNode(imageNamed: "leftwall")
-        wall1.size = CGSizeMake(offset,(screenHeight-100+30))
-        wall1.position = CGPointMake(wall1.size.width/2, screenHeight - wall1.size.height/2)
-        wall1.name = "Left"
-        wall1.zPosition = 13
-        
-        self.addChild(wall1)
-        
-        var wall2 = SKSpriteNode(imageNamed: "rightwall")
-        wall2.size = CGSizeMake(offset,(screenHeight-100+30))
-        wall2.position = CGPointMake(screenWidth - wall2.size.width/2, screenHeight - wall2.size.height/2)
-        wall2.name = "Right"
-        wall2.zPosition = 13
-        
-        self.addChild(wall2)
-        
-        var wall3 = SKSpriteNode(imageNamed: "topwall")
-        wall3.size = CGSizeMake(screenWidth,30)
-        wall3.position = CGPointMake(wall3.size.width/2, screenHeight - wall3.size.height/2)
-        wall3.name = "Top"
-        wall3.zPosition = 12
-        
-        self.addChild(wall3)
-        
-        var wall4 = SKSpriteNode(imageNamed: "cornerleft")
-        wall4.size = CGSizeMake(offset,30)
-        wall4.position = CGPointMake(wall4.size.width/2, screenHeight - wall4.size.height/2)
-        wall4.name = "C1"
-        wall4.zPosition = 14
-        
-        self.addChild(wall4)
-        
-        var wall5 = SKSpriteNode(imageNamed: "cornerright")
-        wall5.size = CGSizeMake(offset,30)
-        wall5.position = CGPointMake(screenWidth - wall5.size.width/2, screenHeight - wall5.size.height/2)
-        wall5.name = "C2"
-        wall5.zPosition = 14
-        
-        self.addChild(wall5)
-        
-        var wall6 = SKSpriteNode(imageNamed: "menubot")
-        wall6.size = CGSizeMake(screenWidth,screenHeight - (screenHeight-100+30))
-        wall6.position = CGPointMake(wall6.size.width/2, wall6.size.height/2)
-        wall6.name = "Bot"
-        wall6.zPosition = 11
-        
-        self.addChild(wall6)
-        
-        var parafuso1 = SKSpriteNode(imageNamed: "screw")
-        parafuso1.size = CGSizeMake(offset,offset)
-        parafuso1.position = CGPointMake(parafuso1.size.width/2, screenHeight - (screenHeight-100+30))
-        parafuso1.name = "screw1"
-        parafuso1.zPosition = 15
-        
-        self.addChild(parafuso1)
-        
-        var parafuso2 = SKSpriteNode(imageNamed: "screw")
-        parafuso2.size = CGSizeMake(offset,offset)
-        parafuso2.position = CGPointMake(screenWidth - parafuso2.size.width/2, screenHeight - (screenHeight-100+30))
-        parafuso2.name = "screw2"
-        parafuso2.zPosition = 15
-        
-        self.addChild(parafuso2)
 
         for var i=0; i<Int(nWidth); i++ {
             
@@ -285,6 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //        Trail
         
+        
         let untypedEmitter : AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)!;
         let emitter:SKEmitterNode = untypedEmitter as! SKEmitterNode;
         emitter.targetNode = self
@@ -300,9 +279,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        
-//        println(self.movePuririn)
-//        println(self.firstPoint)
         
         for touch in (touches as! Set<UITouch>) {
             
@@ -339,8 +315,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.touchLocation = touch.locationInNode(self)
                 
                 
-                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 200
-                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 200
+                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 140
+                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 140
                 
                 if self.dx > 0 {
                     self.angularVelocityPuririn = -15
@@ -574,7 +550,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var error:NSError?
             audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            
+            audioPlayer.volume = 0.12
             audioPlayer.prepareToPlay()
             audioPlayer.play()
         }
@@ -586,7 +562,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var error:NSError?
             shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            
+            shotPlay.volume = 0.07
             shotPlay.prepareToPlay()
             shotPlay.play()
         }
@@ -598,7 +574,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var error:NSError?
             shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            
+            shotPlay.volume = 0.03
             shotPlay.prepareToPlay()
             shotPlay.play()
         }
@@ -606,6 +582,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(sound=="bounce") {
             
             if(!bouncePlay.playing) {
+                bouncePlay.volume = 0.07
                 bouncePlay.prepareToPlay()
                 bouncePlay.play()
             }
