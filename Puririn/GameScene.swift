@@ -11,6 +11,8 @@ import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var maxLevels = 40
+    
     var movePuririn:Bool!
     var firstPoint = true
     var restartBool = false
@@ -320,6 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             else if name == "puririn" {
+                playSound("charge")
                 self.puririnTouched = true
             }
         }
@@ -345,6 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 
                 self.createPath()
+                
             }
         }
     }
@@ -407,8 +411,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 cleanPuririn.removeAllChildren()
                 cleanPuririn.rotateAndShrink()
                 
-                var window = completeWindow(size:100,currentLevel:1,totalLevel:30)
-                window.position = CGPoint(x: 100, y: 100)
+                var window = completeWindow(currentLevel:self.level+1,totalLevel:self.maxLevels)
+                    
+                var ww = window.size.width/5
+                var wh = window.size.height/5
+                    
+                window.size = CGSizeMake(0, 0)
+                window.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) + 40)
                 window.zPosition = 20
                 
                 var showWindow = SKAction.runBlock({
@@ -418,11 +427,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.background.hidden = false
                 })
                 var wait = SKAction.waitForDuration(1.5)
-                var increase = SKAction.resizeToWidth(100, height: 100, duration: 0.5)
+                var increase = SKAction.resizeToWidth(ww, height: wh, duration: 0.5)
                 var sequence = SKAction.sequence([wait,showWindow])
-                var sequence2 = SKAction.sequence([wait,increase])
+                var sequence2 = SKAction.sequence([increase])
                 self.runAction(sequence)
                 window.runAction(sequence2)
+                window.animateLabel()
         }
         
         else if ((contact.bodyA.categoryBitMask == 1<<0) &&
@@ -437,6 +447,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createPath() {
         
+        //playSound("charge")
         if self.firstPoint == true {
             
             self.wayPoints.removeAll(keepCapacity: false)
@@ -543,10 +554,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var error:NSError?
             audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
             
-            if(audioPlayer.playing) {
-                audioPlayer.stop()
-            }
-            
             audioPlayer.prepareToPlay()
             audioPlayer.play()
         }
@@ -554,6 +561,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(sound=="shot") {
             
             var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shot", ofType: "wav")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        
+        if(sound=="charge") {
+            
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("charge", ofType: "wav")!)
             //println(alertSound)
             
             var error:NSError?
