@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var movePuririn = false
     var firstPoint = true
@@ -18,6 +18,9 @@ class GameScene: SKScene {
     var touchLocation = CGPoint()
     
     var puririn: Puririn!
+    var vortex: Vortex!
+    
+    var sizeClean = CGFloat(0)
     
     var wayPoints: [CGPoint] = []
     
@@ -32,6 +35,20 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        self.newGame()
+    }
+    
+    func newGame() {
+        
+        self.physicsWorld.gravity = CGVectorMake(0.0, 0.0)
+        self.physicsWorld.contactDelegate = self
+        self.view!.showsPhysics = true
+        
+        self.speedForce = CGVector(dx: 0, dy: 0)
+        self.dx = 0
+        self.dy = 0
+        self.wayPoints.removeAll(keepCapacity: false)
+        self.angularVelocityPuririn = 0
         
         var screenWidth = self.frame.size.width
         var screenHeight = self.frame.size.height
@@ -78,6 +95,7 @@ class GameScene: SKScene {
                 } else if(levelMatrix[k][i] == 2) {
                     
                     var puririnSize = sSize
+                    self.sizeClean = puririnSize
                     
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
@@ -86,10 +104,17 @@ class GameScene: SKScene {
                     self.puririn.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.puririn)
                     
-                    println(self.puririn.anchorPoint)
-                    
                 } else if(levelMatrix[i][k] == 3) {
                     //draw vortex at matrix[i][k]["X"],matrix[i][k]["Y"]
+                    
+                    var puririnSize = sSize
+                    
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    
+                    self.vortex = Vortex(size:puririnSize)
+                    self.vortex.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.addChild(self.vortex)
                 }
                 
             }
@@ -98,7 +123,7 @@ class GameScene: SKScene {
         
         self.backgroundColor = UIColor.blackColor()
         
-//        Edges
+        //        Edges
         
         var playable = CGRect(x: offset, y: hoffset, width: sSize*nWidth, height: sSize*nHeight)
         
@@ -110,7 +135,7 @@ class GameScene: SKScene {
         self.physicsBody?.angularDamping = 0.0
         self.physicsBody?.affectedByGravity = false
         
-//        Buttons
+        //        Buttons
         
         var exit = SKLabelNode(text: "exit")
         exit.position = CGPoint(x: 3*offset, y: hoffset/2)
@@ -121,9 +146,9 @@ class GameScene: SKScene {
         restart.position = CGPoint(x: 12*offset, y: hoffset/2)
         restart.name = "restart"
         self.addChild(restart)
-      
         
-//        Trail
+        
+        //        Trail
         
         let untypedEmitter : AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)!;
         let emitter:SKEmitterNode = untypedEmitter as! SKEmitterNode;
@@ -192,6 +217,40 @@ class GameScene: SKScene {
         }
     }
     
+    func didBeginContact(contact: SKPhysicsContact) {
+        
+//        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+//            
+//            let firstNode = contact.bodyA.node as! SKSpriteNode
+//            let secondNode = contact.bodyB.node as! SKSpriteNode
+//            
+//        }
+//        
+//        else if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask {
+//            
+//            let firstNode = contact.bodyB.node as! SKSpriteNode
+//            let secondNode = contact.bodyA.node as! SKSpriteNode
+//            
+//        }
+        
+        if (contact.bodyA.categoryBitMask == 1<<0) &&
+            (contact.bodyB.categoryBitMask == 1<<1) {
+                
+                var cleanPuririn = CleanPuririn(size: self.sizeClean)
+                cleanPuririn.position = self.puririn.position
+                cleanPuririn.zPosition = 10
+                self.addChild(cleanPuririn)
+                self.puririn.removeFromParent()
+                
+                var move = SKAction.moveTo(self.vortex.position, duration: 1.5)
+                cleanPuririn.runAction(move)
+                
+                cleanPuririn.position = self.vortex.position
+                cleanPuririn.removeAllChildren()
+                cleanPuririn.rotateAndShrink()
+        }
+    }
+    
     func createPath() {
         
         if self.firstPoint == true {
@@ -220,7 +279,7 @@ class GameScene: SKScene {
             }
             
             self.line = SKShapeNode(path: linePath)
-            self.line.strokeColor = UIColor.blackColor()
+            self.line.strokeColor = UIColor.whiteColor()
             self.line.lineWidth = 10
             self.addChild(self.line)
             
@@ -230,12 +289,10 @@ class GameScene: SKScene {
     }
     
     func restart() {
-//        var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
-//        var scene = GameScene(size:self.size)
-//        scene.scaleMode = .AspectFill
-//        scene.levelMatrix = self.levelMatrix
-//        self.view?.presentScene(scene, transition: transition)
-        
+        for node in self.children {
+            node.removeFromParent()
+        }
+        self.newGame()
     }
     
     func exit() {
@@ -246,9 +303,11 @@ class GameScene: SKScene {
             var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
             var scene = LevelSelector(size:self.size)
             scene.scaleMode = .AspectFill
+
             for child in self.children {
                 child.removeFromParent()
             }
+
             self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
             
