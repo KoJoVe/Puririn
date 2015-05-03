@@ -7,9 +7,12 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 
 class LevelSelector: SKScene {
+    
+    var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
         
@@ -85,6 +88,7 @@ class LevelSelector: SKScene {
             
             if theName != nil {
                 
+                playSound()
                 if(theName == "BackMenu") {
                     
                     var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
@@ -117,4 +121,16 @@ class LevelSelector: SKScene {
         
     }
     
+    func playSound() {
+        
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ok", ofType: "aif")!)
+        //println(alertSound)
+        
+        var error:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+        
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+        
+    }
 }
