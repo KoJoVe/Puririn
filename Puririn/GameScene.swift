@@ -344,6 +344,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.puririn.physicsBody?.applyForce(self.speedForce)
             self.puririn.physicsBody?.angularVelocity = CGFloat(self.angularVelocityPuririn)
             
+            playSound("shot")
+            
             self.line.removeFromParent()
             
             self.firstPoint = true
@@ -533,6 +535,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if(audioPlayer.playing) {
                 audioPlayer.stop()
             }
+            
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        
+        if(sound=="shot") {
+            
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shot", ofType: "wav")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
             
             audioPlayer.prepareToPlay()
             audioPlayer.play()
