@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8379EB6A-ACE3-4E3D-A98E-8C546B82AC21</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Puririn</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>DF0F8CA046F58A627C950A9E8B57F6A24A68A2C4</key>
 		<string>https://github.com/KoJoVe/Puririn.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Puririn.xcodeproj/project.xcworkspace</string>
+	<string>Puririn.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>DF0F8CA046F58A627C950A9E8B57F6A24A68A2C4</key>

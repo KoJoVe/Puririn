@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -14,6 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var firstPoint = true
     var restartBool = false
     var puririnTouched: Bool!
+    
+    var audioPlayer = AVAudioPlayer()
     
     var levelMatrix: Array<Array<Int>> = []
     
@@ -196,14 +199,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var exit = SKSpriteNode(imageNamed: "back")
         exit.size = CGSizeMake(exit.frame.size.width/5.5, exit.frame.size.height/5.5)
-        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 20 + exit.frame.size.height/2)
+        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 25 + exit.frame.size.height/2)
         exit.name = "exit"
+        exit.zPosition = 12
         self.addChild(exit)
         
         var restart = SKSpriteNode(imageNamed: "retry")
         restart.size = CGSizeMake(restart.frame.size.width/4, restart.frame.size.height/4)
-        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 20 + restart.frame.size.height/2)
+        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 25 + restart.frame.size.height/2)
         restart.name = "restart"
+        restart.zPosition = 12
         self.addChild(restart)
         
         //        Trail
@@ -254,13 +259,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for touch in (touches as! Set<UITouch>) {
             
-            if self.movePuririn == true {
+            if self.movePuririn == true && self.puririnTouched == true  {
                 
                 self.touchLocation = touch.locationInNode(self)
                 
                 
-                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 80
-                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 80
+                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 90
+                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 90
                 
                 if self.dx > 0 {
                     self.angularVelocityPuririn = -15
@@ -276,7 +281,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         
-        if self.movePuririn == true {
+        if self.movePuririn == true && self.puririnTouched == true {
             
             self.puririn.physicsBody?.applyForce(self.speedForce)
             self.puririn.physicsBody?.angularVelocity = CGFloat(self.angularVelocityPuririn)
@@ -284,17 +289,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.line.removeFromParent()
             
             self.firstPoint = true
+            self.movePuririn = false
         }
         
         if self.restartBool == true {
             self.movePuririn = true
             self.restartBool = false
-            
-        }
-        
-        if self.puririnTouched == true {
-            
-            self.movePuririn = false
             
         }
     }
@@ -321,6 +321,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             (contact.bodyB.categoryBitMask == 1<<1)) ||
             ((contact.bodyA.categoryBitMask == 1<<1) &&
                 (contact.bodyB.categoryBitMask == 1<<0)) {
+                    
+                playSound("vortex")
                 
                 var cleanPuririn = CleanPuririn(size: self.sizeClean)
                 cleanPuririn.position = self.puririn.position
@@ -332,9 +334,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 cleanPuririn.runAction(move)
                 cleanPuririn.removeAllChildren()
                 cleanPuririn.rotateAndShrink()
+                    
+                var window = SKShapeNode()
                 
                 var showWindow = SKAction.runBlock({
-                    var window = SKShapeNode(rect: CGRect(x: self.size.width/2 - 50, y: self.size.height/2 - 50, width: 100, height: 100), cornerRadius: 5)
+                    window = SKShapeNode(rect: CGRect(x: self.size.width/2 - 50, y: self.size.height/2 - 50, width: 100, height: 100), cornerRadius: 5)
                     window.strokeColor = UIColor.redColor()
                     window.lineWidth = 5
                     window.fillColor = UIColor.blueColor()
@@ -343,8 +347,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(window)
                 })
                 var wait = SKAction.waitForDuration(1.5)
+                var increase = SKAction.resizeToWidth(100, height: 100, duration: 0.5)
                 var sequence = SKAction.sequence([wait,showWindow])
+                var sequence2 = SKAction.sequence([wait,increase])
                 self.runAction(sequence)
+                window.runAction(sequence2)
         }
     }
     
@@ -437,6 +444,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
         
+        }
+        
+    }
+    
+    func playSound(sound: String) {
+        
+        if(sound=="vortex") {
+            
+            audioPlayer.stop()
+            
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
         }
         
     }
