@@ -384,7 +384,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 cleanPuririn.removeAllChildren()
                 cleanPuririn.rotateAndShrink()
                     
-                var window = SKShapeNode()
+                var window = completeWindow(size:10,currentLevel:1,totalLevel:30)
                 
                 var showWindow = SKAction.runBlock({
                     window = SKShapeNode(rect: CGRect(x: self.size.width/2 - 50, y: self.size.height/2 - 50, width: 100, height: 100), cornerRadius: 5)
