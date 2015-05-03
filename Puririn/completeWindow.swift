@@ -10,23 +10,38 @@ import SpriteKit
 
 class completeWindow: SKSpriteNode {
     
-    init (size: CGFloat, currentLevel: Int, totalLevel: Int) {
+    var level = SKLabelNode()
+    
+    init (currentLevel: Int, totalLevel: Int) {
         
         let texture = SKTexture(imageNamed: "Screen_level_cleared")
-        let sizeWH = CGSize(width: size, height: size)
         
-        super.init(texture: texture, color: nil, size: sizeWH)
+        super.init(texture: texture, color: nil, size: texture.size())
         
         self.name = "window"
         
-        var level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
-        level.position = CGPoint(x: 10, y: 10)
+        level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
+        level.fontSize = 16
+        level.fontName = "HelveticaNeue-Bold"
+        level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 70)
+        level.hidden = true
         self.addChild(level)
         
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func animateLabel() {
+        
+        var wait = SKAction.waitForDuration(0.5)
+        var block = SKAction.runBlock({
+            self.level.hidden = false
+        })
+        
+        self.level.runAction(SKAction.sequence([wait,block]))
+        
     }
     
 }
