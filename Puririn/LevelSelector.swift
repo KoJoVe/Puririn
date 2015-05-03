@@ -99,6 +99,7 @@ class LevelSelector: SKScene {
                     var scene = GameScene(size:self.size)
                     scene.scaleMode = .AspectFill
                     var theNumber = theName!.toInt()!
+                    scene.level = theNumber + 1
                     scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
                     self.removeFromParent()
                     self.scene!.view?.presentScene(scene, transition: transition)

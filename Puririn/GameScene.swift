@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var audioPlayer = AVAudioPlayer()
     
+    var level: Int!
     var levelMatrix: Array<Array<Int>> = []
     
     var touchLocation = CGPoint()
@@ -312,8 +313,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.touchLocation = touch.locationInNode(self)
                 
                 
-                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 100
-                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 100
+                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 200
+                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 200
                 
                 if self.dx > 0 {
                     self.angularVelocityPuririn = -15
