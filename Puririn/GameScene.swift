@@ -83,22 +83,70 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         var hoffset = (screenHeight - (sSize*nHeight)) - 30
         
-        var wall1 = SKSpriteNode(imageNamed: "pbr")
-        wall1.size = CGSizeMake(offset,(screenHeight-100))
+        var wall1 = SKSpriteNode(imageNamed: "leftwall")
+        wall1.size = CGSizeMake(offset,(screenHeight-100+30))
         wall1.position = CGPointMake(wall1.size.width/2, screenHeight - wall1.size.height/2)
-        wall1.name = "Back"
-        wall1.zPosition = 12
+        wall1.name = "Left"
+        wall1.zPosition = 13
         
         self.addChild(wall1)
         
-        var wall2 = SKSpriteNode(imageNamed: "pbr2")
-        wall2.size = CGSizeMake(offset,(screenHeight-100))
+        var wall2 = SKSpriteNode(imageNamed: "rightwall")
+        wall2.size = CGSizeMake(offset,(screenHeight-100+30))
         wall2.position = CGPointMake(screenWidth - wall2.size.width/2, screenHeight - wall2.size.height/2)
-        wall2.name = "Back"
-        wall2.zPosition = 12
+        wall2.name = "Right"
+        wall2.zPosition = 13
         
         self.addChild(wall2)
         
+        var wall3 = SKSpriteNode(imageNamed: "topwall")
+        wall3.size = CGSizeMake(screenWidth,30)
+        wall3.position = CGPointMake(wall3.size.width/2, screenHeight - wall3.size.height/2)
+        wall3.name = "Top"
+        wall3.zPosition = 12
+        
+        self.addChild(wall3)
+        
+        var wall4 = SKSpriteNode(imageNamed: "cornerleft")
+        wall4.size = CGSizeMake(offset,30)
+        wall4.position = CGPointMake(wall4.size.width/2, screenHeight - wall4.size.height/2)
+        wall4.name = "C1"
+        wall4.zPosition = 14
+        
+        self.addChild(wall4)
+        
+        var wall5 = SKSpriteNode(imageNamed: "cornerright")
+        wall5.size = CGSizeMake(offset,30)
+        wall5.position = CGPointMake(screenWidth - wall5.size.width/2, screenHeight - wall5.size.height/2)
+        wall5.name = "C2"
+        wall5.zPosition = 14
+        
+        self.addChild(wall5)
+        
+        var wall6 = SKSpriteNode(imageNamed: "menubot")
+        wall6.size = CGSizeMake(screenWidth,screenHeight - (screenHeight-100+30))
+        wall6.position = CGPointMake(wall6.size.width/2, wall6.size.height/2)
+        wall6.name = "Bot"
+        wall6.zPosition = 11
+        
+        self.addChild(wall6)
+        
+        var parafuso1 = SKSpriteNode(imageNamed: "screw")
+        parafuso1.size = CGSizeMake(offset,offset)
+        parafuso1.position = CGPointMake(parafuso1.size.width/2, screenHeight - (screenHeight-100+30))
+        parafuso1.name = "screw1"
+        parafuso1.zPosition = 15
+        
+        self.addChild(parafuso1)
+        
+        var parafuso2 = SKSpriteNode(imageNamed: "screw")
+        parafuso2.size = CGSizeMake(offset,offset)
+        parafuso2.position = CGPointMake(screenWidth - parafuso2.size.width/2, screenHeight - (screenHeight-100+30))
+        parafuso2.name = "screw2"
+        parafuso2.zPosition = 15
+        
+        self.addChild(parafuso2)
+
         for var i=0; i<Int(nWidth); i++ {
             
             var lineArray:Array<NSDictionary> = []
@@ -197,16 +245,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //        Buttons
         
-        var exit = SKSpriteNode(imageNamed: "back")
-        exit.size = CGSizeMake(exit.frame.size.width/5.5, exit.frame.size.height/5.5)
-        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 25 + exit.frame.size.height/2)
+        var exit = SKSpriteNode(imageNamed: "back_button")
+        exit.size = CGSizeMake(exit.frame.size.width/6, exit.frame.size.height/6)
+        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 15 + exit.frame.size.height/2)
         exit.name = "exit"
         exit.zPosition = 12
         self.addChild(exit)
         
-        var restart = SKSpriteNode(imageNamed: "retry")
-        restart.size = CGSizeMake(restart.frame.size.width/4, restart.frame.size.height/4)
-        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 25 + restart.frame.size.height/2)
+        var restart = SKSpriteNode(imageNamed: "restart_button")
+        restart.size = CGSizeMake(restart.frame.size.width/6, restart.frame.size.height/6)
+        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 15 + restart.frame.size.height/2)
         restart.name = "restart"
         restart.zPosition = 12
         self.addChild(restart)
@@ -452,13 +500,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(sound=="vortex") {
             
-            audioPlayer.stop()
-            
             var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
             //println(alertSound)
             
             var error:NSError?
             audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            
+            if(audioPlayer.playing) {
+                audioPlayer.stop()
+            }
+            
             audioPlayer.prepareToPlay()
             audioPlayer.play()
         }
