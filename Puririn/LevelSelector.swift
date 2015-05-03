@@ -20,7 +20,7 @@ class LevelSelector: SKScene {
 
         self.addChild(bc)
         
-        var userLevel = 1
+        var userLevel = UserLevel.getUserLevel() + 1
         var nLevels = 40
     
         var espacoVer:CGFloat = 10
@@ -97,6 +97,7 @@ class LevelSelector: SKScene {
                     var scene = GameScene(size:self.size)
                     scene.scaleMode = .AspectFill
                     var theNumber = theName!.toInt()!
+                    scene.level = theNumber + 1
                     scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
                     self.removeFromParent()
                     self.scene!.view?.presentScene(scene, transition: transition)
