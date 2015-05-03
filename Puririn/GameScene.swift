@@ -105,6 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.puririn = Puririn(size:puririnSize)
                     self.puririn.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.puririn)
+                    println(self.puririn.physicsBody?.collisionBitMask)
                     
                 } else if(levelMatrix[k][i] == 3) {
                     //draw vortex at matrix[i][k]["X"],matrix[i][k]["Y"]
@@ -129,10 +130,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.star = Star(size: starSize)
                     self.star.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.star)
+                } else if(levelMatrix[k][i] == 5) {
+                    //draw star at matrix[i][k]["X"], matrix[i][k]["Y"]
+                    
+                    var starSize = sSize
+                    
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    
+                    var ball = Ball(size: starSize)
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.addChild(ball)
+                    println(ball.physicsBody?.categoryBitMask)
                 }
             }
         }
-        
         
         self.backgroundColor = UIColor.blackColor()
         
@@ -147,6 +159,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody?.linearDamping = 0.0
         self.physicsBody?.angularDamping = 0.0
         self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.categoryBitMask = 1 << 3
         
         //        Buttons
         
@@ -168,6 +181,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         emitter.targetNode = self
         self.puririn.addChild(emitter)
         
+        //        Pause
+        
+        var pauseButton = SKLabelNode(text: "Pause")
+        pauseButton.position = CGPoint(x: self.size.width/2, y: hoffset/2)
+        pauseButton.name = "pause"
+        self.addChild(pauseButton)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
