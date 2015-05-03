@@ -27,7 +27,7 @@ class Puririn: SKSpriteNode {
         self.physicsBody?.angularDamping = 0.3
         self.zPosition = 2
         self.physicsBody?.categoryBitMask = 1 << 0
-        self.physicsBody?.contactTestBitMask = 1 << 1 & 1 << 2
+        self.physicsBody?.contactTestBitMask = 1 << 1 | 1 << 2 | 1 << 3
         self.physicsBody?.collisionBitMask = 1 << 1 | 1 << 2 | 1 << 3
     }
 

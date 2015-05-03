@@ -353,6 +353,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.runAction(sequence)
                 window.runAction(sequence2)
         }
+        
+        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
+        (contact.bodyB.categoryBitMask != 1<<1)) ||
+        ((contact.bodyA.categoryBitMask != 1<<1) &&
+            (contact.bodyB.categoryBitMask == 1<<0)) {
+                
+                println("teste")
+                
+        }
     }
     
     func createPath() {
