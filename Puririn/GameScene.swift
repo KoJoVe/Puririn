@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var movePuririn:Bool!
     var firstPoint = true
     var restartBool = false
+    var puririnTouched: Bool!
     
     var levelMatrix: Array<Array<Int>> = []
     
@@ -56,8 +57,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.view!.showsPhysics = false
         
         self.movePuririn = true
-        //println(self.movePuririn)
         self.firstPoint = true
+        self.puririnTouched = false
         self.speedForce = CGVector(dx: 0, dy: 0)
         self.dx = CGFloat(0)
         self.dy = CGFloat(0)
@@ -242,6 +243,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else if name == "window" {
                 self.nextStage()
             }
+            
+            else if name == "puririn" {
+                self.puririnTouched = true
+            }
         }
     }
     
@@ -278,13 +283,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.line.removeFromParent()
             
-            self.movePuririn = false
             self.firstPoint = true
         }
         
         if self.restartBool == true {
             self.movePuririn = true
             self.restartBool = false
+            
+        }
+        
+        if self.puririnTouched == true {
+            
+            self.movePuririn = false
             
         }
     }
