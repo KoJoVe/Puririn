@@ -495,19 +495,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func nextStage() {
         
-        var nextMatrix = LevelMatrixes.getMatrixLevel(1)
-        
         dispatch_async(dispatch_get_main_queue()) {
             () -> Void in
             
             var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
             var scene = GameScene(size:self.size)
+            scene.level = self.level + 1
+            
+            if(UserLevel.getUserLevel()<scene.level) {
+                UserLevel.setUserLevel(scene.level)
+            }
+            
             scene.scaleMode = .AspectFill
             
             for child in self.children {
                 child.removeFromParent()
             }
-            scene.levelMatrix = nextMatrix
+            scene.levelMatrix = LevelMatrixes.getMatrixLevel(scene.level)
+            
             self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
         
