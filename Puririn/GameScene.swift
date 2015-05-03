@@ -246,6 +246,9 @@ class GameScene: SKScene {
             var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
             var scene = LevelSelector(size:self.size)
             scene.scaleMode = .AspectFill
+            for child in self.children {
+                child.removeFromParent()
+            }
             self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
             
