@@ -39,6 +39,7 @@
 		51DD0A0D1AF66EA000FE4DD7 /* BallLock.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DD0A0B1AF66EA000FE4DD7 /* BallLock.png */; };
 		51DD0A0E1AF66EA000FE4DD7 /* BallOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DD0A0C1AF66EA000FE4DD7 /* BallOk.png */; };
 		51DD0A101AF6712700FE4DD7 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 51DD0A0F1AF6712700FE4DD7 /* Background.png */; };
+		51DD0A121AF6770500FE4DD7 /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 51DD0A111AF6770500FE4DD7 /* bounce.wav */; };
 		941047851AF5749000683E02 /* Puririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941047841AF5749000683E02 /* Puririn.swift */; };
 		941F0A641AF5F8D9006B13EC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941F0A631AF5F8D9006B13EC /* Ball.swift */; };
 		941F0A661AF61BD7006B13EC /* qualquerCoisa.plist in Resources */ = {isa = PBXBuildFile; fileRef = 941F0A651AF61BD7006B13EC /* qualquerCoisa.plist */; };
@@ -100,6 +101,7 @@
 		51DD0A0B1AF66EA000FE4DD7 /* BallLock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BallLock.png; sourceTree = "<group>"; };
 		51DD0A0C1AF66EA000FE4DD7 /* BallOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BallOk.png; sourceTree = "<group>"; };
 		51DD0A0F1AF6712700FE4DD7 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		51DD0A111AF6770500FE4DD7 /* bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bounce.wav; sourceTree = "<group>"; };
 		941047841AF5749000683E02 /* Puririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puririn.swift; sourceTree = "<group>"; };
 		941F0A631AF5F8D9006B13EC /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		941F0A651AF61BD7006B13EC /* qualquerCoisa.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = qualquerCoisa.plist; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		51DD09E61AF65ADC00FE4DD7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				51DD0A111AF6770500FE4DD7 /* bounce.wav */,
 				51DD09E71AF65B1A00FE4DD7 /* vortex.aiff */,
 			);
 			name = Sounds;
@@ -372,6 +375,7 @@
 				5153E9F71AF6185600CEB2FE /* pbr2.png in Resources */,
 				51DD0A0E1AF66EA000FE4DD7 /* BallOk.png in Resources */,
 				94FB5C301AF586AD000B99F9 /* Trail.sks in Resources */,
+				51DD0A121AF6770500FE4DD7 /* bounce.wav in Resources */,
 				516EF94E1AF5FB6000A356CE /* Background.png in Resources */,
 				51DD0A041AF6688D00FE4DD7 /* topwall.png in Resources */,
 				5153E9F91AF61B7600CEB2FE /* retry.png in Resources */,

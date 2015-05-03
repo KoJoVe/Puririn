@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var audioPlayer = AVAudioPlayer()
     
+    var bouncePlay = AVAudioPlayer()
+    
     var level: Int!
     var levelMatrix: Array<Array<Int>> = []
     
@@ -41,6 +43,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
+        //println(alertSound)
+        
+        var error:NSError?
+        bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
+        
         self.backgroundColor = UIColor.whiteColor()
         self.newGame()
     }
@@ -408,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ((contact.bodyA.categoryBitMask != 1<<1) &&
             (contact.bodyB.categoryBitMask == 1<<0)) {
                 
-                println("teste")
+                playSound("bounce")
                 
         }
     }
@@ -522,6 +531,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             audioPlayer.prepareToPlay()
             audioPlayer.play()
+        }
+        
+        if(sound=="bounce") {
+            
+            if(!bouncePlay.playing) {
+                bouncePlay.prepareToPlay()
+                bouncePlay.play()
+            }
+            
         }
         
     }
