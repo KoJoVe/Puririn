@@ -51,8 +51,8 @@ class LevelMatrixes {
         }
         
         var nextMatrix = [[2,0,0,0,0,0,0]]
-        nextMatrix.append([5,5,5,5,5,0,0])
-        nextMatrix.append([0,0,3,5,0,0,0])
+        nextMatrix.append([5,5,5,0,0,0,0])
+        nextMatrix.append([0,0,3,0,0,0,0])
         nextMatrix.append([0,0,0,0,0,0,0])
         nextMatrix.append([0,0,0,0,0,0,0])
         nextMatrix.append([0,0,0,0,0,0,0])

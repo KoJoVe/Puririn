@@ -54,12 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var error:NSError?
         bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
         
-        self.background = SKSpriteNode(imageNamed: "fundo_level_cleared")
-        self.background.hidden = true
-        self.background.zPosition = 0
-        self.background.size = CGSize(width: self.size.width, height: self.size.height)
-        self.background.anchorPoint = CGPoint(x: 0, y: 0)
-        self.addChild(self.background)
+        
         
         self.backgroundColor = UIColor.whiteColor()
         self.newGame()
@@ -67,13 +62,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func newGame() {
         
-        self.background.hidden = true
+        self.background = SKSpriteNode(imageNamed: "fundo_level_cleared")
         self.background.zPosition = 0
+        self.background.size = CGSize(width: self.size.width, height: self.size.height)
+        self.background.anchorPoint = CGPoint(x: 0, y: 0)
+        self.background.hidden = true
+        self.addChild(self.background)
         
         var bc = SKSpriteNode(imageNamed: "Metal")
         bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         bc.name = "Back"
         bc.zPosition = 0
+        
         
         self.addChild(bc)
         
@@ -421,6 +421,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 window.size = CGSizeMake(0, 0)
                 window.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) + 40)
                 window.zPosition = 20
+                    
                 
                 var showWindow = SKAction.runBlock({
                     
@@ -428,6 +429,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.background.zPosition = 19
                     self.background.hidden = false
                 })
+                println(self.background.zPosition)
                 var wait = SKAction.waitForDuration(1.5)
                 var increase = SKAction.resizeToWidth(ww, height: wh, duration: 0.5)
                 var sequence = SKAction.sequence([wait,showWindow])
