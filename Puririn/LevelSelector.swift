@@ -20,7 +20,7 @@ class LevelSelector: SKScene {
 
         self.addChild(bc)
         
-        var userLevel = 1
+        var userLevel = UserLevel.getUserLevel() + 1
         var nLevels = 40
     
         var espacoVer:CGFloat = 10
@@ -56,6 +56,7 @@ class LevelSelector: SKScene {
             }
             level.position = CGPoint(x: x, y: y)
             level.name = "\(k)"
+            text.name = "\(k)"
             self.addChild(level)
             self.addChild(text)
             
@@ -93,6 +94,7 @@ class LevelSelector: SKScene {
                 
                 } else {
                   
+                    println(theName!.toInt()!)
                     var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
                     var scene = GameScene(size:self.size)
                     scene.scaleMode = .AspectFill
