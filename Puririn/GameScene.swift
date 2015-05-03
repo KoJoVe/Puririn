@@ -312,8 +312,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.touchLocation = touch.locationInNode(self)
                 
                 
-                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 90
-                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 90
+                self.dx = (touch.locationInNode(self).x - self.puririn.position.x) * 100
+                self.dy = (touch.locationInNode(self).y - self.puririn.position.y) * 100
                 
                 if self.dx > 0 {
                     self.angularVelocityPuririn = -15
