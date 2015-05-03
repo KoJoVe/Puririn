@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var audioPlayer = AVAudioPlayer()
     
+    var bouncePlay = AVAudioPlayer()
+    
     var level: Int!
     var levelMatrix: Array<Array<Int>> = []
     
@@ -41,6 +43,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
+        //println(alertSound)
+        
+        var error:NSError?
+        bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
+        
         self.backgroundColor = UIColor.whiteColor()
         self.newGame()
     }
@@ -408,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ((contact.bodyA.categoryBitMask != 1<<1) &&
             (contact.bodyB.categoryBitMask == 1<<0)) {
                 
-                println("teste")
+                playSound("bounce")
                 
         }
     }
@@ -486,19 +495,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func nextStage() {
         
-        var nextMatrix = LevelMatrixes.getMatrixLevel(1)
-        
         dispatch_async(dispatch_get_main_queue()) {
             () -> Void in
             
             var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
             var scene = GameScene(size:self.size)
+            scene.level = self.level + 1
+            
+            if(UserLevel.getUserLevel()<scene.level) {
+                UserLevel.setUserLevel(scene.level)
+            }
+            
             scene.scaleMode = .AspectFill
             
             for child in self.children {
                 child.removeFromParent()
             }
-            scene.levelMatrix = nextMatrix
+            scene.levelMatrix = LevelMatrixes.getMatrixLevel(scene.level)
+            
             self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
         
@@ -522,6 +536,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             audioPlayer.prepareToPlay()
             audioPlayer.play()
+        }
+        
+        if(sound=="bounce") {
+            
+            if(!bouncePlay.playing) {
+                bouncePlay.prepareToPlay()
+                bouncePlay.play()
+            }
+            
         }
         
     }

@@ -47,7 +47,7 @@ class LevelSelector: SKScene {
             
             var text = SKLabelNode(text: "\(k+1)")
             text.position = CGPoint(x: x, y: y - 10)
-            text.fontName = "Futura-Bold"
+            //text.fontName = "Futura-Bold"
             text.fontColor = SKColor.whiteColor()
             
             var level = SKSpriteNode(texture: SKTexture(imageNamed: "BallLock"), color: nil, size: size)
@@ -93,16 +93,21 @@ class LevelSelector: SKScene {
                     self.scene!.view?.presentScene(scene, transition: transition)
                 
                 } else {
-                  
-                    println(theName!.toInt()!)
-                    var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
-                    var scene = GameScene(size:self.size)
-                    scene.scaleMode = .AspectFill
+                    
                     var theNumber = theName!.toInt()!
-                    scene.level = theNumber + 1
-                    scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
-                    self.removeFromParent()
-                    self.scene!.view?.presentScene(scene, transition: transition)
+                    
+                    if(UserLevel.getUserLevel() >= theNumber) {
+                        
+                        println(theName!.toInt()!)
+                        var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
+                        var scene = GameScene(size:self.size)
+                        scene.scaleMode = .AspectFill
+                        scene.level = theNumber
+                        scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
+                        self.removeFromParent()
+                        self.scene!.view?.presentScene(scene, transition: transition)
+                        
+                    }
                 }
                 
             }

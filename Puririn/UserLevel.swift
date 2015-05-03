@@ -12,7 +12,7 @@ class UserLevel {
     
     class func getUserLevel() -> Int {
         
-        var level = ""
+        var level = 0
         
         var pathAux = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var path = pathAux.stringByAppendingPathComponent("qualquerCoisa.plist")
@@ -24,9 +24,9 @@ class UserLevel {
         }
         
         let contents:NSDictionary! = NSDictionary(contentsOfFile: path as String)
-        level = contents.objectForKey("Level") as! String
+        level = contents.objectForKey("Level") as! Int
         
-        return level.toInt()!
+        return level
     }
    
     class func setUserLevel(level: Int) {

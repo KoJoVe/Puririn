@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>Level</key>
-	<string>0</string>
+	<integer>0</integer>
 </dict>
 </plist>
