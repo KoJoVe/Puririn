@@ -10,40 +10,48 @@ import Foundation
 
 class LevelMatrixes {
     
-    func matrixes(level: String) -> Array<Array<Int>> {
+    class func getMatrixLevel(level: Int) -> Array<Array<Int>> {
         
-        var levelMatrix = [[2,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0]]
-
-        if level == "one" {
+        if(level==0) {
             
-            levelMatrix = [[2,2,2,2,2,2,2],
-                            [2,0,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2],
-                            [2,2,2,2,2,2,2]]
+            var nextMatrix = [[2,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,3,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
             
-            return levelMatrix
+            return nextMatrix
+            
         }
         
-        return levelMatrix
+        if(level==1) {
+            
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,2,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,3,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+            
+        }
+        
+        return []
+       
     }
     
 }

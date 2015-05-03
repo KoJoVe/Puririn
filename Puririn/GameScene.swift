@@ -106,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.puririn.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.puririn)
                     
-                } else if(levelMatrix[i][k] == 3) {
+                } else if(levelMatrix[k][i] == 3) {
                     //draw vortex at matrix[i][k]["X"],matrix[i][k]["Y"]
                     
                     var puririnSize = sSize
@@ -118,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.vortex.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.vortex)
                     
-                } else if(levelMatrix[i][k] == 4) {
+                } else if(levelMatrix[k][i] == 4) {
                     //draw star at matrix[i][k]["X"], matrix[i][k]["Y"]
                     
                     var starSize = sSize
@@ -357,18 +357,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func nextStage() {
         
-        var nextMatrix = [[3,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,2,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0]]
+        var nextMatrix = LevelMatrixes.getMatrixLevel(1)
         
         dispatch_async(dispatch_get_main_queue()) {
             () -> Void in
