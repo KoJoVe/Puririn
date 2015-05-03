@@ -193,16 +193,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //        Buttons
         
-        var exit = SKLabelNode(text: "exit")
-        exit.position = CGPoint(x: 3*offset, y: hoffset/2)
+        var exit = SKSpriteNode(imageNamed: "back")
+        exit.size = CGSizeMake(exit.frame.size.width/5.5, exit.frame.size.height/5.5)
+        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 20 + exit.frame.size.height/2)
         exit.name = "exit"
         self.addChild(exit)
         
-        var restart = SKLabelNode(text: "restart")
-        restart.position = CGPoint(x: 12*offset, y: hoffset/2)
+        var restart = SKSpriteNode(imageNamed: "retry")
+        restart.size = CGSizeMake(restart.frame.size.width/4, restart.frame.size.height/4)
+        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 20 + restart.frame.size.height/2)
         restart.name = "restart"
         self.addChild(restart)
-        
         
         //        Trail
         
@@ -213,10 +214,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //        Pause
         
-        var pauseButton = SKLabelNode(text: "Pause")
-        pauseButton.position = CGPoint(x: self.size.width/2, y: hoffset/2)
-        pauseButton.name = "pause"
-        self.addChild(pauseButton)
+//        var pauseButton = SKLabelNode(text: "Pause")
+//        pauseButton.position = CGPoint(x: self.size.width/2, y: hoffset/2)
+//        pauseButton.name = "pause"
+//        self.addChild(pauseButton)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
