@@ -45,9 +45,10 @@ class LevelSelector: SKScene {
             var x = CGFloat(n)*diam + diam/2 + offset
             var y = self.frame.size.height - (CGFloat(line)*diam + diam/2 + espacoVer)
             
-//            var text = SKLabelNode(text: "1")
-//            text.position = CGPoint(x: diam/2, y: y)
-//            text.fontColor = SKColor.whiteColor()
+            var text = SKLabelNode(text: "\(k+1)")
+            text.position = CGPoint(x: x, y: y - 10)
+            text.fontName = "Sigma Five Marquee Bold"
+            text.fontColor = SKColor.whiteColor()
             
             var level = SKSpriteNode(texture: SKTexture(imageNamed: "BallLock"), color: nil, size: size)
             if(k<userLevel) {
@@ -56,7 +57,7 @@ class LevelSelector: SKScene {
             level.position = CGPoint(x: x, y: y)
             level.name = "\(k)"
             self.addChild(level)
-            //self.addChild(text)
+            self.addChild(text)
             
             n++
             if(n>=Int(levelsByLine)) {
