@@ -8,15 +8,22 @@
 //
 
 import UIKit
+import SpriteKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func setupFonts() {
+        
+        var sigmaFive = SKLabelNode(text:"0123456789")
+        sigmaFive.fontName = "Futura-Bold"
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.setupFonts()
         return true
     }
 

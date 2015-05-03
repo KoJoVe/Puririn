@@ -47,7 +47,7 @@ class LevelSelector: SKScene {
             
             var text = SKLabelNode(text: "\(k+1)")
             text.position = CGPoint(x: x, y: y - 10)
-            text.fontName = "Sigma Five Marquee Bold"
+            text.fontName = "Futura-Bold"
             text.fontColor = SKColor.whiteColor()
             
             var level = SKSpriteNode(texture: SKTexture(imageNamed: "BallLock"), color: nil, size: size)
