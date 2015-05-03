@@ -247,14 +247,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var exit = SKSpriteNode(imageNamed: "back_button")
         exit.size = CGSizeMake(exit.frame.size.width/6, exit.frame.size.height/6)
-        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 15 + exit.frame.size.height/2)
+        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 10 + exit.frame.size.height/2)
         exit.name = "exit"
         exit.zPosition = 12
         self.addChild(exit)
         
         var restart = SKSpriteNode(imageNamed: "restart_button")
         restart.size = CGSizeMake(restart.frame.size.width/6, restart.frame.size.height/6)
-        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 15 + restart.frame.size.height/2)
+        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 10 + restart.frame.size.height/2)
         restart.name = "restart"
         restart.zPosition = 12
         self.addChild(restart)

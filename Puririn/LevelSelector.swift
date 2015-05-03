@@ -66,7 +66,7 @@ class LevelSelector: SKScene {
             
         }
         
-        var ng = SKSpriteNode(imageNamed: "back")
+        var ng = SKSpriteNode(imageNamed: "back_button")
         ng.size = CGSizeMake(ng.frame.size.width/6, ng.frame.size.height/6)
         ng.position = CGPointMake(CGRectGetMidX(self.frame), 30 + ng.frame.size.height/2)
         ng.name = "BackMenu"
