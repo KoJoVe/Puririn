@@ -57,6 +57,7 @@ class LevelSelector: SKScene {
             level.position = CGPoint(x: x, y: y)
             level.name = "\(k)"
             text.name = "\(k)"
+            text.fontName = "HelveticaNeue-Medium"
             self.addChild(level)
             self.addChild(text)
             
