@@ -32,31 +32,6 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        levelMatrix = [[2,2,2,2,2,2,2],
-                       [2,0,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2],
-                       [2,2,2,2,2,2,2]]
-        
-//        levelMatrix = [[0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [0,0,0,0,0,0,0],
-//            [2,0,0,0,0,0,0],
-//            [0,2,0,0,0,0,0]]
         
         var screenWidth = self.frame.size.width
         var screenHeight = self.frame.size.height
@@ -135,8 +110,17 @@ class GameScene: SKScene {
         self.physicsBody?.angularDamping = 0.0
         self.physicsBody?.affectedByGravity = false
         
-//        Puririn
+//        Buttons
         
+        var exit = SKLabelNode(text: "exit")
+        exit.position = CGPoint(x: 3*offset, y: hoffset/2)
+        exit.name = "exit"
+        self.addChild(exit)
+        
+        var restart = SKLabelNode(text: "restart")
+        restart.position = CGPoint(x: 12*offset, y: hoffset/2)
+        restart.name = "restart"
+        self.addChild(restart)
       
         
 //        Trail
@@ -153,9 +137,19 @@ class GameScene: SKScene {
         
         for touch in (touches as! Set<UITouch>) {
             
-            if nodeAtPoint(touch.locationInNode(self)).name == "puririn" {
+            var name = nodeAtPoint(touch.locationInNode(self)).name
+            
+            if name == "puririn" {
                 
                 self.movePuririn = true
+            }
+            
+            else if name == "restart" {
+                restart()
+            }
+            
+            else if name == "exit" {
+                exit()
             }
         }
     }
@@ -231,6 +225,30 @@ class GameScene: SKScene {
             self.addChild(self.line)
             
             self.speedForce = CGVector(dx: self.dx, dy: self.dy)
+        }
+        
+    }
+    
+    func restart() {
+//        var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
+//        var scene = GameScene(size:self.size)
+//        scene.scaleMode = .AspectFill
+//        scene.levelMatrix = self.levelMatrix
+//        self.view?.presentScene(scene, transition: transition)
+        
+    }
+    
+    func exit() {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            () -> Void in
+            
+            var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+            var scene = LevelSelector(size:self.size)
+            scene.scaleMode = .AspectFill
+            self.removeFromParent()
+            self.scene!.view?.presentScene(scene, transition: transition)
+            
         }
         
     }

@@ -18,6 +18,8 @@
 		94FB5C301AF586AD000B99F9 /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C2E1AF586AD000B99F9 /* Trail.sks */; };
 		94FB5C311AF586AD000B99F9 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C2F1AF586AD000B99F9 /* spark.png */; };
 		94FB5C331AF58D33000B99F9 /* puririn.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C321AF58D33000B99F9 /* puririn.png */; };
+		94FB5C351AF5AC8B000B99F9 /* LevelSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB5C341AF5AC8B000B99F9 /* LevelSelector.swift */; };
+		94FB5C371AF5AFF1000B99F9 /* LevelMatrixes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB5C361AF5AFF1000B99F9 /* LevelMatrixes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		94FB5C2E1AF586AD000B99F9 /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		94FB5C2F1AF586AD000B99F9 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		94FB5C321AF58D33000B99F9 /* puririn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puririn.png; sourceTree = "<group>"; };
+		94FB5C341AF5AC8B000B99F9 /* LevelSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelector.swift; sourceTree = "<group>"; };
+		94FB5C361AF5AFF1000B99F9 /* LevelMatrixes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelMatrixes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 		941047811AF5745A00683E02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				94FB5C361AF5AFF1000B99F9 /* LevelMatrixes.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 		941047831AF5746500683E02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				94FB5C341AF5AC8B000B99F9 /* LevelSelector.swift */,
 				516EF91D1AF56B1D00A356CE /* GameScene.swift */,
 			);
 			name = Controller;
@@ -272,6 +278,8 @@
 			files = (
 				516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */,
 				941047851AF5749000683E02 /* Puririn.swift in Sources */,
+				94FB5C351AF5AC8B000B99F9 /* LevelSelector.swift in Sources */,
+				94FB5C371AF5AFF1000B99F9 /* LevelMatrixes.swift in Sources */,
 				516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */,
 				516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */,
 			);
