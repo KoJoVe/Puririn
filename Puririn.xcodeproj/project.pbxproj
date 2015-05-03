@@ -17,6 +17,8 @@
 		941047851AF5749000683E02 /* Puririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941047841AF5749000683E02 /* Puririn.swift */; };
 		94C2236F1AF5BF610083873C /* Vortex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C2236E1AF5BF610083873C /* Vortex.swift */; };
 		94C223711AF5C9D30083873C /* CleanPuririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223701AF5C9D30083873C /* CleanPuririn.swift */; };
+		94C223731AF5DDDA0083873C /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223721AF5DDDA0083873C /* Star.swift */; };
+		94C223751AF5E6FD0083873C /* completeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C223741AF5E6FD0083873C /* completeWindow.swift */; };
 		94FB5C301AF586AD000B99F9 /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C2E1AF586AD000B99F9 /* Trail.sks */; };
 		94FB5C311AF586AD000B99F9 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C2F1AF586AD000B99F9 /* spark.png */; };
 		94FB5C331AF58D33000B99F9 /* puririn.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FB5C321AF58D33000B99F9 /* puririn.png */; };
@@ -49,6 +51,8 @@
 		941047841AF5749000683E02 /* Puririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puririn.swift; sourceTree = "<group>"; };
 		94C2236E1AF5BF610083873C /* Vortex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vortex.swift; sourceTree = "<group>"; };
 		94C223701AF5C9D30083873C /* CleanPuririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanPuririn.swift; sourceTree = "<group>"; };
+		94C223721AF5DDDA0083873C /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
+		94C223741AF5E6FD0083873C /* completeWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = completeWindow.swift; sourceTree = "<group>"; };
 		94FB5C2E1AF586AD000B99F9 /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		94FB5C2F1AF586AD000B99F9 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		94FB5C321AF58D33000B99F9 /* puririn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puririn.png; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 				941047841AF5749000683E02 /* Puririn.swift */,
 				94C223701AF5C9D30083873C /* CleanPuririn.swift */,
 				94C2236E1AF5BF610083873C /* Vortex.swift */,
+				94C223721AF5DDDA0083873C /* Star.swift */,
+				94C223741AF5E6FD0083873C /* completeWindow.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -282,7 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94C223731AF5DDDA0083873C /* Star.swift in Sources */,
 				516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */,
+				94C223751AF5E6FD0083873C /* completeWindow.swift in Sources */,
 				94C223711AF5C9D30083873C /* CleanPuririn.swift in Sources */,
 				941047851AF5749000683E02 /* Puririn.swift in Sources */,
 				94FB5C351AF5AC8B000B99F9 /* LevelSelector.swift in Sources */,

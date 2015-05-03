@@ -31,10 +31,10 @@ class LevelSelector: SKScene {
                 var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
                 var scene = GameScene(size:self.size)
                 scene.scaleMode = .AspectFill
-                scene.levelMatrix = [[2,0,0,0,0,0,3],
+                scene.levelMatrix = [[2,0,0,0,0,0,0],
                                     [0,0,0,0,0,0,0],
-                                    [0,0,3,0,0,0,0],
                                     [0,0,0,0,0,0,0],
+                                    [0,0,0,3,0,0,0],
                                     [0,0,0,0,0,0,0],
                                     [0,0,0,0,0,0,0],
                                     [0,0,0,0,0,0,0],

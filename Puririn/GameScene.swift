@@ -10,8 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var movePuririn = false
+    var movePuririn:Bool!
     var firstPoint = true
+    var restartBool = false
     
     var levelMatrix: Array<Array<Int>> = []
     
@@ -19,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var puririn: Puririn!
     var vortex: Vortex!
+    var star: Star!
     
     var sizeClean = CGFloat(0)
     
@@ -44,9 +46,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         self.view!.showsPhysics = true
         
+        self.movePuririn = true
+        println(self.movePuririn)
+        self.firstPoint = true
         self.speedForce = CGVector(dx: 0, dy: 0)
-        self.dx = 0
-        self.dy = 0
+        self.dx = CGFloat(0)
+        self.dy = CGFloat(0)
         self.wayPoints.removeAll(keepCapacity: false)
         self.angularVelocityPuririn = 0
         
@@ -74,13 +79,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var x = CGFloat(i)*sSize + offset
                 var y = CGFloat(Int(nHeight-1)-k)*sSize + hoffset
                 
-                var dictionary = ["X": x, "Y": y, "View": SKSpriteNode()]
+                var dictionary = ["X": x, "Y": y]
                 
                 lineArray.append(dictionary)
-                
-                var quadrado = dictionary["View"] as! SKSpriteNode
             }
-            
             matrix.append(lineArray)
         }
         
@@ -115,8 +117,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.vortex = Vortex(size:puririnSize)
                     self.vortex.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.vortex)
+                    
+                } else if(levelMatrix[i][k] == 4) {
+                    //draw star at matrix[i][k]["X"], matrix[i][k]["Y"]
+                    
+                    var starSize = sSize
+                    
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    
+                    self.star = Star(size: starSize)
+                    self.star.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.addChild(self.star)
                 }
-                
             }
         }
         
@@ -160,21 +173,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
+//        println(self.movePuririn)
+//        println(self.firstPoint)
+        
         for touch in (touches as! Set<UITouch>) {
             
             var name = nodeAtPoint(touch.locationInNode(self)).name
             
-            if name == "puririn" {
-                
-                self.movePuririn = true
-            }
-            
-            else if name == "restart" {
+            if name == "restart" {
                 restart()
+                self.restartBool = true
             }
             
             else if name == "exit" {
-                exit()
+                self.exit()
+            }
+            
+            else if name == "window" {
+                self.nextStage()
             }
         }
     }
@@ -215,6 +231,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.movePuririn = false
             self.firstPoint = true
         }
+        
+        if self.restartBool == true {
+            self.movePuririn = true
+            self.restartBool = false
+            
+        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -233,8 +255,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            
 //        }
         
-        if (contact.bodyA.categoryBitMask == 1<<0) &&
-            (contact.bodyB.categoryBitMask == 1<<1) {
+        if ((contact.bodyA.categoryBitMask == 1<<0) &&
+            (contact.bodyB.categoryBitMask == 1<<1)) ||
+            ((contact.bodyA.categoryBitMask == 1<<1) &&
+                (contact.bodyB.categoryBitMask == 1<<0)) {
                 
                 var cleanPuririn = CleanPuririn(size: self.sizeClean)
                 cleanPuririn.position = self.puririn.position
@@ -244,10 +268,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 var move = SKAction.moveTo(self.vortex.position, duration: 1.5)
                 cleanPuririn.runAction(move)
-                
-                cleanPuririn.position = self.vortex.position
                 cleanPuririn.removeAllChildren()
                 cleanPuririn.rotateAndShrink()
+                
+                var showWindow = SKAction.runBlock({
+                    var window = SKShapeNode(rect: CGRect(x: self.size.width/2 - 50, y: self.size.height/2 - 50, width: 100, height: 100), cornerRadius: 5)
+                    window.strokeColor = UIColor.redColor()
+                    window.lineWidth = 5
+                    window.fillColor = UIColor.blueColor()
+                    window.name = "window"
+                    self.addChild(window)
+                })
+                var wait = SKAction.waitForDuration(1.5)
+                var sequence = SKAction.sequence([wait,showWindow])
+                self.runAction(sequence)
         }
     }
     
@@ -289,10 +323,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func restart() {
+        
         for node in self.children {
             node.removeFromParent()
         }
         self.newGame()
+        for node in self.children {
+            node.removeFromParent()
+        }
+        self.newGame()
+        
     }
     
     func exit() {
@@ -311,6 +351,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
             
+        }
+        
+    }
+    
+    func nextStage() {
+        
+        var nextMatrix = [[3,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,2,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0]]
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            () -> Void in
+            
+            var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+            var scene = GameScene(size:self.size)
+            scene.scaleMode = .AspectFill
+            
+            for child in self.children {
+                child.removeFromParent()
+            }
+            scene.levelMatrix = nextMatrix
+            self.removeFromParent()
+            self.scene!.view?.presentScene(scene, transition: transition)
+        
         }
         
     }

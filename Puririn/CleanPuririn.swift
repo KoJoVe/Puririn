@@ -25,9 +25,9 @@ class CleanPuririn: SKSpriteNode {
     }
     
     func rotateAndShrink() {
-        var shrink = SKAction.resizeToWidth(0, height: 0, duration: 2)
+        var shrink = SKAction.resizeToWidth(0, height: 0, duration: 1.5)
         var angle = CGFloat(-5 * M_PI)
-        var duration = Double(2)
+        var duration = Double(1.5)
         var rotate = SKAction.rotateByAngle(angle, duration: duration)
         self.runAction(shrink)
         self.runAction(rotate)
