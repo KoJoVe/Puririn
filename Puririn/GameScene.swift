@@ -455,8 +455,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.line = SKShapeNode(path: linePath)
             self.line.strokeColor = UIColor.whiteColor()
-            self.line.lineWidth = 10
+            self.line.lineWidth = 8
             self.line.zPosition = 10
+            self.line.alpha = 0.45
             self.addChild(self.line)
             
             self.speedForce = CGVector(dx: self.dx, dy: self.dy)
