@@ -16,9 +16,13 @@ class StartScreen: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        var bc = SKSpriteNode(imageNamed: "tela_menu_combigode")
+        
+        var bc = SKSpriteNode(imageNamed: "NewGameScreen")
+        
+        var h = (self.frame.size.width*bc.size.height)/bc.size.width
+        
+        bc.size = CGSizeMake(self.frame.size.width, h)
         bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        bc.size = self.frame.size
         bc.name = "Back"
         
         self.addChild(bc)
@@ -30,16 +34,16 @@ class StartScreen: SKScene {
 //        
 //        self.addChild(lg)
         
-        var ng = SKSpriteNode(imageNamed: "play_game_preto")
+        var ng = SKSpriteNode(imageNamed: "PlayButton")
         ng.size = CGSizeMake(ng.frame.size.width/4, ng.frame.size.height/4)
-        ng.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 180)
+        ng.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - self.frame.height/3.8)
         ng.name = "StartGame"
         
         self.addChild(ng)
         
         if self.complete == true {
             
-            let alert = UIAlertView(title: "Congrats", message: "You finished the game, more levels coming soon", delegate: self, cancelButtonTitle: "Dismiss")
+            let alert = UIAlertView(title: "Congratulations!", message: "You've finished the game! More challenging levels coming soon!", delegate: self, cancelButtonTitle: "Dismiss")
             alert.show()
         }
     }
@@ -69,8 +73,6 @@ class StartScreen: SKScene {
     }
     
     func playSound() {
-        
-        println("ADSD")
         
         var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ok", ofType: "aif")!)
         //println(alertSound)

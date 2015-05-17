@@ -14,7 +14,7 @@ class completeWindow: SKSpriteNode {
     
     init (currentLevel: Int, totalLevel: Int) {
         
-        let texture = SKTexture(imageNamed: "Screen_level_cleared")
+        let texture = SKTexture(imageNamed: "Window")
         
         super.init(texture: texture, color: nil, size: texture.size())
         
@@ -24,7 +24,7 @@ class completeWindow: SKSpriteNode {
         level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
         level.fontSize = 16
         level.fontName = "HelveticaNeue-Bold"
-        level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 70)
+        level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 25)
         level.hidden = true
         level.zPosition = 2
         self.addChild(level)

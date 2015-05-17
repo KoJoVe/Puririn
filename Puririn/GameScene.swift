@@ -27,6 +27,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var touchLocation = CGPoint()
     
+    var wolrd: Int?
+    
     var puririn: Puririn!
     var vortex: Vortex!
     var star: Star!
@@ -46,16 +48,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dy = CGFloat(0)
     
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
         
         var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
-        //println(alertSound)
-        
         var error:NSError?
+        
         bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
-        
-        
-        
+
         self.backgroundColor = UIColor.whiteColor()
         self.newGame()
     }
@@ -63,11 +61,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func newGame() {
         
         self.background = SKSpriteNode(imageNamed: "fundo_level_cleared")
-        self.background.zPosition = 0
+        self.background.zPosition = -2
         self.background.size = CGSize(width: self.size.width, height: self.size.height)
         self.background.anchorPoint = CGPoint(x: 0, y: 0)
-        self.background.hidden = true
-//        self.addChild(self.background)
+        self.background.hidden = false
+        self.addChild(self.background)
         
         var screenWidth = self.frame.size.width
         var screenHeight = self.frame.size.height
@@ -81,11 +79,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var sSize = (screenHeight-100)/nHeight
         
         var offset = (screenWidth - (sSize*nWidth))/2
+        var offset2: CGFloat = 30
         
-        var hoffset = (screenHeight - (sSize*nHeight)) - 30
+        var hoffset = (screenHeight - (sSize*nHeight)) - offset2
 
-        
-        var bc = SKSpriteNode(imageNamed: "Metal")
+        var bc = SKSpriteNode(imageNamed: "BackBG")
         bc.size = CGSizeMake(self.frame.size.width, self.frame.size.height)
         bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         bc.name = "Back"
@@ -93,45 +91,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(bc)
         
-        var wall1 = SKSpriteNode(imageNamed: "bg2")
-        wall1.size = CGSizeMake(nWidth*sSize + 12,nHeight*sSize + 12)
-        wall1.position = CGPointMake(offset + wall1.size.width/2 - 6, screenHeight - (wall1.size.height/2 + 30) + 6)
-        wall1.name = "Fundo"
-        wall1.zPosition = 0
+        var extraSize: CGFloat = 74
+        var extraSize2: CGFloat = 130
+        var insideBc = SKSpriteNode(imageNamed: "FrontBG")
+        insideBc.size = CGSizeMake(nWidth*sSize,nHeight*sSize)
+        insideBc.position = CGPointMake(offset + insideBc.size.width/2, screenHeight - (insideBc.size.height/2) - offset2)
+        insideBc.name = "Fundo"
+        insideBc.zPosition = 0
         
-        self.addChild(wall1)
+        self.addChild(insideBc)
         
-        var parafuso1 = SKSpriteNode(imageNamed: "parafuso")
-        parafuso1.size = CGSizeMake(25,25)
-        parafuso1.position = CGPointMake(offset, screenHeight - (parafuso1.size.height/2 + 15))
-        parafuso1.name = "Fundo"
-        parafuso1.zPosition = 15
+        var prop: CGFloat = nWidth*sSize/330.75
+        var wallthick:CGFloat = 32 * prop
+        var wall = SKSpriteNode(imageNamed: "WallBG")
+        wall.size = CGSizeMake(nWidth*sSize + (wallthick*2),nHeight*sSize + (wallthick*2))
+        wall.position = CGPointMake(offset + wall.size.width/2 - wallthick, screenHeight - (wall.size.height/2) - offset2 + wallthick)
+        wall.name = "Fundo"
+        wall.zPosition = 99
         
-        self.addChild(parafuso1)
+//        offset2 = 32 //30
+//        
+//        var prop: CGFloat = nWidth*sSize/330.75
+//        var wallthick:CGFloat = 16 * prop //32
+//        var wall = SKSpriteNode(imageNamed: "WallBG3")
+//        wall.size = CGSizeMake(nWidth*sSize + (wallthick*2),nHeight*sSize + (wallthick*2))
+//        wall.position = CGPointMake(offset + wall.size.width/2 - wallthick, screenHeight - (wall.size.height/2) - offset2 + wallthick)
+//        wall.name = "Fundo"
+//        wall.zPosition = 99
         
-        var parafuso2 = SKSpriteNode(imageNamed: "parafuso")
-        parafuso2.size = CGSizeMake(25,25)
-        parafuso2.position = CGPointMake(screenWidth - offset, screenHeight - (parafuso1.size.height/2 + 15))
-        parafuso2.name = "Fundo"
-        parafuso2.zPosition = 15
-        
-        self.addChild(parafuso2)
-        
-        var parafuso3 = SKSpriteNode(imageNamed: "parafuso")
-        parafuso3.size = CGSizeMake(25,25)
-        parafuso3.position = CGPointMake(offset, screenHeight - (nHeight*sSize + 30))
-        parafuso3.name = "Fundo"
-        parafuso3.zPosition = 15
-        
-        self.addChild(parafuso3)
-        
-        var parafuso4 = SKSpriteNode(imageNamed: "parafuso")
-        parafuso4.size = CGSizeMake(25,25)
-        parafuso4.position = CGPointMake(screenWidth - offset, screenHeight - (nHeight*sSize + 30))
-        parafuso4.name = "Fundo"
-        parafuso4.zPosition = 15
-    
-        self.addChild(parafuso4)
+        self.addChild(wall)
         
         self.removeAllActions()
         
@@ -147,7 +135,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.dy = CGFloat(0)
         self.wayPoints.removeAll(keepCapacity: false)
         self.angularVelocityPuririn = 0
-        
 
         for var i=0; i<Int(nWidth); i++ {
             
@@ -170,31 +157,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for var k=0; k<Int(nHeight); k++ {
                 
                 if(levelMatrix[k][i] == 0) {
-                    //do nothing
+                    //Do Nothing
+                    
                 } else if(levelMatrix[k][i] == 1) {
-                    //draw obstacle at matrix[i][k]["X"],matrix[i][k]["Y"]
+                    //Draw Explosive
+                    
                 } else if(levelMatrix[k][i] == 2) {
+                    //Draw Puririn
                     
                     var puririnSize = sSize
-                    self.sizeClean = puririnSize
-                    
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
                     
+                    self.sizeClean = puririnSize
                     self.puririn = Puririn(size:puririnSize)
                     self.puririn.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    self.puririn.zPosition = 11
+                    self.puririn.zPosition = 100
                     self.addChild(self.puririn)
-                    //println(self.puririn.physicsBody?.collisionBitMask)
                     
                 } else if(levelMatrix[k][i] == 3) {
-                    //draw vortex at matrix[i][k]["X"],matrix[i][k]["Y"]
+                    //Draw Vortex
                     
                     var puririnSize = sSize
-                    
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
-                    
                     var revolution = SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 2.0)
                     var repeat = SKAction.repeatActionForever(revolution)
                     
@@ -204,35 +190,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(self.vortex)
                     
                 } else if(levelMatrix[k][i] == 4) {
-                    //draw star at matrix[i][k]["X"], matrix[i][k]["Y"]
+                    //Draw Star (Unused)
                     
                     var starSize = sSize
-                    
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
                     
                     self.star = Star(size: starSize)
                     self.star.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.addChild(self.star)
+                    
                 } else if(levelMatrix[k][i] == 5) {
-                    //draw star at matrix[i][k]["X"], matrix[i][k]["Y"]
+                    //Draw Wall
                     
                     var starSize = sSize
-                    
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
-                    
                     var ball = Ball(size: starSize)
+                    
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
                     self.addChild(ball)
-                    //println(ball.physicsBody?.categoryBitMask)
                 }
             }
         }
         
-        //self.backgroundColor = UIColor.blackColor()
-        
-        //        Edges
+        //Edges
         
         var playable = CGRect(x: offset, y: hoffset, width: sSize*nWidth, height: sSize*nHeight)
         
@@ -245,36 +228,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = 1 << 3
         
-        //        Buttons
+        //Buttons
         
         var exit = SKSpriteNode(imageNamed: "back_button")
-        exit.size = CGSizeMake(exit.frame.size.width/6, exit.frame.size.height/6)
-        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, 10 + exit.frame.size.height/2)
+        exit.size = CGSizeMake(exit.frame.size.width/7, exit.frame.size.height/7)
+        exit.position = CGPointMake(CGRectGetMidX(self.frame) - 50, exit.frame.size.height/2)
         exit.name = "exit"
-        exit.zPosition = 12
+        exit.zPosition = 120
         self.addChild(exit)
         
         var restart = SKSpriteNode(imageNamed: "restart_button")
-        restart.size = CGSizeMake(restart.frame.size.width/6, restart.frame.size.height/6)
-        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, 10 + restart.frame.size.height/2)
+        restart.size = CGSizeMake(restart.frame.size.width/7, restart.frame.size.height/7)
+        restart.position = CGPointMake(CGRectGetMidX(self.frame) + 50, restart.frame.size.height/2)
         restart.name = "restart"
-        restart.zPosition = 12
+        restart.zPosition = 120
         self.addChild(restart)
         
-        //        Trail
-        
+        //Trail
         
         let untypedEmitter : AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)!;
         let emitter:SKEmitterNode = untypedEmitter as! SKEmitterNode;
         emitter.targetNode = self
         self.puririn.addChild(emitter)
         
-        //        Pause
-        
-//        var pauseButton = SKLabelNode(text: "Pause")
-//        pauseButton.position = CGPoint(x: self.size.width/2, y: hoffset/2)
-//        pauseButton.name = "pause"
-//        self.addChild(pauseButton)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -391,20 +367,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 var window = completeWindow(currentLevel:self.level+1,totalLevel:self.maxLevels)
                     
-                var ww = window.size.width/5
-                var wh = window.size.height/5
+                var ww = window.size.width/4.3
+                var wh = window.size.height/4.3
                     
                 window.size = CGSizeMake(0, 0)
-                window.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) + 40)
-                window.zPosition = 20
-                    
-                
+                window.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame))
+                window.zPosition = 101
+
                 var showWindow = SKAction.runBlock({
                     
                     self.addChild(window)
-                    self.background.zPosition = 19
+                    self.background.zPosition = 100
                     self.background.hidden = false
                 })
+                    
                 println(self.background.zPosition)
                 var wait = SKAction.waitForDuration(1.5)
                 var increase = SKAction.resizeToWidth(ww, height: wh, duration: 0.5)
@@ -415,10 +391,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 window.animateLabel()
         }
         
-        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
-        (contact.bodyB.categoryBitMask != 1<<1)) ||
-        ((contact.bodyA.categoryBitMask != 1<<1) &&
-            (contact.bodyB.categoryBitMask == 1<<0)) {
+        else  {
                 
                 playSound("bounce")
                 
@@ -427,7 +400,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createPath() {
         
-        //playSound("charge")
         if self.firstPoint == true {
             
             self.wayPoints.removeAll(keepCapacity: false)
@@ -467,10 +439,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func restart() {
         
-        for node in self.children {
-            node.removeFromParent()
-        }
-        self.newGame()
         for node in self.children {
             node.removeFromParent()
         }
