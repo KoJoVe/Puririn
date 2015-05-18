@@ -20,7 +20,10 @@ class LevelSelector: SKScene {
         
         self.backgroundColor = UIColor.whiteColor()
         
+        UserLevel.initializeArray()
+        
         var userLevel = UserLevel.getUserLevel() + 1
+
         var nLevels = [20,14,9,6,1]//[16,16,9,8,1]
         
         var levelSize: CGFloat = (self.frame.size.width/2)/CGFloat(nLevels.count)

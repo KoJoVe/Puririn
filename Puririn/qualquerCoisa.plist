@@ -4,5 +4,7 @@
 <dict>
 	<key>Level</key>
 	<integer>0</integer>
+	<key>LevelStars</key>
+	<array/>
 </dict>
 </plist>

@@ -30,6 +30,7 @@
 		51361BD51B05130800630F5B /* NewWall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BD41B05130800630F5B /* NewWall.png */; };
 		514862D01AF693AF00F77444 /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 514862CF1AF693AF00F77444 /* charge.wav */; };
 		514862DA1AF6AE9100F77444 /* ok.aif in Resources */ = {isa = PBXBuildFile; fileRef = 514862D91AF6AE9100F77444 /* ok.aif */; };
+		516D722E1B0A1704009AAA01 /* GalaxySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D722D1B0A1704009AAA01 /* GalaxySelector.swift */; };
 		516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF9191AF56B1D00A356CE /* AppDelegate.swift */; };
 		516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91D1AF56B1D00A356CE /* GameScene.swift */; };
 		516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91F1AF56B1D00A356CE /* GameViewController.swift */; };
@@ -99,6 +100,7 @@
 		51361BD41B05130800630F5B /* NewWall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewWall.png; sourceTree = "<group>"; };
 		514862CF1AF693AF00F77444 /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
 		514862D91AF6AE9100F77444 /* ok.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = ok.aif; sourceTree = "<group>"; };
+		516D722D1B0A1704009AAA01 /* GalaxySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalaxySelector.swift; sourceTree = "<group>"; };
 		516EF9141AF56B1D00A356CE /* Puririn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puririn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516EF9181AF56B1D00A356CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516EF9191AF56B1D00A356CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				94FB5C341AF5AC8B000B99F9 /* LevelSelector.swift */,
 				516EF91D1AF56B1D00A356CE /* GameScene.swift */,
 				516EF94B1AF5FA9500A356CE /* StartScreen.swift */,
+				516D722D1B0A1704009AAA01 /* GalaxySelector.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				94C223731AF5DDDA0083873C /* Star.swift in Sources */,
 				516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */,
 				94C223751AF5E6FD0083873C /* completeWindow.swift in Sources */,
+				516D722E1B0A1704009AAA01 /* GalaxySelector.swift in Sources */,
 				94C223711AF5C9D30083873C /* CleanPuririn.swift in Sources */,
 				517207A31AF603F900702425 /* UserLevel.swift in Sources */,
 				941047851AF5749000683E02 /* Puririn.swift in Sources */,
