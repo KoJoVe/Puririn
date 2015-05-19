@@ -12,7 +12,6 @@ class UserLevel {
     
     class func initializeArray() {
         
-        
         var pathAux = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var path = pathAux.stringByAppendingPathComponent("qualquerCoisa.plist")
         var fileManager = NSFileManager.defaultManager()
@@ -106,6 +105,17 @@ class UserLevel {
         data.setObject(starsArray, forKey: "LevelStars")
         data.writeToFile(path, atomically: false)
     
+    }
+    
+    class func getTotalStars() -> Int {
+        
+        var stars = 0
+        
+        for var i=0; i<300; i++ {
+            stars += getLevelStars(i)
+        }
+        
+        return stars
     }
     
 }

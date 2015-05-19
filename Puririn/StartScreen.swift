@@ -17,6 +17,8 @@ class StartScreen: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        UserLevel.initializeArray()
+        
         var bc = SKSpriteNode(imageNamed: "NewGameScreen")
         
         var h = (self.frame.size.width*bc.size.height)/bc.size.width

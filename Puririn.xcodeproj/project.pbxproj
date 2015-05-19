@@ -16,7 +16,6 @@
 		510BB9E01B06AAD2009D8585 /* InitBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9DF1B06AAD2009D8585 /* InitBG.png */; };
 		510BB9E41B06B1AD009D8585 /* Space2.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9E11B06B1AD009D8585 /* Space2.png */; };
 		510BB9E61B06B1AD009D8585 /* Puronmedra.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9E31B06B1AD009D8585 /* Puronmedra.png */; };
-		510BB9E81B06B28E009D8585 /* Galaxy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9E71B06B28E009D8585 /* Galaxy2.png */; };
 		510BB9EC1B06B93A009D8585 /* Space3.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9E91B06B93A009D8585 /* Space3.png */; };
 		510BB9EE1B06B93A009D8585 /* Galaxy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9EB1B06B93A009D8585 /* Galaxy3.png */; };
 		510BB9F01B06B9C9009D8585 /* LostGalaxy.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9EF1B06B9C9009D8585 /* LostGalaxy.png */; };
@@ -28,6 +27,7 @@
 		51361BCF1B0504D600630F5B /* WallBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BCE1B0504D600630F5B /* WallBG.png */; };
 		51361BD21B05107C00630F5B /* NewGameScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BD01B05107C00630F5B /* NewGameScreen.png */; };
 		51361BD51B05130800630F5B /* NewWall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BD41B05130800630F5B /* NewWall.png */; };
+		513623211B0BC67800C37498 /* Galaxy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 513623201B0BC67800C37498 /* Galaxy2.png */; };
 		514862D01AF693AF00F77444 /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 514862CF1AF693AF00F77444 /* charge.wav */; };
 		514862DA1AF6AE9100F77444 /* ok.aif in Resources */ = {isa = PBXBuildFile; fileRef = 514862D91AF6AE9100F77444 /* ok.aif */; };
 		516D722E1B0A1704009AAA01 /* GalaxySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D722D1B0A1704009AAA01 /* GalaxySelector.swift */; };
@@ -86,7 +86,6 @@
 		510BB9DF1B06AAD2009D8585 /* InitBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InitBG.png; sourceTree = "<group>"; };
 		510BB9E11B06B1AD009D8585 /* Space2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Space2.png; sourceTree = "<group>"; };
 		510BB9E31B06B1AD009D8585 /* Puronmedra.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Puronmedra.png; sourceTree = "<group>"; };
-		510BB9E71B06B28E009D8585 /* Galaxy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Galaxy2.png; sourceTree = "<group>"; };
 		510BB9E91B06B93A009D8585 /* Space3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Space3.png; sourceTree = "<group>"; };
 		510BB9EB1B06B93A009D8585 /* Galaxy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Galaxy3.png; sourceTree = "<group>"; };
 		510BB9EF1B06B9C9009D8585 /* LostGalaxy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LostGalaxy.png; sourceTree = "<group>"; };
@@ -98,6 +97,7 @@
 		51361BCE1B0504D600630F5B /* WallBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WallBG.png; sourceTree = "<group>"; };
 		51361BD01B05107C00630F5B /* NewGameScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewGameScreen.png; sourceTree = "<group>"; };
 		51361BD41B05130800630F5B /* NewWall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewWall.png; sourceTree = "<group>"; };
+		513623201B0BC67800C37498 /* Galaxy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Galaxy2.png; sourceTree = "<group>"; };
 		514862CF1AF693AF00F77444 /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
 		514862D91AF6AE9100F77444 /* ok.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = ok.aif; sourceTree = "<group>"; };
 		516D722D1B0A1704009AAA01 /* GalaxySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalaxySelector.swift; sourceTree = "<group>"; };
@@ -224,6 +224,7 @@
 		51C926231AF6C8E700196318 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				513623201B0BC67800C37498 /* Galaxy2.png */,
 				5187D5DC1B08F83100827CE0 /* WallBG2.png */,
 				5187D5DA1B08F62500827CE0 /* FrontBG3.png */,
 				5187D5D21B08F5F100827CE0 /* BackBG3.png */,
@@ -233,7 +234,6 @@
 				510BB9EF1B06B9C9009D8585 /* LostGalaxy.png */,
 				510BB9E91B06B93A009D8585 /* Space3.png */,
 				510BB9EB1B06B93A009D8585 /* Galaxy3.png */,
-				510BB9E71B06B28E009D8585 /* Galaxy2.png */,
 				510BB9E11B06B1AD009D8585 /* Space2.png */,
 				510BB9E31B06B1AD009D8585 /* Puronmedra.png */,
 				510BB9DF1B06AAD2009D8585 /* InitBG.png */,
@@ -406,9 +406,9 @@
 				5187D5D61B08F5F100827CE0 /* BackBG3.png in Resources */,
 				510BB9DC1B069239009D8585 /* Window.png in Resources */,
 				941F0A661AF61BD7006B13EC /* qualquerCoisa.plist in Resources */,
-				510BB9E81B06B28E009D8585 /* Galaxy2.png in Resources */,
 				5187D5DD1B08F83100827CE0 /* WallBG2.png in Resources */,
 				510BB9D31B064BB5009D8585 /* Space.png in Resources */,
+				513623211B0BC67800C37498 /* Galaxy2.png in Resources */,
 				51CD650E1AF69055009EA518 /* shot.wav in Resources */,
 				516EF9281AF56B1D00A356CE /* LaunchScreen.xib in Resources */,
 				51DD09E81AF65B1A00FE4DD7 /* vortex.aiff in Resources */,
