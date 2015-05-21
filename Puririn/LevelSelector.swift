@@ -12,10 +12,15 @@ import AVFoundation
 
 class LevelSelector: SKScene {
     
+    var textures:[String: SKTexture]?
+    
+    var musicPlayer:AVAudioPlayer?
     var audioPlayer = AVAudioPlayer()
     var printCounter = 0
     var galaxylevel: Int?
     var openGalaxy = -1
+    var animating = false
+    var newGalaxy = -1
     
     var circleRadiusMax: CGFloat = 0
     var levelSize: CGFloat = 0
@@ -27,10 +32,17 @@ class LevelSelector: SKScene {
     var spaces: Array<SKSpriteNode> = []
     var texts: Array<SKSpriteNode> = []
     var textArray: Array<SKLabelNode> = []
+    var percentages: Array<SKLabelNode> = []
+    var blArrays: Array<SKSpriteNode> = []
     
-    var alphaOut = SKAction.fadeAlphaBy(0, duration: 1.0)
-    var alphaText = SKAction.fadeAlphaBy(0.7, duration: 1.0)
-    var alphaFull = SKAction.fadeAlphaBy(1, duration: 1.0)
+    var expansionSpeed = 0.2
+    var alphaOut = SKAction.fadeAlphaTo(0, duration: 0.2)
+    var alphaOutQuick = SKAction.fadeAlphaTo(0, duration: 0.1)
+    var alphaText = SKAction.fadeAlphaTo(0.7, duration: 0.2)
+    var alphaFull = SKAction.fadeAlphaTo(1, duration: 0.2)
+    
+    var y1: CGFloat = 0
+    var y2: CGFloat = 0
     
     var galaxyPoint: CGPoint?
         
@@ -38,32 +50,60 @@ class LevelSelector: SKScene {
         
         self.backgroundColor = UIColor.whiteColor()
         
+        if(musicPlayer == nil) {
+            var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
+            
+        }
+        
+        if(musicPlayer!.playing == false) {
+            musicPlayer!.prepareToPlay()
+            musicPlayer!.volume = 0.25
+            musicPlayer!.play()
+        }
+        
         var userLevel = UserLevel.getUserLevel() + 1
         
         levelSize = (self.frame.size.width/2)/CGFloat(nLevels.count)
         circleRadiusMax = (self.frame.size.width/2) - (levelSize/2) - 10
         radiusDecay = circleRadiusMax/CGFloat(nLevels.count-1)
-        
-        drawNames()
-        
-        drawSpaces()
-
-        drawGalaxies()
 
         var ng = SKSpriteNode(imageNamed: "back_button")
         ng.size = CGSizeMake(ng.frame.size.width/6, ng.frame.size.height/6)
-        ng.position = CGPointMake(CGRectGetMidX(self.frame), ng.size.height/2 + 10)
+        y2 = (CGRectGetMidY(self.frame) - circleRadiusMax)/2 - 15//ng.size.height/2 + 10
+        ng.position = CGPointMake(CGRectGetMidX(self.frame), y2)
         ng.name = "BackMenu"
         ng.zPosition = 1
         
         self.addChild(ng)
         
+        drawNames()
+        
+        drawSpaces()
+        
+        drawGalaxies()
+        
+        drawPercentages()
+        
     }
     
     func drawNames() {
         
-        var tt1 = SKSpriteNode(imageNamed: "LostGalaxy")
+        var tt0 = SKSpriteNode(imageNamed: "SelectGalaxy")
         var tty = (self.frame.size.height + (CGRectGetMidY(self.frame) + circleRadiusMax))/2 + 10
+        tt0.size = CGSizeMake(tt0.frame.size.width/5, tt0.frame.size.height/5)
+        y1 = tty
+        tt0.position = CGPointMake(CGRectGetMidX(self.frame), y1)
+        tt0.name = "Back"
+        tt0.zPosition = 11
+        
+        texts.append(tt0)
+        self.addChild(tt0)
+        
+        var tt1 = SKSpriteNode(imageNamed: "MilkyWay")
         tt1.size = CGSizeMake(tt1.frame.size.width/5, tt1.frame.size.height/5)
         tt1.position = CGPointMake(CGRectGetMidX(self.frame), tty)
         tt1.name = "Back"
@@ -73,7 +113,7 @@ class LevelSelector: SKScene {
         texts.append(tt1)
         self.addChild(tt1)
         
-        var tt2 = SKSpriteNode(imageNamed: "LostGalaxy")
+        var tt2 = SKSpriteNode(imageNamed: "Puronmedra")
         tt2.size = CGSizeMake(tt2.frame.size.width/5, tt2.frame.size.height/5)
         tt2.position = CGPointMake(CGRectGetMidX(self.frame), tty)
         tt2.name = "Back"
@@ -131,14 +171,14 @@ class LevelSelector: SKScene {
         
         var gf: CGFloat = 2.25
         var gd: CGFloat = 25.0
-        var gi: CGFloat = 100.0
-        var gs: CGFloat = 150.0
+        var gi: CGFloat = (y1 - y2)/4 + y2
+        var gs: CGFloat = (y1 - y2)/4
         
         var gl1 = SKSpriteNode(imageNamed: "Galaxy")
         var revolution1 = SKAction.rotateByAngle(CGFloat(-M_PI*2), duration: 150.0)
         var repeat1 = SKAction.repeatActionForever(revolution1)
         gl1.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
-        gl1.position = CGPointMake(gl1.size.width/2 + gd, gl1.size.width/2 + gi)
+        gl1.position = CGPointMake(gl1.size.width/2 + gd, gi)
         gl1.name = "Galaxy1"
         gl1.blendMode = SKBlendMode.Screen
         gl1.zPosition = 0
@@ -151,7 +191,7 @@ class LevelSelector: SKScene {
         var revolution2 = SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 150.0)
         var repeat2 = SKAction.repeatActionForever(revolution2)
         gl2.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
-        gl2.position = CGPointMake(self.frame.size.width - gl2.size.width/2 - gd, gl2.size.width/2 + gi + gs)
+        gl2.position = CGPointMake(self.frame.size.width - gl2.size.width/2 - gd, gi + gs)
         gl2.name = "Galaxy2"
         gl2.blendMode = SKBlendMode.Screen
         gl2.zPosition = 0
@@ -160,11 +200,21 @@ class LevelSelector: SKScene {
         self.addChild(gl2)
         gl2.runAction(repeat2)
         
+        if(UserLevel.getUserLevel() < 49 || newGalaxy == 2) {
+            var bl1 = SKSpriteNode(imageNamed: "Wat")
+            bl1.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
+            bl1.position = CGPointMake(self.frame.size.width - gl2.size.width/2 - gd, gi + gs)
+            bl1.name = "Back"
+            bl1.zPosition = 1
+            blArrays.append(bl1)
+            self.addChild(bl1)
+        }
+        
         var gl3 = SKSpriteNode(imageNamed: "Galaxy3")
         var revolution3 = SKAction.rotateByAngle(CGFloat(-M_PI*2), duration: 150.0)
         var repeat3 = SKAction.repeatActionForever(revolution3)
         gl3.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
-        gl3.position = CGPointMake(gl3.size.width/2 + gd, gl3.size.width/2 + gi + gs*2)
+        gl3.position = CGPointMake(gl3.size.width/2 + gd, gi + gs*2)
         gl3.name = "Galaxy3"
         gl3.blendMode = SKBlendMode.Screen
         gl3.zPosition = 0
@@ -172,11 +222,60 @@ class LevelSelector: SKScene {
         galaxies.append(gl3)
         self.addChild(gl3)
         gl3.runAction(repeat3)
+        
+        if(UserLevel.getUserLevel() < 149 || newGalaxy == 3) {
+            var bl2 = SKSpriteNode(imageNamed: "Wat")
+            bl2.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
+            bl2.position = CGPointMake(gl3.size.width/2 + gd, gi + gs*2)
+            bl2.name = "Back"
+            bl2.zPosition = 1
+            blArrays.append(bl2)
+            self.addChild(bl2)
+        }
+    }
+    
+    func drawPercentages() {
+        
+        var p1 = SKLabelNode(text: "\(UserLevel.getGalaxyPercent(0))%")
+        p1.fontSize = 20
+        p1.fontName = "HelveticaNeue-Bold"
+        p1.fontColor = UIColor.whiteColor()
+        p1.position = CGPointMake(galaxies[0].position.x, galaxies[0].position.y - galaxies[0].size.height/2 - 20)
+        p1.name = "Back"
+        p1.zPosition = 3
+        
+        percentages.append(p1)
+        self.addChild(p1)
+        
+        var p2 = SKLabelNode(text: "\(UserLevel.getGalaxyPercent(1))%")
+        p2.fontSize = 20
+        p2.fontName = "HelveticaNeue-Bold"
+        p2.fontColor = UIColor.whiteColor()
+        p2.position = CGPointMake(galaxies[1].position.x, galaxies[1].position.y - galaxies[1].size.height/2 - 25)
+        p2.name = "Back"
+        p2.zPosition = 3
+    
+        percentages.append(p2)
+        self.addChild(p2)
+        
+        var p3 = SKLabelNode(text: "\(UserLevel.getGalaxyPercent(2))%")
+        p3.fontSize = 20
+        p3.fontName = "HelveticaNeue-Bold"
+        p3.fontColor = UIColor.whiteColor()
+        p3.position = CGPointMake(galaxies[2].position.x, galaxies[2].position.y - galaxies[2].size.height/2 - 25)
+        p3.name = "Back"
+        p3.zPosition = 3
+    
+        percentages.append(p3)
+        self.addChild(p3)
+        
     }
     
     func drawLevels(galaxy: Int) {
         
         printCounter = 0 + (50 * galaxy)
+        
+        var texture = SKTexture(imageNamed: "BallOk")
         
         for var i = 0; i < nLevels.count; ++i {
             
@@ -188,15 +287,16 @@ class LevelSelector: SKScene {
                 
                 var drawPoint = rotatePoint(CGRectGetMidX(self.frame), cY: CGRectGetMidY(self.frame), angle: Float(angle*CGFloat(j)), pX: x, pY: y)
                 
-                var level = SKSpriteNode(imageNamed: "BallOk")
+                var level = SKSpriteNode(texture: texture)
                 level.size = CGSizeMake(levelSize, levelSize)
                 level.position = CGPointMake(drawPoint.x, drawPoint.y)
                 level.name = String(printCounter)
                 level.alpha = 0
-                level.zPosition = 2
+                level.zPosition = 4
                 
                 self.addChild(level)
-                level.runAction(alphaFull)
+                //level.runAction(alphaFull)
+                levelsArray.append(level)
                 
                 var levelt = SKLabelNode(text: "\(printCounter + 1)")
                 levelt.fontSize = 16
@@ -205,10 +305,11 @@ class LevelSelector: SKScene {
                 levelt.fontColor = UIColor.blackColor()
                 levelt.position = CGPointMake(drawPoint.x, drawPoint.y - 7)
                 levelt.name = String(printCounter)
-                levelt.zPosition = 2
+                levelt.zPosition = 4
                 
                 self.addChild(levelt)
-                levelt.runAction(alphaText)
+                //levelt.runAction(alphaText)
+                textArray.append(levelt)
                 
                 if(!(UserLevel.getUserLevel() >= (printCounter))) {
                     level.hidden = true
@@ -223,18 +324,97 @@ class LevelSelector: SKScene {
     
     func loadGalaxy(number: Int) {
         
-        var resize = SKAction.resizeToWidth(self.frame.size.width, height: self.frame.size.width, duration: 1.0)
-        var move = SKAction.moveTo(CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidX(self.frame)), duration: 1.0)
+        var resize = SKAction.resizeToWidth(self.frame.size.width, height: self.frame.size.width, duration: expansionSpeed)
+        var move = SKAction.moveTo(CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)), duration: expansionSpeed)
         
+        animating = true
+        
+        drawLevels(number)
+        
+        openGalaxy = number
         galaxyPoint = CGPointMake(galaxies[number].position.x, galaxies[number].position.y)
+        
+        spaces[number].runAction(alphaFull)
+        texts[number + 1].runAction(alphaFull)
+        texts[0].runAction(alphaOut)
+        
+        for var i=0; i<3; i++ {
+            percentages[i].runAction(alphaOut)
+        }
+        
+        for var i=0; i<2; i++ {
+            blArrays[i].runAction(alphaOut)
+        }
+        
+        for var i=0; i<3; i++ {
+            
+            if(i != number) {
+                galaxies[i].runAction(alphaOutQuick)
+            }
+            
+        }
+        
+        galaxies[number].zPosition = 2
+        galaxies[number].runAction(resize)
+        galaxies[number].runAction(move, completion: {
+            self.animating = false
+            if(self.openGalaxy != -1) {
+                for l in self.levelsArray {
+                    l.runAction(self.alphaFull)
+                }
+                for l in self.textArray {
+                    l.runAction(self.alphaFull)
+                }
+            }
+        })
         
     }
     
+    
     func closeGalaxy() {
         
-        var resize = SKAction.resizeToWidth(self.frame.size.width/2, height: self.frame.size.width/2, duration: 1.0)
-        var move = SKAction.moveTo(galaxyPoint!, duration: 1.0)
+        var resize = SKAction.resizeToWidth(self.frame.size.width/2.25, height: self.frame.size.width/2.25, duration: expansionSpeed)
+        var move = SKAction.moveTo(galaxyPoint!, duration: expansionSpeed)
         
+        animating = true
+        
+        for var i=0; i<2; i++ {
+            blArrays[i].runAction(alphaFull)
+        }
+        for var i=0; i<3; i++ {
+            percentages[i].runAction(alphaFull)
+        }
+        for var i=0; i<3; i++ {
+            galaxies[i].runAction(alphaFull)
+        }
+        for var i=0; i<3; i++ {
+            texts[i + 1].runAction(alphaOut)
+        }
+        for var i=0; i<2; i++ {
+            spaces[i + 1].runAction(alphaOut)
+        }
+        for l in levelsArray {
+            l.runAction(alphaOutQuick, completion:{
+                l.removeFromParent()
+            })
+        }
+        for l in textArray {
+            l.runAction(alphaOutQuick, completion:{
+                l.removeFromParent()
+            })
+        }
+        
+        texts[0].runAction(alphaFull)
+        
+        var g = openGalaxy
+        
+        galaxies[openGalaxy].runAction(resize)
+        galaxies[openGalaxy].runAction(move, completion: {
+            self.animating = false
+            self.galaxies[g].zPosition = 0
+        })
+        
+        openGalaxy = -1
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -243,52 +423,66 @@ class LevelSelector: SKScene {
             
             var theName = nodeAtPoint(touch.locationInNode(self)).name
             
-            if(theName != nil && theName == "BackMenu") {
+            if(animating == false) {
+            
+                if(theName != nil && theName == "BackMenu") {
+                    
+                    playSound()
+                    
+                    if(openGalaxy == -1) {
+                        
+                        var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+                        var scene = StartScreen(size:self.size)
+                        scene.musicPlayer = musicPlayer
+                        
+                        for child in self.children {
+                            child.removeFromParent()
+                        }
+                        
+                        self.removeAllActions()
+                        self.removeFromParent()
+                        self.scene!.view?.presentScene(scene, transition: transition)
+                        
+                    } else {
+                        
+                        closeGalaxy()
+                   
+                    }
                 
-                playSound()
-                
-                if(openGalaxy == -1) {
+                } else if(theName != nil && (theName == "Galaxy1" || theName == "Galaxy2" || theName == "Galaxy3")) {
                     
-                    var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
-                    var scene = StartScreen(size:self.size)
+                    playSound()
                     
-                    scene.scaleMode = .AspectFill
-                    
-                    for child in self.children {
-                        child.removeFromParent()
+                    if(theName == "Galaxy1" && openGalaxy == -1) {
+                        loadGalaxy(0)
+                    }
+                    if(theName == "Galaxy2" && openGalaxy == -1) {
+                        loadGalaxy(1)
+                    }
+                    if(theName == "Galaxy3" && openGalaxy == -1) {
+                        loadGalaxy(2)
                     }
                     
-                    self.removeAllActions()
-                    self.removeFromParent()
-                    self.scene!.view?.presentScene(scene, transition: transition)
-                    
-                } else {
-                    
-                    closeGalaxy()
-               
-                }
-                
-
-            
-            } else if(theName != nil && theName != "Back") {
-                
-                if(UserLevel.getUserLevel() >= (theName!.toInt()!)) {
-                
-                    playSound()
-                    println(theName!.toInt()!)
-                    
-                    var theNumber = theName!.toInt()!
-                    var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
-                    var scene = GameScene(size:self.size)
-                    
-                    scene.scaleMode = .AspectFill
-                    scene.level = theNumber
-                    scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
-                    
-                    self.removeAllActions()
-                    self.removeFromParent()
-                    self.scene!.view?.presentScene(scene, transition: transition)
-                    
+                } else if(theName != nil && theName != "Back") {
+                 
+                    if(UserLevel.getUserLevel() >= (theName!.toInt()!)) {
+                        
+                        playSound()
+                        
+                        var theNumber = theName!.toInt()!
+                        var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
+                        var scene = GameScene(size:self.size)
+                        
+                        scene.musicPlayer = musicPlayer
+                        scene.scaleMode = .AspectFill
+                        scene.level = theNumber
+                        scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
+                        
+                        self.removeAllActions()
+                        self.removeFromParent()
+                        self.scene!.view?.presentScene(scene, transition: transition)
+                        
+                    }
                 }
             }
         }
@@ -324,5 +518,19 @@ class LevelSelector: SKScene {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         
+    }
+    
+    func doVolumeFade()
+    {
+        if (musicPlayer!.volume > 0.01) {
+            musicPlayer!.volume = musicPlayer!.volume - 0.03
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("doVolumeFade"), userInfo: nil, repeats: false)
+        } else {
+            // Stop and get the sound ready for playing again
+            musicPlayer!.stop()
+            musicPlayer!.currentTime = 0
+            musicPlayer!.prepareToPlay()
+            musicPlayer!.volume = 0.3
+        }
     }
 }

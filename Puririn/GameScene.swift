@@ -13,6 +13,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var maxLevels = 40
     
+    var musicPlayer:AVAudioPlayer?
+    
     var movePuririn:Bool!
     var firstPoint = true
     var restartBool = false
@@ -48,6 +50,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dy = CGFloat(0)
     
     override func didMoveToView(view: SKView) {
+        
+        doVolumeFade()
         
         var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
         var error:NSError?
@@ -473,34 +477,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
             
-            
-            
             for child in self.children {
                 child.removeFromParent()
             }
             
-            if self.level + 1 < 40 {
+            if (self.level + 1 >= 150) {
+                
+                var scene = StartScreen(size:self.size)
+                scene.complete = true
+                scene.scaleMode = .AspectFill
+                
+                self.removeFromParent()
+                self.scene!.view?.presentScene(scene, transition: transition)
+            
+            } else if (self.level + 1 >= 50) {
+                
+                //End First Galaxy
+            
+            } else if (self.level + 1 >= 100) {
+                
+                //End Second Galaxy
+            
+            } else {
                 
                 var scene = GameScene(size:self.size)
                 scene.level = self.level + 1
                 
                 scene.scaleMode = .AspectFill
                 
+                println(self.level)
+                UserLevel.setLevelStars(self.level, stars: 1)
+                
                 if(UserLevel.getUserLevel()<scene.level) {
                     UserLevel.setUserLevel(scene.level)
                 }
                 
                 scene.levelMatrix = LevelMatrixes.getMatrixLevel(scene.level)
-                
-                self.removeFromParent()
-                self.scene!.view?.presentScene(scene, transition: transition)
-            }
-            
-            else {
-                
-                var scene = StartScreen(size:self.size)
-                scene.complete = true
-                scene.scaleMode = .AspectFill
                 
                 self.removeFromParent()
                 self.scene!.view?.presentScene(scene, transition: transition)
@@ -558,6 +570,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
+    }
+    
+    func doVolumeFade()
+    {
+        if(musicPlayer != nil) {
+            if (musicPlayer!.volume > 0.01) {
+                musicPlayer!.volume = musicPlayer!.volume - 0.03
+                NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("doVolumeFade"), userInfo: nil, repeats: false)
+            } else {
+                // Stop and get the sound ready for playing again
+                musicPlayer!.stop()
+                musicPlayer!.currentTime = 0
+                musicPlayer!.prepareToPlay()
+                musicPlayer!.volume = 0.3
+            }
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {

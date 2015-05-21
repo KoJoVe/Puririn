@@ -11,13 +11,33 @@ import AVFoundation
 
 class StartScreen: SKScene {
     
+    var musicPlayer:AVAudioPlayer?
     var complete: Bool = false
     var audioPlayer = AVAudioPlayer()
+    var transition = SKTransition.fadeWithDuration(1)
+    var tran = false
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        if(musicPlayer == nil) {
+            var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
+
+        }
+
+        if(musicPlayer!.playing == false) {
+            musicPlayer!.prepareToPlay()
+            musicPlayer!.volume = 0.25
+            musicPlayer!.play()
+        }
+        
         UserLevel.initializeArray()
+        
+        println(UserLevel.getLevelStars(0))
         
         var bc = SKSpriteNode(imageNamed: "NewGameScreen")
         
@@ -60,18 +80,27 @@ class StartScreen: SKScene {
             
             var name = nodeAtPoint(touch.locationInNode(self)).name
             
-            if name == "StartGame" {
+            if (name == "StartGame" && tran == false) {
                 
                 playSound()
-                var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
-                var scene = LevelSelector(size:self.size)
-                scene.scaleMode = .AspectFill
-                self.removeFromParent()
-                self.scene!.view?.presentScene(scene, transition: transition)
                 
+                tran = true
+                
+                var scene = LevelSelector(size:self.size)
+                scene.musicPlayer = musicPlayer
+                
+                
+                self.scene!.view?.presentScene(scene, transition: transition)
             }
-
         }
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        
+        for child in self.children {
+            child.removeFromParent()
+        }
+        
     }
     
     func playSound() {

@@ -107,6 +107,20 @@ class UserLevel {
     
     }
     
+    class func getGalaxyPercent(n: Int) -> Int {
+    
+        var sum = 0
+        
+        for var i=0; i<50; i++ {
+            
+            sum += getLevelStars(i + (50 * n))
+            
+        }
+        
+        return Int((Float(sum)/200.0) * 100.0)
+        
+    }
+    
     class func getTotalStars() -> Int {
         
         var stars = 0

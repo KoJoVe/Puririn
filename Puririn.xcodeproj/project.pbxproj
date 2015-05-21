@@ -28,9 +28,9 @@
 		51361BD21B05107C00630F5B /* NewGameScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BD01B05107C00630F5B /* NewGameScreen.png */; };
 		51361BD51B05130800630F5B /* NewWall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BD41B05130800630F5B /* NewWall.png */; };
 		513623211B0BC67800C37498 /* Galaxy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 513623201B0BC67800C37498 /* Galaxy2.png */; };
+		513623231B0BD04100C37498 /* SelectGalaxy.png in Resources */ = {isa = PBXBuildFile; fileRef = 513623221B0BD04100C37498 /* SelectGalaxy.png */; };
 		514862D01AF693AF00F77444 /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 514862CF1AF693AF00F77444 /* charge.wav */; };
 		514862DA1AF6AE9100F77444 /* ok.aif in Resources */ = {isa = PBXBuildFile; fileRef = 514862D91AF6AE9100F77444 /* ok.aif */; };
-		516D722E1B0A1704009AAA01 /* GalaxySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D722D1B0A1704009AAA01 /* GalaxySelector.swift */; };
 		516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF9191AF56B1D00A356CE /* AppDelegate.swift */; };
 		516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91D1AF56B1D00A356CE /* GameScene.swift */; };
 		516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EF91F1AF56B1D00A356CE /* GameViewController.swift */; };
@@ -51,6 +51,9 @@
 		51C926211AF6BBAA00196318 /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51C926201AF6BBAA00196318 /* Trail.sks */; };
 		51CD650C1AF68EB3009EA518 /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 51CD650B1AF68EB3009EA518 /* bounce.wav */; };
 		51CD650E1AF69055009EA518 /* shot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 51CD650D1AF69055009EA518 /* shot.wav */; };
+		51D4F5041B0CC36E002D9B1B /* Wat.png in Resources */ = {isa = PBXBuildFile; fileRef = 51D4F5031B0CC36E002D9B1B /* Wat.png */; };
+		51D4F5061B0CECA4002D9B1B /* PuririnTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 51D4F5051B0CECA4002D9B1B /* PuririnTheme.mp3 */; };
+		51D4F50A1B0D49D4002D9B1B /* Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D4F5091B0D49D4002D9B1B /* Preload.swift */; };
 		51DD09E81AF65B1A00FE4DD7 /* vortex.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 51DD09E71AF65B1A00FE4DD7 /* vortex.aiff */; };
 		941047851AF5749000683E02 /* Puririn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941047841AF5749000683E02 /* Puririn.swift */; };
 		94124E291AF68A8900894A3F /* fundo_level_cleared.png in Resources */ = {isa = PBXBuildFile; fileRef = 94124E281AF68A8900894A3F /* fundo_level_cleared.png */; };
@@ -98,9 +101,9 @@
 		51361BD01B05107C00630F5B /* NewGameScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewGameScreen.png; sourceTree = "<group>"; };
 		51361BD41B05130800630F5B /* NewWall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewWall.png; sourceTree = "<group>"; };
 		513623201B0BC67800C37498 /* Galaxy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Galaxy2.png; sourceTree = "<group>"; };
+		513623221B0BD04100C37498 /* SelectGalaxy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SelectGalaxy.png; sourceTree = "<group>"; };
 		514862CF1AF693AF00F77444 /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
 		514862D91AF6AE9100F77444 /* ok.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = ok.aif; sourceTree = "<group>"; };
-		516D722D1B0A1704009AAA01 /* GalaxySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalaxySelector.swift; sourceTree = "<group>"; };
 		516EF9141AF56B1D00A356CE /* Puririn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puririn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		516EF9181AF56B1D00A356CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		516EF9191AF56B1D00A356CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +128,9 @@
 		51C926201AF6BBAA00196318 /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		51CD650B1AF68EB3009EA518 /* bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bounce.wav; sourceTree = "<group>"; };
 		51CD650D1AF69055009EA518 /* shot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shot.wav; sourceTree = "<group>"; };
+		51D4F5031B0CC36E002D9B1B /* Wat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wat.png; sourceTree = "<group>"; };
+		51D4F5051B0CECA4002D9B1B /* PuririnTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PuririnTheme.mp3; sourceTree = "<group>"; };
+		51D4F5091B0D49D4002D9B1B /* Preload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preload.swift; sourceTree = "<group>"; };
 		51DD09E71AF65B1A00FE4DD7 /* vortex.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = vortex.aiff; sourceTree = "<group>"; };
 		941047841AF5749000683E02 /* Puririn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puririn.swift; sourceTree = "<group>"; };
 		94124E281AF68A8900894A3F /* fundo_level_cleared.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fundo_level_cleared.png; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 		51C926231AF6C8E700196318 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				51D4F5031B0CC36E002D9B1B /* Wat.png */,
+				513623221B0BD04100C37498 /* SelectGalaxy.png */,
 				513623201B0BC67800C37498 /* Galaxy2.png */,
 				5187D5DC1B08F83100827CE0 /* WallBG2.png */,
 				5187D5DA1B08F62500827CE0 /* FrontBG3.png */,
@@ -262,6 +270,7 @@
 		51DD09E61AF65ADC00FE4DD7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				51D4F5051B0CECA4002D9B1B /* PuririnTheme.mp3 */,
 				514862D91AF6AE9100F77444 /* ok.aif */,
 				514862CF1AF693AF00F77444 /* charge.wav */,
 				51CD650D1AF69055009EA518 /* shot.wav */,
@@ -276,6 +285,7 @@
 			children = (
 				94FB5C361AF5AFF1000B99F9 /* LevelMatrixes.swift */,
 				517207A21AF603F900702425 /* UserLevel.swift */,
+				51D4F5091B0D49D4002D9B1B /* Preload.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,7 +309,6 @@
 				94FB5C341AF5AC8B000B99F9 /* LevelSelector.swift */,
 				516EF91D1AF56B1D00A356CE /* GameScene.swift */,
 				516EF94B1AF5FA9500A356CE /* StartScreen.swift */,
-				516D722D1B0A1704009AAA01 /* GalaxySelector.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 			files = (
 				5134AC911AFD335300A957DF /* FrontBG.png in Resources */,
 				5187D5D61B08F5F100827CE0 /* BackBG3.png in Resources */,
+				51D4F5041B0CC36E002D9B1B /* Wat.png in Resources */,
 				510BB9DC1B069239009D8585 /* Window.png in Resources */,
 				941F0A661AF61BD7006B13EC /* qualquerCoisa.plist in Resources */,
 				5187D5DD1B08F83100827CE0 /* WallBG2.png in Resources */,
@@ -435,6 +445,7 @@
 				5187D5D11B08F49C00827CE0 /* WallBG3.png in Resources */,
 				510BB9EE1B06B93A009D8585 /* Galaxy3.png in Resources */,
 				510BB9D81B068B8B009D8585 /* MilkyWay.png in Resources */,
+				51D4F5061B0CECA4002D9B1B /* PuririnTheme.mp3 in Resources */,
 				514862D01AF693AF00F77444 /* charge.wav in Resources */,
 				510BB9F01B06B9C9009D8585 /* LostGalaxy.png in Resources */,
 				5134AC931AFD34B000A957DF /* BackBG.png in Resources */,
@@ -444,6 +455,7 @@
 				51361BCF1B0504D600630F5B /* WallBG.png in Resources */,
 				510BB9EC1B06B93A009D8585 /* Space3.png in Resources */,
 				5134AC971AFD375100A957DF /* PlayButton.png in Resources */,
+				513623231B0BD04100C37498 /* SelectGalaxy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +477,6 @@
 				94C223731AF5DDDA0083873C /* Star.swift in Sources */,
 				516EF91E1AF56B1D00A356CE /* GameScene.swift in Sources */,
 				94C223751AF5E6FD0083873C /* completeWindow.swift in Sources */,
-				516D722E1B0A1704009AAA01 /* GalaxySelector.swift in Sources */,
 				94C223711AF5C9D30083873C /* CleanPuririn.swift in Sources */,
 				517207A31AF603F900702425 /* UserLevel.swift in Sources */,
 				941047851AF5749000683E02 /* Puririn.swift in Sources */,
@@ -475,6 +486,7 @@
 				516EF9201AF56B1D00A356CE /* GameViewController.swift in Sources */,
 				94C2236F1AF5BF610083873C /* Vortex.swift in Sources */,
 				516EF91A1AF56B1D00A356CE /* AppDelegate.swift in Sources */,
+				51D4F50A1B0D49D4002D9B1B /* Preload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
