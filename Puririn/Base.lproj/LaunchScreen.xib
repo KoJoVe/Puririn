@@ -10,9 +10,6 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InitBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="FA6-8m-iA2">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LoadImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gg4-H0-wl8">
                     <rect key="frame" x="142" y="227" width="240" height="128"/>
                     <constraints>
@@ -21,7 +18,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="Gg4-H0-wl8" secondAttribute="centerY" id="1lk-lN-Q87"/>
                 <constraint firstAttribute="centerX" secondItem="Gg4-H0-wl8" secondAttribute="centerX" id="WKX-U7-1XI"/>
@@ -32,7 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="InitBG.png" width="1125" height="2001"/>
         <image name="LoadImage.png" width="220" height="152"/>
     </resources>
 </document>
