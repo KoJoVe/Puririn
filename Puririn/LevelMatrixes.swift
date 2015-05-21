@@ -15,10 +15,10 @@ class LevelMatrixes {
         if(level==0) {
             
             var nextMatrix = [[0,0,0,0,0,0,0]]
-            nextMatrix.append([0,0,0,2,0,0,0])
+            nextMatrix.append([0,4,0,2,0,4,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])

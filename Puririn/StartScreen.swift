@@ -14,7 +14,7 @@ class StartScreen: SKScene {
     var musicPlayer:AVAudioPlayer?
     var complete: Bool = false
     var audioPlayer = AVAudioPlayer()
-    var transition = SKTransition.fadeWithDuration(2)
+    var transition = SKTransition.fadeWithDuration(0.25)
     var tran = false
     
     override func didMoveToView(view: SKView) {
@@ -89,8 +89,8 @@ class StartScreen: SKScene {
                 var scene = LevelSelector(size:self.size)
                 scene.musicPlayer = musicPlayer
                 
+                self.scene!.view?.presentScene(scene, transition: self.transition)
                 
-                self.scene!.view?.presentScene(scene, transition: transition)
             }
         }
     }

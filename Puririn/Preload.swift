@@ -13,7 +13,6 @@ class Preload: NSObject {
     class func preloadMenuTextures() -> Array<SKTexture> {
         
         var textures: Array<SKTexture> = []
-        var texturesNames = [String: SKTexture]()
         
         textures.append(SKTexture(imageNamed: "Galaxy"))
         textures.append(SKTexture(imageNamed: "Galaxy2"))

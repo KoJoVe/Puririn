@@ -13,6 +13,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var maxLevels = 40
     
+    var starsOnLevel = 0
+    
     var musicPlayer:AVAudioPlayer?
     
     var movePuririn:Bool!
@@ -63,6 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func newGame() {
+        
+        starsOnLevel = 0
         
         self.background = SKSpriteNode(imageNamed: "fundo_level_cleared")
         self.background.zPosition = -2
@@ -395,10 +399,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 window.animateLabel()
         }
         
-        else  {
+        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
+            (contact.bodyB.categoryBitMask == 1<<2)) ||
+            ((contact.bodyA.categoryBitMask == 1<<2) &&
+                (contact.bodyB.categoryBitMask == 1<<0)) {
                 
-                playSound("bounce")
+                    starsOnLevel += 1
+                    
+                    if(contact.bodyB.categoryBitMask == 1<<2) {
+                        
+                        contact.bodyB.node?.removeFromParent()
+                        
+                    } else {
+                     
+                        contact.bodyA.node?.removeFromParent()
+                        
+                    }
                 
+        } else {
+            
+            playSound("bounce")
+            
         }
     }
     
@@ -506,7 +527,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scene.scaleMode = .AspectFill
                 
                 println(self.level)
-                UserLevel.setLevelStars(self.level, stars: 1)
+                UserLevel.setLevelStars(self.level, stars: 1 + self.starsOnLevel)
                 
                 if(UserLevel.getUserLevel()<scene.level) {
                     UserLevel.setUserLevel(scene.level)

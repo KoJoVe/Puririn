@@ -17,12 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupFonts() {
         
-        var sigmaFive = SKLabelNode(text:"0123456789")
-        sigmaFive.fontName = "Futura-Bold"
+        let yourFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        
+        var firstLabel = SKLabelNode(fontNamed: yourFont?.fontName)
+        
+//        var sigmaFive = SKLabelNode(text:"0123456789")
+//        sigmaFive.fontName = "HelveticaNeue-Bold"
+//        SKLabelNode.load()
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var textures = Preload.preloadMenuTextures()
+        
+        SKTexture.preloadTextures(textures, withCompletionHandler: {})
+        
         self.setupFonts()
         return true
     }

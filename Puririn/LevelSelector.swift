@@ -48,6 +48,8 @@ class LevelSelector: SKScene {
         
     override func didMoveToView(view: SKView) {
         
+        animating = true
+        
         self.backgroundColor = UIColor.whiteColor()
         
         if(musicPlayer == nil) {
@@ -86,8 +88,16 @@ class LevelSelector: SKScene {
         
         drawGalaxies()
         
-        drawPercentages()
-        
+        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        dispatch_async(backgroundQueue, {
+            self.drawPercentages()
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.revealPercentages()
+                self.animating = false
+            })
+        })
     }
     
     func drawNames() {
@@ -242,6 +252,7 @@ class LevelSelector: SKScene {
         p1.fontColor = UIColor.whiteColor()
         p1.position = CGPointMake(galaxies[0].position.x, galaxies[0].position.y - galaxies[0].size.height/2 - 15)
         p1.name = "Back"
+        p1.alpha = 0
         p1.zPosition = 3
         
         percentages.append(p1)
@@ -253,6 +264,7 @@ class LevelSelector: SKScene {
         p2.fontColor = UIColor.whiteColor()
         p2.position = CGPointMake(galaxies[1].position.x, galaxies[1].position.y - galaxies[1].size.height/2 - 25)
         p2.name = "Back"
+        p2.alpha = 0
         p2.zPosition = 3
     
         percentages.append(p2)
@@ -264,6 +276,7 @@ class LevelSelector: SKScene {
         p3.fontColor = UIColor.whiteColor()
         p3.position = CGPointMake(galaxies[2].position.x, galaxies[2].position.y - galaxies[2].size.height/2 - 25)
         p3.name = "Back"
+        p3.alpha = 0
         p3.zPosition = 3
     
         percentages.append(p3)
@@ -271,11 +284,21 @@ class LevelSelector: SKScene {
         
     }
     
+    func revealPercentages() {
+        for var i=0; i<3; i++ {
+            percentages[i].runAction(alphaFull)
+        }
+    }
+    
     func drawLevels(galaxy: Int) {
         
         printCounter = 0 + (50 * galaxy)
         
         var texture = SKTexture(imageNamed: "BallOk")
+        var texture2 = SKTexture(imageNamed: "Star0")
+        var texture3 = SKTexture(imageNamed: "Star1")
+        var texture4 = SKTexture(imageNamed: "Star2")
+        var texture5 = SKTexture(imageNamed: "Star3")
         
         for var i = 0; i < nLevels.count; ++i {
             
@@ -287,7 +310,20 @@ class LevelSelector: SKScene {
                 
                 var drawPoint = rotatePoint(CGRectGetMidX(self.frame), cY: CGRectGetMidY(self.frame), angle: Float(angle*CGFloat(j)), pX: x, pY: y)
                 
-                var level = SKSpriteNode(texture: texture)
+                var level: SKSpriteNode
+                
+                var stars = UserLevel.getLevelStars(printCounter)
+                
+                if(stars <= 1) {
+                    level = SKSpriteNode(texture: texture2)
+                } else if (stars == 2) {
+                    level = SKSpriteNode(texture: texture3)
+                } else if (stars == 3) {
+                    level = SKSpriteNode(texture: texture4)
+                } else {
+                    level = SKSpriteNode(texture: texture5)
+                }
+                
                 level.size = CGSizeMake(levelSize, levelSize)
                 level.position = CGPointMake(drawPoint.x, drawPoint.y)
                 level.name = String(printCounter)
@@ -303,7 +339,7 @@ class LevelSelector: SKScene {
                 levelt.alpha = 0
                 levelt.fontName = "HelveticaNeue-Bold"
                 levelt.fontColor = UIColor.blackColor()
-                levelt.position = CGPointMake(drawPoint.x, drawPoint.y - 7)
+                levelt.position = CGPointMake(drawPoint.x, drawPoint.y)
                 levelt.name = String(printCounter)
                 levelt.zPosition = 4
                 
@@ -431,16 +467,11 @@ class LevelSelector: SKScene {
                     
                     if(openGalaxy == -1) {
                         
-                        var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+                        var transition = SKTransition.fadeWithDuration(0.25)
                         var scene = StartScreen(size:self.size)
                         scene.musicPlayer = musicPlayer
-                        
-                        for child in self.children {
-                            child.removeFromParent()
-                        }
-                        
+
                         self.removeAllActions()
-                        self.removeFromParent()
                         self.scene!.view?.presentScene(scene, transition: transition)
                         
                     } else {
@@ -456,10 +487,10 @@ class LevelSelector: SKScene {
                     if(theName == "Galaxy1" && openGalaxy == -1) {
                         loadGalaxy(0)
                     }
-                    if(theName == "Galaxy2" && openGalaxy == -1) {
+                    if(theName == "Galaxy2" && openGalaxy == -1 && UserLevel.getUserLevel() >= 50 ) {
                         loadGalaxy(1)
                     }
-                    if(theName == "Galaxy3" && openGalaxy == -1) {
+                    if(theName == "Galaxy3" && openGalaxy == -1 && UserLevel.getUserLevel() >= 100 ) {
                         loadGalaxy(2)
                     }
                     
@@ -470,7 +501,7 @@ class LevelSelector: SKScene {
                         playSound()
                         
                         var theNumber = theName!.toInt()!
-                        var transition = SKTransition.doorsOpenHorizontalWithDuration(0.5)
+                        var transition = SKTransition.fadeWithDuration(1)
                         var scene = GameScene(size:self.size)
                         
                         scene.musicPlayer = musicPlayer
@@ -485,6 +516,12 @@ class LevelSelector: SKScene {
                     }
                 }
             }
+        }
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        for child in self.children {
+            child.removeFromParent()
         }
     }
     
