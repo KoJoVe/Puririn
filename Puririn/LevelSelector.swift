@@ -240,7 +240,7 @@ class LevelSelector: SKScene {
         p1.fontSize = 20
         p1.fontName = "HelveticaNeue-Bold"
         p1.fontColor = UIColor.whiteColor()
-        p1.position = CGPointMake(galaxies[0].position.x, galaxies[0].position.y - galaxies[0].size.height/2 - 20)
+        p1.position = CGPointMake(galaxies[0].position.x, galaxies[0].position.y - galaxies[0].size.height/2 - 15)
         p1.name = "Back"
         p1.zPosition = 3
         
