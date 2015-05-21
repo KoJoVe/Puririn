@@ -33,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SKTexture.preloadTextures(textures, withCompletionHandler: {})
         
+        var textures2 = Preload.preloadGameTextures()
+        
+        SKTexture.preloadTextures(textures2, withCompletionHandler: {})
+        
         self.setupFonts()
         return true
     }

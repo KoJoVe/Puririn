@@ -467,7 +467,7 @@ class LevelSelector: SKScene {
                     
                     if(openGalaxy == -1) {
                         
-                        var transition = SKTransition.fadeWithDuration(0.25)
+                        var transition = SKTransition.fadeWithDuration(1)
                         var scene = StartScreen(size:self.size)
                         scene.musicPlayer = musicPlayer
 
@@ -505,12 +505,10 @@ class LevelSelector: SKScene {
                         var scene = GameScene(size:self.size)
                         
                         scene.musicPlayer = musicPlayer
-                        scene.scaleMode = .AspectFill
                         scene.level = theNumber
                         scene.levelMatrix = LevelMatrixes.getMatrixLevel(theNumber)
                         
                         self.removeAllActions()
-                        self.removeFromParent()
                         self.scene!.view?.presentScene(scene, transition: transition)
                         
                     }

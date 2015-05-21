@@ -14,7 +14,7 @@ class StartScreen: SKScene {
     var musicPlayer:AVAudioPlayer?
     var complete: Bool = false
     var audioPlayer = AVAudioPlayer()
-    var transition = SKTransition.fadeWithDuration(0.25)
+    var transition = SKTransition.fadeWithDuration(1)
     var tran = false
     
     override func didMoveToView(view: SKView) {

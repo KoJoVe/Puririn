@@ -32,5 +32,30 @@ class Preload: NSObject {
 
         return textures
     }
+    
+    class func preloadGameTextures() -> Array<SKTexture> {
+        
+        var textures: Array<SKTexture> = []
+        
+        textures.append(SKTexture(imageNamed: "BackBG"))
+        textures.append(SKTexture(imageNamed: "BackBG2"))
+        textures.append(SKTexture(imageNamed: "BackBG3"))
+        
+        textures.append(SKTexture(imageNamed: "FrontBG"))
+        textures.append(SKTexture(imageNamed: "FrontBG2"))
+        textures.append(SKTexture(imageNamed: "FrontBG3"))
+        
+        textures.append(SKTexture(imageNamed: "WallBG"))
+        textures.append(SKTexture(imageNamed: "WallBG2"))
+        textures.append(SKTexture(imageNamed: "WallBG3"))
+        
+        textures.append(SKTexture(imageNamed: "Barrier"))
+        textures.append(SKTexture(imageNamed: "puririn"))
+        textures.append(SKTexture(imageNamed: "Star"))
+        textures.append(SKTexture(imageNamed: "Vortex"))
+        textures.append(SKTexture(imageNamed: "Window"))
+        
+        return textures
+    }
    
 }
