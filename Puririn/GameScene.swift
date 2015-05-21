@@ -13,7 +13,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var maxLevels = 40
     
+    var delay = false
+    
+    var arrayN = 0
+    
+    let mainemitter:SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)! as! SKEmitterNode
+
+//    var untypedArray : Array<AnyObject> = [NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!,NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!,NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!]
+    
     var starsOnLevel = 0
+    
+    var animating = false
     
     var musicPlayer:AVAudioPlayer?
     
@@ -66,7 +76,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func newGame() {
         
+        animating = false
+        delay = true
+        
         starsOnLevel = 0
+        arrayN = 0
         
         self.background = SKSpriteNode(imageNamed: "fundo_level_cleared")
         self.background.zPosition = -2
@@ -254,11 +268,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Trail
         
-        let untypedEmitter : AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)!;
-        let emitter:SKEmitterNode = untypedEmitter as! SKEmitterNode;
-        emitter.targetNode = self
-        self.puririn.addChild(emitter)
+        mainemitter.targetNode = self
+        self.puririn.addChild(mainemitter)
         
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("restartOk"), userInfo: nil, repeats: false)
+        
+    }
+    
+    func restartOk() {
+        delay = false
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -269,11 +287,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var name = nodeAtPoint(touch.locationInNode(self)).name
             
             if name == "restart" {
+                
                 restart()
                 self.restartBool = true
             }
             
-            else if name == "exit" {
+            else if (name == "exit" && animating == false) {
                 self.exit()
             }
             
@@ -282,10 +301,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             else if name == "puririn" {
+                
                 if(self.puririnTouched==false) {
                     playSound("charge")    
                 }
                 self.puririnTouched = true
+                
+            } else if (animating == false) {
+              
+                restart()
+                self.restartBool = true
+                
             }
         }
     }
@@ -361,6 +387,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 (contact.bodyB.categoryBitMask == 1<<0)) {
                     
                 playSound("vortex")
+                    
+                animating = true
                 
                 var cleanPuririn = CleanPuririn(size: self.sizeClean)
                 cleanPuririn.position = self.puririn.position
@@ -406,21 +434,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                     starsOnLevel += 1
                     
+                    var point: CGPoint?
+                    
                     if(contact.bodyB.categoryBitMask == 1<<2) {
                         
+                        point = contact.bodyB.node?.position
                         contact.bodyB.node?.removeFromParent()
                         
                     } else {
-                     
+                        
+                        point = contact.bodyA.node?.position
                         contact.bodyA.node?.removeFromParent()
                         
                     }
+                    
+                    var stars: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!
+                    var emitter:SKEmitterNode = stars as! SKEmitterNode
+                    println(emitter)
+                    emitter.targetNode = self
+                    emitter.position = point!
+                    emitter.zPosition = 100
+                    self.addChild(emitter)
+                    
+                    arrayN++
+                    
+                    NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("deleteParticle:"), userInfo: emitter, repeats: false)
                 
         } else {
             
             playSound("bounce")
             
         }
+    }
+    
+    func deleteParticle(timer:NSTimer) {
+        
+        var part = timer.userInfo as! SKEmitterNode
+        
+        part.runAction(SKAction.fadeAlphaTo(0, duration: 1.0), completion: {
+            part.removeFromParent()
+        })
     }
     
     func createPath() {
@@ -464,10 +517,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func restart() {
         
-        for node in self.children {
-            node.removeFromParent()
+        if(delay==false) {
+         
+            for node in self.children {
+                node.removeFromParent()
+            }
+            self.newGame()
+            
         }
-        self.newGame()
         
     }
     
@@ -476,19 +533,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dispatch_async(dispatch_get_main_queue()) {
             () -> Void in
             
-            var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+            var transition = SKTransition.fadeWithDuration(1)
             var scene = LevelSelector(size:self.size)
-            scene.scaleMode = .AspectFill
 
-            for child in self.children {
-                child.removeFromParent()
-            }
-
-            self.removeFromParent()
             self.scene!.view?.presentScene(scene, transition: transition)
             
         }
         
+    }
+    
+    override func willMoveFromView(view: SKView) {
+     
+        for child in self.children {
+            child.removeFromParent()
+        }
     }
     
     func nextStage() {
@@ -496,17 +554,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dispatch_async(dispatch_get_main_queue()) {
             () -> Void in
             
-            var transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
-            
-            for child in self.children {
-                child.removeFromParent()
-            }
+            var transition = SKTransition.fadeWithDuration(1)
             
             if (self.level + 1 >= 150) {
                 
                 var scene = StartScreen(size:self.size)
                 scene.complete = true
-                scene.scaleMode = .AspectFill
                 
                 self.removeFromParent()
                 self.scene!.view?.presentScene(scene, transition: transition)
@@ -524,10 +577,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var scene = GameScene(size:self.size)
                 scene.level = self.level + 1
                 
-                scene.scaleMode = .AspectFill
-                
-                println(self.level)
-                UserLevel.setLevelStars(self.level, stars: 1 + self.starsOnLevel)
+                if((1 + self.starsOnLevel) > UserLevel.getLevelStars(self.level)) {
+                    UserLevel.setLevelStars(self.level, stars: 1 + self.starsOnLevel)
+                }
                 
                 if(UserLevel.getUserLevel()<scene.level) {
                     UserLevel.setUserLevel(scene.level)
