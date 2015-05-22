@@ -210,13 +210,14 @@ class LevelSelector: SKScene {
         self.addChild(gl2)
         gl2.runAction(repeat2)
         
+        var bl1 = SKSpriteNode(imageNamed: "Wat")
+        bl1.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
+        bl1.position = CGPointMake(self.frame.size.width - gl2.size.width/2 - gd, gi + gs)
+        bl1.name = "Back"
+        bl1.zPosition = 1
+        blArrays.append(bl1)
+        
         if(UserLevel.getUserLevel() < 49 || newGalaxy == 2) {
-            var bl1 = SKSpriteNode(imageNamed: "Wat")
-            bl1.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
-            bl1.position = CGPointMake(self.frame.size.width - gl2.size.width/2 - gd, gi + gs)
-            bl1.name = "Back"
-            bl1.zPosition = 1
-            blArrays.append(bl1)
             self.addChild(bl1)
         }
         
@@ -233,13 +234,14 @@ class LevelSelector: SKScene {
         self.addChild(gl3)
         gl3.runAction(repeat3)
         
+        var bl2 = SKSpriteNode(imageNamed: "Wat")
+        bl2.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
+        bl2.position = CGPointMake(gl3.size.width/2 + gd, gi + gs*2)
+        bl2.name = "Back"
+        bl2.zPosition = 1
+        blArrays.append(bl2)
+        
         if(UserLevel.getUserLevel() < 149 || newGalaxy == 3) {
-            var bl2 = SKSpriteNode(imageNamed: "Wat")
-            bl2.size = CGSizeMake(self.frame.size.width/gf, self.frame.size.width/gf)
-            bl2.position = CGPointMake(gl3.size.width/2 + gd, gi + gs*2)
-            bl2.name = "Back"
-            bl2.zPosition = 1
-            blArrays.append(bl2)
             self.addChild(bl2)
         }
     }
