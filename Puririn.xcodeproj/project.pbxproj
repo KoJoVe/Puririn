@@ -28,6 +28,7 @@
 		51361BD51B05130800630F5B /* NewWall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51361BD41B05130800630F5B /* NewWall.png */; };
 		513623211B0BC67800C37498 /* Galaxy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 513623201B0BC67800C37498 /* Galaxy2.png */; };
 		513623231B0BD04100C37498 /* SelectGalaxy.png in Resources */ = {isa = PBXBuildFile; fileRef = 513623221B0BD04100C37498 /* SelectGalaxy.png */; };
+		513994A71B0F9214003C408C /* Radioactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 513994A61B0F9214003C408C /* Radioactive.png */; };
 		514862D01AF693AF00F77444 /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 514862CF1AF693AF00F77444 /* charge.wav */; };
 		514862DA1AF6AE9100F77444 /* ok.aif in Resources */ = {isa = PBXBuildFile; fileRef = 514862D91AF6AE9100F77444 /* ok.aif */; };
 		515B1B371B0E8EDA00E55D0D /* GhostObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515B1B361B0E8EDA00E55D0D /* GhostObject.swift */; };
@@ -120,6 +121,7 @@
 		51361BD41B05130800630F5B /* NewWall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewWall.png; sourceTree = "<group>"; };
 		513623201B0BC67800C37498 /* Galaxy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Galaxy2.png; sourceTree = "<group>"; };
 		513623221B0BD04100C37498 /* SelectGalaxy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SelectGalaxy.png; sourceTree = "<group>"; };
+		513994A61B0F9214003C408C /* Radioactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Radioactive.png; sourceTree = "<group>"; };
 		514862CF1AF693AF00F77444 /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
 		514862D91AF6AE9100F77444 /* ok.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = ok.aif; sourceTree = "<group>"; };
 		515B1B361B0E8EDA00E55D0D /* GhostObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostObject.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		51C926231AF6C8E700196318 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				513994A61B0F9214003C408C /* Radioactive.png */,
 				51E0B63E1B0F7F34002BEF01 /* MAsteroid.png */,
 				51E0B63C1B0F7DE8002BEF01 /* Asteroid.png */,
 				51E0B6381B0F7C96002BEF01 /* Sattelite.png */,
@@ -491,6 +494,7 @@
 				51E36F011B0E3FF60077ADB4 /* Star.png in Resources */,
 				510BB9CE1B06478C009D8585 /* BallOk.png in Resources */,
 				94124E291AF68A8900894A3F /* fundo_level_cleared.png in Resources */,
+				513994A71B0F9214003C408C /* Radioactive.png in Resources */,
 				94FB5C331AF58D33000B99F9 /* puririn.png in Resources */,
 				5134AC9E1AFD3BBC00A957DF /* restart_button.png in Resources */,
 				510BB9E61B06B1AD009D8585 /* Puronmedra.png in Resources */,

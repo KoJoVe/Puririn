@@ -349,6 +349,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     
                     self.addChild(ball)
+                    
+                } else if(levelMatrix[k][i] == 12) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = Explosive(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    self.addChild(ball)
                 }
             }
         }
@@ -702,11 +714,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node!.runAction(repeat)
                     }
                    
+        }
+        
+        else if ((contact.bodyB.categoryBitMask == 1<<6)) ||
+            ((contact.bodyA.categoryBitMask == 1<<6)) {
+                
+                
+                if (contact.bodyB.categoryBitMask == 1<<6) {
+                    
+                    var point: CGPoint?
+                    point = contact.bodyB.node?.position
+                    
+                    contact.bodyB.node?.removeFromParent()
+                    
+                    var stars: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Explosion", ofType: "sks")!)!
+                    var emitter:SKEmitterNode = stars as! SKEmitterNode
+                    emitter.targetNode = self
+                    emitter.position = point!
+                    emitter.zPosition = 100
+                    self.addChild(emitter)
+                }
+                
+                else if (contact.bodyA.categoryBitMask == 1<<6) {
+                    
+                    var point: CGPoint?
+                    point = contact.bodyA.node?.position
+                    
+                    contact.bodyA.node?.removeFromParent()
+                    
+                    var stars: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Explosion", ofType: "sks")!)!
+                    var emitter:SKEmitterNode = stars as! SKEmitterNode
+                    emitter.targetNode = self
+                    emitter.position = point!
+                    emitter.zPosition = 100
+                    self.addChild(emitter)
+                }
+                
+                self.puririn.removeFromParent()
+                
         } else if ((contact.bodyA.categoryBitMask == 1<<0) &&
             (contact.bodyB.categoryBitMask == 1<<4)) ||
             ((contact.bodyA.categoryBitMask == 1<<4) &&
                 (contact.bodyB.categoryBitMask == 1<<0)) {
-            
+                    
                     if(contact.bodyB.categoryBitMask == 1<<4) {
                         
                         var node = contact.bodyB.node as! GhostObject
@@ -717,7 +767,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         var node = contact.bodyA.node as! GhostObject
                         node.disappear()
                     }
-            
+                    
         } else {
             
             playSound("bounce")

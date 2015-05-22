@@ -27,6 +27,7 @@ class Star: SKSpriteNode {
         self.physicsBody?.angularDamping = 0.0
         self.physicsBody?.categoryBitMask = 1 << 2
         self.physicsBody?.contactTestBitMask = 1 << 0
+        self.physicsBody?.collisionBitMask = 1 << 0
     }
     
     required init?(coder aDecoder: NSCoder) {

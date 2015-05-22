@@ -20,10 +20,13 @@ class GhostObject: SKSpriteNode {
         
         self.name = "ghost"
         self.physicsBody = SKPhysicsBody(circleOfRadius: (size-10)/2)
+        self.physicsBody?.dynamic = false
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = 1 << 4
+        self.physicsBody?.restitution = 0.8
+        self.physicsBody?.friction = 0.0
         self.zPosition = 2
-        self.physicsBody?.contactTestBitMask = 1 << 0
+        self.physicsBody?.contactTestBitMask = 1 << 0 | 1 << 7 | 1 << 5
         self.physicsBody?.collisionBitMask = 0
     }
     
