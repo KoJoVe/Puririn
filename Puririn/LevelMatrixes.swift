@@ -20,7 +20,7 @@ class LevelMatrixes {
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,4,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,6,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
