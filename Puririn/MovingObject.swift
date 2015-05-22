@@ -11,7 +11,7 @@ import SpriteKit
 class MovingObject: SKSpriteNode {
     
     var direction = 0
-    var velocity:CGFloat = 100.0
+    var velocity:CGFloat = 0
     
     init(size: CGFloat) {
         
@@ -19,6 +19,8 @@ class MovingObject: SKSpriteNode {
         let sizeWH = CGSize(width: size*1.4, height: size*1.4)
         
         super.init(texture: texture, color: nil, size: sizeWH)
+        
+        velocity = 4 * size
         
         self.name = "sattelite"
         self.physicsBody = SKPhysicsBody(circleOfRadius: (size)/2)
