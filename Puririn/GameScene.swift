@@ -16,8 +16,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var delay = false
     
     var arrayN = 0
-    
-    var mainemitter:SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)! as! SKEmitterNode
 
 //    var untypedArray : Array<AnyObject> = [NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!,NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!,NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!]
     
@@ -71,10 +69,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
 
         self.backgroundColor = UIColor.whiteColor()
-        self.newGame()
+        var mainemitter:SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)! as! SKEmitterNode
+        
+        self.newGame(mainemitter)
     }
     
-    func newGame() {
+    func newGame(mainemitter: SKEmitterNode) {
         
         animating = false
         delay = true
@@ -268,10 +268,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Trail
         
+        
         mainemitter.targetNode = self
         self.puririn.addChild(mainemitter)
         
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("restartOk"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("restartOk"), userInfo: nil, repeats: false)
         
     }
     
@@ -522,7 +523,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for node in self.children {
                 node.removeFromParent()
             }
-            self.newGame()
+            
+            var mainemitter:SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)! as! SKEmitterNode
+            
+            self.newGame(mainemitter)
             
         }
         
