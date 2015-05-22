@@ -239,7 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
-                    var ball = MovingObject(size: starSize)
+                    var ball = MovableObject(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     
