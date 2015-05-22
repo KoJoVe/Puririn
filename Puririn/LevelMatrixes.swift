@@ -24,7 +24,7 @@ class LevelMatrixes {
             nextMatrix.append([0,6,0,11,0,7,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([0,0,0,10,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
