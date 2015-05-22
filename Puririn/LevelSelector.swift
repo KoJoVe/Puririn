@@ -21,6 +21,7 @@ class LevelSelector: SKScene {
     var openGalaxy = -1
     var animating = false
     var newGalaxy = -1
+    var theGalaxy = -1
     
     var circleRadiusMax: CGFloat = 0
     var levelSize: CGFloat = 0
@@ -98,6 +99,8 @@ class LevelSelector: SKScene {
                 self.revealPercentages()
                 if(self.newGalaxy != -1) {
                     self.revealGalaxy(self.newGalaxy)
+                } else if (self.theGalaxy != -1){
+                    self.loadGalaxy(self.theGalaxy)
                 } else {
                     self.animating = false
                 }
@@ -109,6 +112,8 @@ class LevelSelector: SKScene {
         
         blArrays[n-1].runAction(alphaOutLong, completion: {
             self.loadGalaxy(n)
+            self.newGalaxy = -1
+            self.blArrays[n-1].removeFromParent()
         })
         
     }
@@ -230,7 +235,7 @@ class LevelSelector: SKScene {
         bl1.zPosition = 1
         blArrays.append(bl1)
         
-        if(UserLevel.getUserLevel() < 49 || newGalaxy == 1) {
+        if(UserLevel.getUserLevel() < 50 || newGalaxy == 1) {
             self.addChild(bl1)
         }
         
@@ -254,7 +259,7 @@ class LevelSelector: SKScene {
         bl2.zPosition = 1
         blArrays.append(bl2)
         
-        if(UserLevel.getUserLevel() < 149 || newGalaxy == 2) {
+        if(UserLevel.getUserLevel() < 100 || newGalaxy == 2) {
             self.addChild(bl2)
         }
     }

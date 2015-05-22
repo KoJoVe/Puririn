@@ -13,12 +13,12 @@ class Star: SKSpriteNode {
     init(size: CGFloat) {
         
         let texture = SKTexture(imageNamed: "Star")
-        let sizeWH = CGSize(width: size-20, height: size-20)
+        let sizeWH = CGSize(width: size/2, height: size/2)
         
         super.init(texture: texture, color: nil, size: sizeWH)
         
         self.name = "Star"
-        self.physicsBody = SKPhysicsBody(circleOfRadius: (size-20)/2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: (size/2)/2)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.dynamic = false
         self.physicsBody?.friction = 0.0
@@ -27,6 +27,7 @@ class Star: SKSpriteNode {
         self.physicsBody?.angularDamping = 0.0
         self.physicsBody?.categoryBitMask = 1 << 2
         self.physicsBody?.contactTestBitMask = 1 << 0
+        self.physicsBody?.collisionBitMask = 1 << 0
     }
     
     required init?(coder aDecoder: NSCoder) {
