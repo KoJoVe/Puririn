@@ -239,12 +239,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
                     var y = matrix[i][k]["Y"] as! CGFloat
-                    var ball = MovingObject(size: starSize)
+                    var ball = MovableObject(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     
                     self.addChild(ball)
-                    ball.move("up")
                 }
             }
         }
@@ -479,17 +478,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ((contact.bodyA.categoryBitMask == 1<<5) &&
                 (contact.bodyB.categoryBitMask == 1<<0)) {
                     
-                    var point: CGPoint?
-                    
                     if(contact.bodyB.categoryBitMask == 1<<5) {
-                        
-                        contact.bodyB.node?.physicsBody?.pinned = true
                         
                         contact.bodyB.node?.physicsBody?.velocity = CGVectorMake(0,0)
                         
                     } else {
-                        
-                        contact.bodyA.node?.physicsBody?.pinned = true
                         
                         contact.bodyA.node?.physicsBody?.velocity = CGVectorMake(0,0)
                         

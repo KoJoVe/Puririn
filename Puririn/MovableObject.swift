@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GhostObject: SKSpriteNode {
+class MovableObject: SKSpriteNode {
     
     
     init(size: CGFloat) {
@@ -18,28 +18,22 @@ class GhostObject: SKSpriteNode {
         
         super.init(texture: texture, color: nil, size: sizeWH)
         
-        self.name = "ghost"
+        self.name = "ball"
         self.physicsBody = SKPhysicsBody(circleOfRadius: (size-10)/2)
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.categoryBitMask = 1 << 4
+        self.physicsBody?.dynamic = true
+        self.physicsBody?.friction = 0.5
+        self.physicsBody?.restitution = 0.8
+        self.physicsBody?.linearDamping = 0.0
+        self.physicsBody?.angularDamping = 0.0
+        self.physicsBody?.mass = 10
+        self.physicsBody?.categoryBitMask = 1 << 6
         self.zPosition = 2
-        self.physicsBody?.contactTestBitMask = 1 << 0
-        self.physicsBody?.collisionBitMask = 0
+//        self.physicsBody?.contactTestBitMask = 1 << 0
+//        self.physicsBody?.collisionBitMask = 1 << 0
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func appear() {
-        
-        self.runAction(SKAction.fadeAlphaTo(0, duration: 0.2))
-        
-    }
-    
-    func disappear() {
-        
-        self.runAction(SKAction.fadeAlphaTo(0, duration: 0.2))
-        
     }
 }
