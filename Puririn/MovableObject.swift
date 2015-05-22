@@ -23,10 +23,10 @@ class MovableObject: SKSpriteNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.dynamic = true
         self.physicsBody?.friction = 0.5
-        self.physicsBody?.restitution = 0.8
-        self.physicsBody?.linearDamping = 0.0
-        self.physicsBody?.angularDamping = 0.0
-        self.physicsBody?.mass = 10
+        self.physicsBody?.restitution = 0
+        self.physicsBody?.linearDamping = 0.8
+        self.physicsBody?.angularDamping = 0.5
+        self.physicsBody?.mass = 1100
         self.physicsBody?.categoryBitMask = 1 << 6
         self.zPosition = 2
 //        self.physicsBody?.contactTestBitMask = 1 << 0
