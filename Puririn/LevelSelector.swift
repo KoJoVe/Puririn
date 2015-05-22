@@ -36,6 +36,7 @@ class LevelSelector: SKScene {
     var blArrays: Array<SKSpriteNode> = []
     
     var expansionSpeed = 0.2
+    var alphaOutLong = SKAction.fadeAlphaTo(0, duration: 2.0)
     var alphaOut = SKAction.fadeAlphaTo(0, duration: 0.2)
     var alphaOutQuick = SKAction.fadeAlphaTo(0, duration: 0.1)
     var alphaText = SKAction.fadeAlphaTo(0.7, duration: 0.2)
@@ -95,9 +96,21 @@ class LevelSelector: SKScene {
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.revealPercentages()
-                self.animating = false
+                if(self.newGalaxy != -1) {
+                    self.revealGalaxy(self.newGalaxy)
+                } else {
+                    self.animating = false
+                }
             })
         })
+    }
+    
+    func revealGalaxy(n: Int) {
+        
+        blArrays[n-1].runAction(alphaOutLong, completion: {
+            self.loadGalaxy(n)
+        })
+        
     }
     
     func drawNames() {
@@ -217,7 +230,7 @@ class LevelSelector: SKScene {
         bl1.zPosition = 1
         blArrays.append(bl1)
         
-        if(UserLevel.getUserLevel() < 49 || newGalaxy == 2) {
+        if(UserLevel.getUserLevel() < 49 || newGalaxy == 1) {
             self.addChild(bl1)
         }
         
@@ -241,7 +254,7 @@ class LevelSelector: SKScene {
         bl2.zPosition = 1
         blArrays.append(bl2)
         
-        if(UserLevel.getUserLevel() < 149 || newGalaxy == 3) {
+        if(UserLevel.getUserLevel() < 149 || newGalaxy == 2) {
             self.addChild(bl2)
         }
     }
