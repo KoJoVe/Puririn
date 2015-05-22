@@ -243,9 +243,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     
+                    var action = SKAction.moveBy(CGVectorMake(-ball.velocity, 0), duration: 1.0)
+                    var repeat = SKAction.repeatActionForever(action)
+                    
                     self.addChild(ball)
-                    ball.move("up")
+                    
+                    ball.runAction(repeat)
+                    
+                } else if(levelMatrix[k][i] == 7) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = MovingObject(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    var action = SKAction.moveBy(CGVectorMake(ball.velocity, 0), duration: 1.0)
+                    var repeat = SKAction.repeatActionForever(action)
+                    ball.direction = 1
+                    
+                    self.addChild(ball)
+                    
+                    ball.runAction(repeat)
+                    
+                } else if(levelMatrix[k][i] == 8) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = MovingObject(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    var action = SKAction.moveBy(CGVectorMake(0, ball.velocity), duration: 1.0)
+                    var repeat = SKAction.repeatActionForever(action)
+                    ball.direction = 3
+                    
+                    self.addChild(ball)
+                    
+                    ball.runAction(repeat)
+                    
+                } else if(levelMatrix[k][i] == 9) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = MovingObject(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    var action = SKAction.moveBy(CGVectorMake(0, -ball.velocity), duration: 1.0)
+                    var repeat = SKAction.repeatActionForever(action)
+                    ball.direction = 2
+                    
+                    self.addChild(ball)
+                    
+                    ball.runAction(repeat)
                 }
+                
             }
         }
         
@@ -254,13 +313,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var playable = CGRect(x: offset, y: hoffset, width: sSize*nWidth, height: sSize*nHeight)
         
         var borderBody = SKPhysicsBody(edgeLoopFromRect: playable)
-        self.physicsBody = borderBody;
+        self.physicsBody = borderBody
         self.physicsBody?.friction = 0.0
         self.physicsBody?.restitution = 0.8
         self.physicsBody?.linearDamping = 0.0
         self.physicsBody?.angularDamping = 0.0
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = 1 << 3
+        self.physicsBody?.collisionBitMask = 1 << 5
         
         //Buttons
         
@@ -376,6 +436,72 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func didEndContact(contact: SKPhysicsContact) {
+        
+        var screenWidth = self.frame.size.width
+        var screenHeight = self.frame.size.height
+        
+        var nWidth:CGFloat = 7
+        var nHeight:CGFloat = 12
+        
+        var sSize = (screenHeight-100)/nHeight
+        
+        var offset = (screenWidth - (sSize*nWidth))/2
+        var offset2:CGFloat = 30
+        
+        if(contact.bodyA.node?.name == "sattelite") {
+            if(contact.bodyA.node?.position.x < offset) {
+                contact.bodyA.node?.runAction(SKAction.moveToX(offset + contact.bodyA.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyA.node as! MovingObject)
+            }
+            
+            if(contact.bodyA.node?.position.x > offset + sSize*nWidth) {
+                contact.bodyA.node?.runAction(SKAction.moveToX(offset + sSize*nWidth - contact.bodyA.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyA.node as! MovingObject)
+            }
+            
+            if(contact.bodyA.node?.position.y < CGFloat(screenHeight) - 2*(sSize*nHeight/2) - offset2) {
+                contact.bodyA.node?.runAction(SKAction.moveToY(CGFloat(screenHeight) - 2*(sSize*nHeight/2) - offset2 + contact.bodyA.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyA.node as! MovingObject)
+            }
+            
+            if(contact.bodyA.node?.position.y > CGFloat(screenHeight) - offset2) {
+                contact.bodyA.node?.runAction(SKAction.moveToY( CGFloat(screenHeight) - offset2 - contact.bodyA.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyA.node as! MovingObject)
+            }
+        }
+        
+        if(contact.bodyB.node?.name == "sattelite") {
+            if(contact.bodyB.node?.position.x < offset) {
+                contact.bodyB.node?.runAction(SKAction.moveToX(offset + contact.bodyB.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyB.node as! MovingObject)
+            }
+            
+            if(contact.bodyB.node?.position.x > offset + sSize*nWidth) {
+                contact.bodyB.node?.runAction(SKAction.moveToX(offset + sSize*nWidth - contact.bodyB.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyB.node as! MovingObject)
+            }
+            
+            if(contact.bodyB.node?.position.y < CGFloat(screenHeight) - 2*(sSize*nHeight/2) - offset2) {
+                contact.bodyB.node?.runAction(SKAction.moveToY(CGFloat(screenHeight) - 2*(sSize*nHeight/2) - offset2 + contact.bodyB.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyB.node as! MovingObject)
+            }
+            
+            if(contact.bodyB.node?.position.y > CGFloat(screenHeight) - offset2) {
+                contact.bodyB.node?.runAction(SKAction.moveToY( CGFloat(screenHeight) - offset2 - contact.bodyB.node!.frame.width, duration: 0))
+                fixDirection(contact.bodyB.node as! MovingObject)
+            }
+        }
+        
+    }
+    
+    func fixDirection(node: MovingObject) {
+        var action = SKAction.moveBy(node.getNewDirectionVector(), duration: 1.0)
+        var repeat = SKAction.repeatActionForever(action)
+        node.removeAllActions()
+        node.runAction(repeat)
+    }
+    
     func didBeginContact(contact: SKPhysicsContact) {
         
           //println("FAS")
@@ -430,7 +556,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.background.hidden = false
                 })
                     
-                println(self.background.zPosition)
+                //println(self.background.zPosition)
                 var wait = SKAction.waitForDuration(1.5)
                 var increase = SKAction.resizeToWidth(ww, height: wh, duration: 0.5)
                 var sequence = SKAction.sequence([wait,showWindow])
@@ -463,7 +589,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     var stars: AnyObject = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Star", ofType: "sks")!)!
                     var emitter:SKEmitterNode = stars as! SKEmitterNode
-                    println(emitter)
                     emitter.targetNode = self
                     emitter.position = point!
                     emitter.zPosition = 100
@@ -475,27 +600,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
         }
         
-        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
-            (contact.bodyB.categoryBitMask == 1<<5)) ||
-            ((contact.bodyA.categoryBitMask == 1<<5) &&
-                (contact.bodyB.categoryBitMask == 1<<0)) {
+        else if ((contact.bodyB.categoryBitMask == 1<<5)) ||
+            ((contact.bodyA.categoryBitMask == 1<<5)) {
                     
-                    var point: CGPoint?
+                    var node:MovingObject?
+                
+                    var node2:MovingObject?
+                
+                    if(contact.bodyB.categoryBitMask == 1<<5) && (contact.bodyA.categoryBitMask == 1<<5){
+                        
+                        node = contact.bodyB.node as? MovingObject
+                        node2 = contact.bodyA.node as? MovingObject
+                        
+                        var action = SKAction.moveBy(node!.getNewDirectionVector(), duration: 1.0)
+                        var repeat = SKAction.repeatActionForever(action)
+                        node!.removeAllActions()
+                        node!.runAction(repeat)
+                        
+                        var action2 = SKAction.moveBy(node2!.getNewDirectionVector(), duration: 1.0)
+                        var repeat2 = SKAction.repeatActionForever(action2)
+                        node2!.removeAllActions()
+                        node2!.runAction(repeat2)
+                        
+                    } else if (contact.bodyB.categoryBitMask == 1<<5) {
                     
-                    if(contact.bodyB.categoryBitMask == 1<<5) {
+                        node = contact.bodyB.node as? MovingObject
                         
-                        contact.bodyB.node?.physicsBody?.pinned = true
-                        
-                        contact.bodyB.node?.physicsBody?.velocity = CGVectorMake(0,0)
+                        var action = SKAction.moveBy(node!.getNewDirectionVector(), duration: 1.0)
+                        var repeat = SKAction.repeatActionForever(action)
+                        node!.removeAllActions()
+                        node!.runAction(repeat)
                         
                     } else {
+                        node = contact.bodyA.node as? MovingObject
                         
-                        contact.bodyA.node?.physicsBody?.pinned = true
-                        
-                        contact.bodyA.node?.physicsBody?.velocity = CGVectorMake(0,0)
-                        
+                        var action = SKAction.moveBy(node!.getNewDirectionVector(), duration: 1.0)
+                        var repeat = SKAction.repeatActionForever(action)
+                        node!.removeAllActions()
+                        node!.runAction(repeat)
                     }
-                
+                   
         } else {
             
             playSound("bounce")

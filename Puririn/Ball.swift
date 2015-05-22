@@ -30,7 +30,7 @@ class Ball: SKSpriteNode {
         self.physicsBody?.categoryBitMask = 1 << 3
         self.zPosition = 2
         self.physicsBody?.contactTestBitMask = 1 << 0
-        self.physicsBody?.collisionBitMask = 1 << 0
+        self.physicsBody?.collisionBitMask = 1 << 0 | 1 << 5
     }
     
     required init?(coder aDecoder: NSCoder) {
