@@ -21,6 +21,7 @@ class LevelSelector: SKScene {
     var openGalaxy = -1
     var animating = false
     var newGalaxy = -1
+    var theGalaxy = -1
     
     var circleRadiusMax: CGFloat = 0
     var levelSize: CGFloat = 0
@@ -98,6 +99,8 @@ class LevelSelector: SKScene {
                 self.revealPercentages()
                 if(self.newGalaxy != -1) {
                     self.revealGalaxy(self.newGalaxy)
+                } else if (self.theGalaxy != -1){
+                    self.loadGalaxy(self.theGalaxy)
                 } else {
                     self.animating = false
                 }

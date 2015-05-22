@@ -110,7 +110,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var bc = SKSpriteNode(imageNamed: "BackBG")
         var insideBc = SKSpriteNode(imageNamed: "FrontBG")
         var wall = SKSpriteNode(imageNamed: "WallBG")
-
         
         if(self.level >= 100) {
             bc = SKSpriteNode(imageNamed: "BackBG3")
@@ -140,6 +139,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         insideBc.zPosition = 0
         
         self.addChild(insideBc)
+        
+        if(self.level == 0) {
+            var gifTextures: [SKTexture] = [];
+            
+            for i in 1...4 {
+                gifTextures.append(SKTexture(imageNamed: "Anim\(i)"));
+            }
+            
+            insideBc.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(gifTextures, timePerFrame: 1)))
+
+        }
         
         if(self.level >= 100) {
             wall.size = CGSizeMake(nWidth*sSize + (wallthick*2),nHeight*sSize + (wallthick*2))
@@ -437,7 +447,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 self.puririnTouched = true
                 
-            } else if (animating == false) {
+            } else {
               
                 restart()
                 self.restartBool = true
@@ -845,6 +855,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var transition = SKTransition.fadeWithDuration(1)
             var scene = LevelSelector(size:self.size)
+            
+            if(self.level <= 49) {
+                scene.theGalaxy = 0
+            } else if (self.level <= 99) {
+                scene.theGalaxy = 1
+            } else {
+                scene.theGalaxy = 2
+            }
 
             self.scene!.view?.presentScene(scene, transition: transition)
             
