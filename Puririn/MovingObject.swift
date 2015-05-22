@@ -15,13 +15,13 @@ class MovingObject: SKSpriteNode {
     
     init(size: CGFloat) {
         
-        let texture = SKTexture(imageNamed: "Barrier")
-        let sizeWH = CGSize(width: size-10, height: size-10)
+        let texture = SKTexture(imageNamed: "Sattelite")
+        let sizeWH = CGSize(width: size*1.4, height: size*1.4)
         
         super.init(texture: texture, color: nil, size: sizeWH)
         
         self.name = "sattelite"
-        self.physicsBody = SKPhysicsBody(circleOfRadius: (size-10)/2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: (size)/2)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.dynamic = true
         self.physicsBody?.friction = 0.0
@@ -31,7 +31,9 @@ class MovingObject: SKSpriteNode {
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = 1 << 5
         self.zPosition = 2
-        self.physicsBody?.contactTestBitMask = 1 << 0 | 1 << 3 | 1 << 5
+        var bla = 1 << 0 | 1 << 3 | 1 << 5
+        bla = bla | 1 << 6
+        self.physicsBody?.contactTestBitMask = UInt32(bla)
         self.physicsBody?.collisionBitMask = 1 << 5
     }
     

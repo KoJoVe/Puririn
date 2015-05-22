@@ -28,7 +28,9 @@ class Puririn: SKSpriteNode {
         self.zPosition = 2
         self.physicsBody?.categoryBitMask = 1 << 0
         self.physicsBody?.contactTestBitMask = 1 << 1 | 1 << 2 | 1 << 3
-        self.physicsBody?.collisionBitMask = 1 << 1 | 1 << 3 | 1 << 5
+        var bla = 1 << 1 | 1 << 3 | 1 << 5
+        bla = bla | 1 << 6
+        self.physicsBody?.collisionBitMask = UInt32(bla)
     }
 
     required init?(coder aDecoder: NSCoder) {

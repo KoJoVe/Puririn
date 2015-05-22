@@ -13,7 +13,7 @@ class GhostObject: SKSpriteNode {
     
     init(size: CGFloat) {
         
-        let texture = SKTexture(imageNamed: "Barrier")
+        let texture = SKTexture(imageNamed: "Asteroid")
         let sizeWH = CGSize(width: size-10, height: size-10)
         
         super.init(texture: texture, color: nil, size: sizeWH)
@@ -33,7 +33,7 @@ class GhostObject: SKSpriteNode {
     
     func appear() {
         
-        self.runAction(SKAction.fadeAlphaTo(0, duration: 0.2))
+        self.runAction(SKAction.sequence([SKAction.waitForDuration(0.2),SKAction.fadeAlphaTo(1, duration: 0.2)]))
         
     }
     

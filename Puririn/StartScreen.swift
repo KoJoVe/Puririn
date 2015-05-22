@@ -20,8 +20,6 @@ class StartScreen: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        UserLevel.setUserLevel(48)
-        
         if(musicPlayer == nil) {
             var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
             //println(alertSound)

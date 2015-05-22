@@ -13,7 +13,7 @@ class MovableObject: SKSpriteNode {
     
     init(size: CGFloat) {
         
-        let texture = SKTexture(imageNamed: "Barrier")
+        let texture = SKTexture(imageNamed: "MAsteroid")
         let sizeWH = CGSize(width: size-10, height: size-10)
         
         super.init(texture: texture, color: nil, size: sizeWH)
@@ -26,7 +26,7 @@ class MovableObject: SKSpriteNode {
         self.physicsBody?.restitution = 0
         self.physicsBody?.linearDamping = 0.8
         self.physicsBody?.angularDamping = 0.5
-        self.physicsBody?.mass = 1100
+        self.physicsBody?.mass = 20
         self.physicsBody?.categoryBitMask = 1 << 6
         self.zPosition = 2
 //        self.physicsBody?.contactTestBitMask = 1 << 0

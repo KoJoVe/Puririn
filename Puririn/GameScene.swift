@@ -11,7 +11,7 @@ import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var maxLevels = 40
+    var maxLevels = 150
     
     var delay = false
     
@@ -104,8 +104,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var offset2: CGFloat = 30
         
         var hoffset = (screenHeight - (sSize*nHeight)) - offset2
-
+        
+        var prop: CGFloat = nWidth*sSize/330.75
+        var wallthick:CGFloat = 32 * prop
         var bc = SKSpriteNode(imageNamed: "BackBG")
+        var insideBc = SKSpriteNode(imageNamed: "FrontBG")
+        var wall = SKSpriteNode(imageNamed: "WallBG")
+
+        
+        if(self.level >= 100) {
+            bc = SKSpriteNode(imageNamed: "BackBG3")
+            insideBc = SKSpriteNode(imageNamed: "FrontBG3")
+            wall = SKSpriteNode(imageNamed: "WallBG3")
+            wallthick = 16 * prop
+            offset2 = 32
+            
+        } else if(level >= 50) {
+            bc = SKSpriteNode(imageNamed: "BackBG2")
+            insideBc = SKSpriteNode(imageNamed: "FrontBG2")
+            wall = SKSpriteNode(imageNamed: "WallBG2")
+        }
+
         bc.size = CGSizeMake(self.frame.size.width, self.frame.size.height)
         bc.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         bc.name = "Back"
@@ -115,7 +134,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var extraSize: CGFloat = 74
         var extraSize2: CGFloat = 130
-        var insideBc = SKSpriteNode(imageNamed: "FrontBG")
         insideBc.size = CGSizeMake(nWidth*sSize,nHeight*sSize)
         insideBc.position = CGPointMake(offset + insideBc.size.width/2, screenHeight - (insideBc.size.height/2) - offset2)
         insideBc.name = "Fundo"
@@ -123,14 +141,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(insideBc)
         
-        var prop: CGFloat = nWidth*sSize/330.75
-        var wallthick:CGFloat = 32 * prop
-        var wall = SKSpriteNode(imageNamed: "WallBG")
-        wall.size = CGSizeMake(nWidth*sSize + (wallthick*2),nHeight*sSize + (wallthick*2))
-        wall.position = CGPointMake(offset + wall.size.width/2 - wallthick, screenHeight - (wall.size.height/2) - offset2 + wallthick)
-        wall.name = "Fundo"
-        wall.zPosition = 99
-        
+        if(self.level >= 100) {
+            wall.size = CGSizeMake(nWidth*sSize + (wallthick*2),nHeight*sSize + (wallthick*2))
+            wall.position = CGPointMake(offset + wall.size.width/2 - wallthick, screenHeight - (wall.size.height/2) - offset2 + wallthick)
+            wall.name = "Fundo"
+            wall.zPosition = 99
+        } else {
+            wall.size = CGSizeMake(nWidth*sSize + (wallthick*2),nHeight*sSize + (wallthick*2))
+            wall.position = CGPointMake(offset + wall.size.width/2 - wallthick, screenHeight - (wall.size.height/2) - offset2 + wallthick)
+            wall.name = "Fundo"
+            wall.zPosition = 99
+        }
+
 //        offset2 = 32 //30
 //        
 //        var prop: CGFloat = nWidth*sSize/330.75
@@ -303,8 +325,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
+                    
+                } else if(levelMatrix[k][i] == 10) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = MovableObject(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    self.addChild(ball)
+                    
+                } else if(levelMatrix[k][i] == 11) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = GhostObject(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    self.addChild(ball)
                 }
-                
             }
         }
         
@@ -493,6 +538,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
+            (contact.bodyB.categoryBitMask == 1<<4)) ||
+            ((contact.bodyA.categoryBitMask == 1<<4) &&
+                (contact.bodyB.categoryBitMask == 1<<0)) {
+                    
+            if(contact.bodyB.categoryBitMask == 1<<4) {
+                
+                var node = contact.bodyB.node as! GhostObject
+                node.appear()
+                
+            } else {
+                
+                var node = contact.bodyA.node as! GhostObject
+                node.appear()
+            }
+        }
+        
     }
     
     func fixDirection(node: MovingObject) {
@@ -540,7 +602,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 cleanPuririn.removeAllChildren()
                 cleanPuririn.rotateAndShrink()
                 
-                var window = completeWindow(currentLevel:self.level+1,totalLevel:self.maxLevels)
+                var window = completeWindow(currentLevel:self.level+1,totalLevel:self.maxLevels,stars: starsOnLevel)
                     
                 var ww = window.size.width/4.3
                 var wh = window.size.height/4.3
@@ -640,10 +702,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node!.runAction(repeat)
                     }
                    
+        } else if ((contact.bodyA.categoryBitMask == 1<<0) &&
+            (contact.bodyB.categoryBitMask == 1<<4)) ||
+            ((contact.bodyA.categoryBitMask == 1<<4) &&
+                (contact.bodyB.categoryBitMask == 1<<0)) {
+            
+                    if(contact.bodyB.categoryBitMask == 1<<4) {
+                        
+                        var node = contact.bodyB.node as! GhostObject
+                        node.disappear()
+                        
+                    } else {
+                        
+                        var node = contact.bodyA.node as! GhostObject
+                        node.disappear()
+                    }
+            
         } else {
             
             playSound("bounce")
-            
         }
     }
     
@@ -764,9 +841,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.removeFromParent()
                 self.scene!.view?.presentScene(scene, transition: transition)
             
-            } else if (self.level + 1 >= 100) {
+            } else if (self.level + 1 == 100) {
                 
-                //End Second Galaxy
+                var scene = LevelSelector(size:self.size)
+                
+                
+                if((1 + self.starsOnLevel) > UserLevel.getLevelStars(self.level)) {
+                    UserLevel.setLevelStars(self.level, stars: 1 + self.starsOnLevel)
+                }
+                
+                if(UserLevel.getUserLevel()<self.level + 1) {
+                    scene.newGalaxy = 2
+                    UserLevel.setUserLevel(self.level + 1)
+                }
+                
+                self.removeFromParent()
+                self.scene!.view?.presentScene(scene, transition: transition)
             
             } else {
                 

@@ -12,10 +12,20 @@ class completeWindow: SKSpriteNode {
     
     var level = SKLabelNode()
     
-    init (currentLevel: Int, totalLevel: Int) {
+    init (currentLevel: Int, totalLevel: Int, stars: Int) {
         
-        let texture = SKTexture(imageNamed: "Window")
+        var texture = SKTexture(imageNamed: "Window0")
         
+        if(stars == 0) {
+            
+        } else if(stars == 1) {
+            texture = SKTexture(imageNamed: "Window1")
+        } else if(stars == 2) {
+            texture = SKTexture(imageNamed: "Window2")
+        } else if(stars == 3) {
+            texture = SKTexture(imageNamed: "Window3")
+        }
+    
         super.init(texture: texture, color: nil, size: texture.size())
         
         self.name = "window"
@@ -24,7 +34,7 @@ class completeWindow: SKSpriteNode {
         level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
         level.fontSize = 16
         level.fontName = "HelveticaNeue-Bold"
-        level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 25)
+        level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 47)
         level.hidden = true
         level.zPosition = 2
         self.addChild(level)
