@@ -747,9 +747,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.removeFromParent()
                 self.scene!.view?.presentScene(scene, transition: transition)
             
-            } else if (self.level + 1 >= 50) {
+            } else if (self.level + 1 == 50) {
                 
-                //End First Galaxy
+                var scene = LevelSelector(size:self.size)
+                
+                
+                if((1 + self.starsOnLevel) > UserLevel.getLevelStars(self.level)) {
+                    UserLevel.setLevelStars(self.level, stars: 1 + self.starsOnLevel)
+                }
+                
+                if(UserLevel.getUserLevel()<self.level + 1) {
+                    scene.newGalaxy = 1
+                    UserLevel.setUserLevel(self.level + 1)
+                }
+                
+                self.removeFromParent()
+                self.scene!.view?.presentScene(scene, transition: transition)
             
             } else if (self.level + 1 >= 100) {
                 
