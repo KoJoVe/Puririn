@@ -233,6 +233,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     
                     self.addChild(ball)
+                } else if(levelMatrix[k][i] == 6) {
+                    //Draw MovingObject
+                    
+                    var starSize = sSize
+                    var x = matrix[i][k]["X"] as! CGFloat
+                    var y = matrix[i][k]["Y"] as! CGFloat
+                    var ball = MovingObject(size: starSize)
+                    
+                    ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    
+                    self.addChild(ball)
+                    ball.move("up")
                 }
             }
         }
@@ -427,12 +439,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 window.runAction(sequence2)
                 window.animateLabel()
         }
-        
+            
         else if ((contact.bodyA.categoryBitMask == 1<<0) &&
             (contact.bodyB.categoryBitMask == 1<<2)) ||
             ((contact.bodyA.categoryBitMask == 1<<2) &&
                 (contact.bodyB.categoryBitMask == 1<<0)) {
-                
+                    
                     starsOnLevel += 1
                     
                     var point: CGPoint?
@@ -460,6 +472,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     arrayN++
                     
                     NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("deleteParticle:"), userInfo: emitter, repeats: false)
+                    
+        }
+        
+        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
+            (contact.bodyB.categoryBitMask == 1<<5)) ||
+            ((contact.bodyA.categoryBitMask == 1<<5) &&
+                (contact.bodyB.categoryBitMask == 1<<0)) {
+                    
+                    var point: CGPoint?
+                    
+                    if(contact.bodyB.categoryBitMask == 1<<5) {
+                        
+                        contact.bodyB.node?.physicsBody?.pinned = true
+                        
+                        contact.bodyB.node?.physicsBody?.velocity = CGVectorMake(0,0)
+                        
+                    } else {
+                        
+                        contact.bodyA.node?.physicsBody?.pinned = true
+                        
+                        contact.bodyA.node?.physicsBody?.velocity = CGVectorMake(0,0)
+                        
+                    }
                 
         } else {
             
