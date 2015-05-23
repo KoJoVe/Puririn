@@ -22,11 +22,13 @@ class StartScreen: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
-        //println(alertSound)
-        
-        var error:NSError?
-        musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
+        if(musicPlayer == nil) {
+            var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
+        }
         
         if(musicPlayer!.playing == false) {
             musicPlayer!.prepareToPlay()
