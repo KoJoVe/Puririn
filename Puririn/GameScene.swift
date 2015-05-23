@@ -951,52 +951,69 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playSound(sound: String) {
         
-        if(sound=="vortex") {
-            
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            audioPlayer.volume = 0.12
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
+        //if(UserLevel.getSound() == 1) {
         
-        if(sound=="shot") {
-            
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shot", ofType: "wav")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            shotPlay.volume = 0.07
-            shotPlay.prepareToPlay()
-            shotPlay.play()
-        }
-        
-        if(sound=="charge") {
-            
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("charge", ofType: "wav")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            shotPlay.volume = 0.03
-            shotPlay.prepareToPlay()
-            shotPlay.play()
-        }
-        
-        if(sound=="bounce") {
-            
-            if(!bouncePlay.playing) {
-                bouncePlay.volume = 0.07
-                bouncePlay.prepareToPlay()
-                bouncePlay.play()
+            if(sound=="vortex") {
+                
+                var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
+                //println(alertSound)
+                
+                var error:NSError?
+                audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+                if(UserLevel.getSound() == 1) {
+                    audioPlayer.volume = 0.12
+                } else {
+                    audioPlayer.volume = 0
+                }
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
             }
             
-        }
-        
+            if(sound=="shot") {
+                
+                var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shot", ofType: "wav")!)
+                //println(alertSound)
+                
+                var error:NSError?
+                shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+                if(UserLevel.getSound() == 1) {
+                    shotPlay.volume = 0.07
+                } else {
+                    shotPlay.volume = 0
+                }
+                shotPlay.prepareToPlay()
+                shotPlay.play()
+            }
+            
+            if(sound=="charge") {
+                
+                var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("charge", ofType: "wav")!)
+                //println(alertSound)
+                
+                var error:NSError?
+                shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+                if(UserLevel.getSound() == 1) {
+                    shotPlay.volume = 0.03
+                } else {
+                    shotPlay.volume = 0
+                }
+                shotPlay.prepareToPlay()
+                shotPlay.play()
+            }
+            
+            if(sound=="bounce") {
+                
+                if(!bouncePlay.playing) {
+                    if(UserLevel.getSound() == 1) {
+                        bouncePlay.volume = 0.07
+                    } else {
+                        bouncePlay.volume = 0
+                    }
+                    bouncePlay.prepareToPlay()
+                    bouncePlay.play()
+                }
+            }
+        //}
     }
     
     func doVolumeFade()

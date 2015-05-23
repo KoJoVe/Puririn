@@ -54,19 +54,18 @@ class LevelSelector: SKScene {
         
         self.backgroundColor = UIColor.whiteColor()
         
-        if(musicPlayer == nil) {
-            var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
-            
-        }
+        var music = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("PuririnTheme", ofType: "mp3")!)
+        //println(alertSound)
         
+        var error:NSError?
+        musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
+            
         if(musicPlayer!.playing == false) {
             musicPlayer!.prepareToPlay()
             musicPlayer!.volume = 0.25
-            musicPlayer!.play()
+            if(UserLevel.getMusic() == 1) {
+                musicPlayer!.play()
+            }
         }
         
         var userLevel = UserLevel.getUserLevel() + 1
@@ -566,12 +565,16 @@ class LevelSelector: SKScene {
     
     func playSound() {
         
-        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ok", ofType: "aif")!)
-        var error:NSError?
+        if(UserLevel.getSound() == 1) {
         
-        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ok", ofType: "aif")!)
+            var error:NSError?
+            
+            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        
+        }
         
     }
     
@@ -585,7 +588,7 @@ class LevelSelector: SKScene {
             musicPlayer!.stop()
             musicPlayer!.currentTime = 0
             musicPlayer!.prepareToPlay()
-            musicPlayer!.volume = 0.3
+            musicPlayer!.volume = 0.25
         }
     }
 }

@@ -29,6 +29,7 @@ class Preload: NSObject {
         
         textures.append(SKTexture(imageNamed: "BallOk"))
         textures.append(SKTexture(imageNamed: "Wat"))
+        textures.append(SKTexture(imageNamed: "Credits"))
 
         return textures
     }
@@ -49,11 +50,18 @@ class Preload: NSObject {
         textures.append(SKTexture(imageNamed: "WallBG2"))
         textures.append(SKTexture(imageNamed: "WallBG3"))
         
-        textures.append(SKTexture(imageNamed: "Barrier"))
+        textures.append(SKTexture(imageNamed: "Asteroid"))
+        textures.append(SKTexture(imageNamed: "MAsteroid"))
+        textures.append(SKTexture(imageNamed: "Radioactive"))
+        textures.append(SKTexture(imageNamed: "Sattelite"))
         textures.append(SKTexture(imageNamed: "puririn"))
         textures.append(SKTexture(imageNamed: "Star"))
         textures.append(SKTexture(imageNamed: "Vortex"))
-        textures.append(SKTexture(imageNamed: "Window"))
+        
+        textures.append(SKTexture(imageNamed: "Anim1"))
+        textures.append(SKTexture(imageNamed: "Anim2"))
+        textures.append(SKTexture(imageNamed: "Anim3"))
+        textures.append(SKTexture(imageNamed: "Anim4"))
         
         return textures
     }
