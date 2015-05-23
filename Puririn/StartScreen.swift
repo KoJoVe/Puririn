@@ -55,7 +55,8 @@ class StartScreen: SKScene {
 //        
 //        self.addChild(lg)
         
-        var offset: CGFloat = self.frame.height/4.2
+        var prop = self.frame.size.width/375.0
+        var offset: CGFloat = prop * self.frame.height/4.5
         
         var ng = SKSpriteNode(imageNamed: "PlayButton")
         ng.size = CGSizeMake(ng.frame.size.width/4, ng.frame.size.height/4)
