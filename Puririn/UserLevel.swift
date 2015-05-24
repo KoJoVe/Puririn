@@ -66,11 +66,10 @@ class UserLevel {
         var pathAux = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var path = pathAux.stringByAppendingPathComponent("qualquerCoisa.plist")
         var fileManager = NSFileManager.defaultManager()
-        
         if (!(fileManager.fileExistsAtPath(path)))
         {
-            var bundle: NSString! = NSBundle.mainBundle().pathForResource("qualquerCoisa", ofType: "pList")!
-            fileManager.copyItemAtPath(bundle as String, toPath: path, error: nil)
+            var bundle : NSString! = NSBundle.mainBundle().pathForResource("qualquerCoisa", ofType: "plist")
+            fileManager.copyItemAtPath(bundle as String, toPath: path, error:nil)
         }
         
         var data : NSMutableDictionary! = NSMutableDictionary(contentsOfFile: path)

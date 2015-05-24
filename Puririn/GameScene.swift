@@ -268,7 +268,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.zPosition = 3
                     self.addChild(ball)
                 } else if(levelMatrix[k][i] == 6) {
-                    //Draw MovingObject
+                    //Draw MovingObject Left
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
@@ -286,7 +286,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.runAction(repeat)
                     
                 } else if(levelMatrix[k][i] == 7) {
-                    //Draw MovingObject
+                    //Draw MovingObject Right
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
@@ -304,7 +304,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.runAction(repeat)
                     
                 } else if(levelMatrix[k][i] == 8) {
-                    //Draw MovingObject
+                    //Draw MovingObject Up
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
@@ -322,7 +322,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.runAction(repeat)
                     
                 } else if(levelMatrix[k][i] == 9) {
-                    //Draw MovingObject
+                    //Draw MovingObject Down
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
@@ -340,7 +340,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.runAction(repeat)
                     
                 } else if(levelMatrix[k][i] == 10) {
-                    //Draw MovingObject
+                    //Draw Movable
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
@@ -352,7 +352,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(ball)
                     
                 } else if(levelMatrix[k][i] == 11) {
-                    //Draw MovingObject
+                    //Draw Ghost
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
@@ -364,7 +364,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(ball)
                     
                 } else if(levelMatrix[k][i] == 12) {
-                    //Draw MovingObject
+                    //Draw Explosive
                     
                     var starSize = sSize
                     var x = matrix[i][k]["X"] as! CGFloat
