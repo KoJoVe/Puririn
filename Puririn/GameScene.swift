@@ -241,6 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.vortex = Vortex(size:puririnSize)
                     self.vortex.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.vortex.runAction(repeat)
+                    self.vortex.zPosition = 3
                     self.addChild(self.vortex)
                     
                 } else if(levelMatrix[k][i] == 4) {
@@ -252,6 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     self.star = Star(size: starSize)
                     self.star.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.star.zPosition = 3
                     self.addChild(self.star)
                     
                 } else if(levelMatrix[k][i] == 5) {
@@ -263,7 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = Ball(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                 } else if(levelMatrix[k][i] == 6) {
                     //Draw MovingObject Left
@@ -278,6 +280,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(-ball.velocity, 0), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -295,7 +298,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(ball.velocity, 0), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     ball.direction = 1
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -313,7 +316,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(0, ball.velocity), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     ball.direction = 3
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -331,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(0, -ball.velocity), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     ball.direction = 2
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -345,7 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = MovableObject(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                 } else if(levelMatrix[k][i] == 11) {
@@ -357,7 +360,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = GhostObject(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                 } else if(levelMatrix[k][i] == 12) {
@@ -369,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = Explosive(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                 }
             }
@@ -951,52 +954,69 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playSound(sound: String) {
         
-        if(sound=="vortex") {
-            
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            audioPlayer.volume = 0.12
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
+        //if(UserLevel.getSound() == 1) {
         
-        if(sound=="shot") {
-            
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shot", ofType: "wav")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            shotPlay.volume = 0.07
-            shotPlay.prepareToPlay()
-            shotPlay.play()
-        }
-        
-        if(sound=="charge") {
-            
-            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("charge", ofType: "wav")!)
-            //println(alertSound)
-            
-            var error:NSError?
-            shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-            shotPlay.volume = 0.03
-            shotPlay.prepareToPlay()
-            shotPlay.play()
-        }
-        
-        if(sound=="bounce") {
-            
-            if(!bouncePlay.playing) {
-                bouncePlay.volume = 0.07
-                bouncePlay.prepareToPlay()
-                bouncePlay.play()
+            if(sound=="vortex") {
+                
+                var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
+                //println(alertSound)
+                
+                var error:NSError?
+                audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+                if(UserLevel.getSound() == 1) {
+                    audioPlayer.volume = 0.12
+                } else {
+                    audioPlayer.volume = 0
+                }
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
             }
             
-        }
-        
+            if(sound=="shot") {
+                
+                var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("shot", ofType: "wav")!)
+                //println(alertSound)
+                
+                var error:NSError?
+                shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+                if(UserLevel.getSound() == 1) {
+                    shotPlay.volume = 0.07
+                } else {
+                    shotPlay.volume = 0
+                }
+                shotPlay.prepareToPlay()
+                shotPlay.play()
+            }
+            
+            if(sound=="charge") {
+                
+                var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("charge", ofType: "wav")!)
+                //println(alertSound)
+                
+                var error:NSError?
+                shotPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+                if(UserLevel.getSound() == 1) {
+                    shotPlay.volume = 0.03
+                } else {
+                    shotPlay.volume = 0
+                }
+                shotPlay.prepareToPlay()
+                shotPlay.play()
+            }
+            
+            if(sound=="bounce") {
+                
+                if(!bouncePlay.playing) {
+                    if(UserLevel.getSound() == 1) {
+                        bouncePlay.volume = 0.07
+                    } else {
+                        bouncePlay.volume = 0
+                    }
+                    bouncePlay.prepareToPlay()
+                    bouncePlay.play()
+                }
+            }
+        //}
     }
     
     func doVolumeFade()

@@ -32,6 +32,7 @@ class completeWindow: SKSpriteNode {
         self.zPosition = 1
         
         level = SKLabelNode(text: "\(currentLevel) / \(totalLevel)")
+        level.name = "window"
         level.fontSize = 16
         level.fontName = "HelveticaNeue-Bold"
         level.position = CGPoint(x: CGRectGetMidX(self.frame),y: CGRectGetMidY(self.frame) - 47)

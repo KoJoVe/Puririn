@@ -60,13 +60,14 @@ class LevelSelector: SKScene {
             
             var error:NSError?
             musicPlayer = AVAudioPlayer(contentsOfURL: music, error: &error)
-            
         }
-        
+            
         if(musicPlayer!.playing == false) {
             musicPlayer!.prepareToPlay()
             musicPlayer!.volume = 0.25
-            musicPlayer!.play()
+            if(UserLevel.getMusic() == 1) {
+                musicPlayer!.play()
+            }
         }
         
         var userLevel = UserLevel.getUserLevel() + 1
@@ -566,26 +567,32 @@ class LevelSelector: SKScene {
     
     func playSound() {
         
-        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ok", ofType: "aif")!)
-        var error:NSError?
+        if(UserLevel.getSound() == 1) {
         
-        audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ok", ofType: "aif")!)
+            var error:NSError?
+            
+            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        
+        }
         
     }
     
     func doVolumeFade()
     {
-        if (musicPlayer!.volume > 0.01) {
-            musicPlayer!.volume = musicPlayer!.volume - 0.03
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("doVolumeFade"), userInfo: nil, repeats: false)
-        } else {
-            // Stop and get the sound ready for playing again
-            musicPlayer!.stop()
-            musicPlayer!.currentTime = 0
-            musicPlayer!.prepareToPlay()
-            musicPlayer!.volume = 0.3
+        if(musicPlayer != nil) {
+            if (musicPlayer!.volume > 0.01) {
+                musicPlayer!.volume = musicPlayer!.volume - 0.03
+                NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("doVolumeFade"), userInfo: nil, repeats: false)
+            } else {
+                // Stop and get the sound ready for playing again
+                musicPlayer!.stop()
+                musicPlayer!.currentTime = 0
+                musicPlayer!.prepareToPlay()
+                musicPlayer!.volume = 0.25
+            }
         }
     }
 }

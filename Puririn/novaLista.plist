@@ -2,7 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Level</key>
+	<key>First</key>
 	<integer>0</integer>
+	<key>LevelStars</key>
+	<array/>
+	<key>SU</key>
+	<integer>1</integer>
+	<key>MU</key>
+	<integer>1</integer>
 </dict>
 </plist>
