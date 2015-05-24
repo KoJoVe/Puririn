@@ -241,6 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.vortex = Vortex(size:puririnSize)
                     self.vortex.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
                     self.vortex.runAction(repeat)
+                    self.vortex.zPosition = 3
                     self.addChild(self.vortex)
                     
                 } else if(levelMatrix[k][i] == 4) {
@@ -252,6 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     self.star = Star(size: starSize)
                     self.star.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
+                    self.star.zPosition = 3
                     self.addChild(self.star)
                     
                 } else if(levelMatrix[k][i] == 5) {
@@ -263,7 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = Ball(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                 } else if(levelMatrix[k][i] == 6) {
                     //Draw MovingObject
@@ -278,6 +280,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(-ball.velocity, 0), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -295,7 +298,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(ball.velocity, 0), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     ball.direction = 1
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -313,7 +316,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(0, ball.velocity), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     ball.direction = 3
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -331,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var action = SKAction.moveBy(CGVectorMake(0, -ball.velocity), duration: 1.0)
                     var repeat = SKAction.repeatActionForever(action)
                     ball.direction = 2
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                     ball.runAction(repeat)
@@ -345,7 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = MovableObject(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                 } else if(levelMatrix[k][i] == 11) {
@@ -357,7 +360,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = GhostObject(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                     
                 } else if(levelMatrix[k][i] == 12) {
@@ -369,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var ball = Explosive(size: starSize)
                     
                     ball.position = CGPoint(x: x + sSize/2, y: y + sSize/2)
-                    
+                    ball.zPosition = 3
                     self.addChild(ball)
                 }
             }

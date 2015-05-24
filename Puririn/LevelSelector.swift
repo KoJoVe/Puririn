@@ -582,15 +582,17 @@ class LevelSelector: SKScene {
     
     func doVolumeFade()
     {
-        if (musicPlayer!.volume > 0.01) {
-            musicPlayer!.volume = musicPlayer!.volume - 0.03
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("doVolumeFade"), userInfo: nil, repeats: false)
-        } else {
-            // Stop and get the sound ready for playing again
-            musicPlayer!.stop()
-            musicPlayer!.currentTime = 0
-            musicPlayer!.prepareToPlay()
-            musicPlayer!.volume = 0.25
+        if(musicPlayer != nil) {
+            if (musicPlayer!.volume > 0.01) {
+                musicPlayer!.volume = musicPlayer!.volume - 0.03
+                NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("doVolumeFade"), userInfo: nil, repeats: false)
+            } else {
+                // Stop and get the sound ready for playing again
+                musicPlayer!.stop()
+                musicPlayer!.currentTime = 0
+                musicPlayer!.prepareToPlay()
+                musicPlayer!.volume = 0.25
+            }
         }
     }
 }
