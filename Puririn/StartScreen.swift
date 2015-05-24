@@ -39,7 +39,7 @@ class StartScreen: SKScene {
         }
         
         UserLevel.initializeArray()
-        
+//
         UserLevel.setUserLevel(149)
         
         var bc = SKSpriteNode(imageNamed: "NewGameScreen")
