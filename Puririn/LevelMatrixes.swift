@@ -14,17 +14,17 @@ class LevelMatrixes {
         
         if(level==0) {
             
-            var nextMatrix = [[0,0,0,4,0,0,0]]
-            nextMatrix.append([0,0,0,2,0,0,0])
+            var nextMatrix = [[4,4,4,2,0,0,0]]
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,4,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([11,11,5,5,5,5,5])
+            nextMatrix.append([11,11,5,5,5,5,5])
+            nextMatrix.append([11,11,11,5,5,5,5])
+            nextMatrix.append([5,11,11,11,5,5,5])
+            nextMatrix.append([5,11,11,11,5,5,5])
+            nextMatrix.append([5,5,11,11,5,5,5])
+            nextMatrix.append([5,5,11,11,11,5,5])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,3,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
