@@ -83,6 +83,7 @@ class StartScreen: SKScene {
         sd.size = CGSizeMake(sd.frame.size.width/4, sd.frame.size.height/4)
         sd.position = CGPointMake(CGRectGetMidX(self.frame) - sd.frame.size.width/2 + 1, CGRectGetMidY(self.frame) - offset - 2*ng.frame.size.height/2 - 40)
         sd.name = "Sound"
+        sd.zPosition = 10
         
         self.addChild(sd)
         
@@ -93,6 +94,7 @@ class StartScreen: SKScene {
         mu.size = CGSizeMake(mu.frame.size.width/4, mu.frame.size.height/4)
         mu.position = CGPointMake(CGRectGetMidX(self.frame) + sd.frame.size.width/2 - 1, CGRectGetMidY(self.frame) - offset - 2*ng.frame.size.height/2 - 40)
         mu.name = "Music"
+        mu.zPosition = 10
         
         self.addChild(mu)
         
