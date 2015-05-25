@@ -1134,7 +1134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if(!meteorPlay.playing) {
                 if(UserLevel.getSound() == 1) {
-                    meteorPlay.volume = 0.08
+                    meteorPlay.volume = 0.06
                 } else {
                     meteorPlay.volume = 0
                 }
