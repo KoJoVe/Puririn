@@ -18,6 +18,12 @@
 		510BB9EC1B06B93A009D8585 /* Space3.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9E91B06B93A009D8585 /* Space3.png */; };
 		510BB9EE1B06B93A009D8585 /* Galaxy3.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9EB1B06B93A009D8585 /* Galaxy3.png */; };
 		510BB9F01B06B9C9009D8585 /* LostGalaxy.png in Resources */ = {isa = PBXBuildFile; fileRef = 510BB9EF1B06B9C9009D8585 /* LostGalaxy.png */; };
+		512DB5781B129472001FBDDD /* Explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 512DB5721B129472001FBDDD /* Explosion.mp3 */; };
+		512DB5791B129472001FBDDD /* Meteor.wav in Resources */ = {isa = PBXBuildFile; fileRef = 512DB5731B129472001FBDDD /* Meteor.wav */; };
+		512DB57A1B129472001FBDDD /* Vanish.aif in Resources */ = {isa = PBXBuildFile; fileRef = 512DB5741B129472001FBDDD /* Vanish.aif */; };
+		512DB5831B12A067001FBDDD /* Sattelite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 512DB5801B12A067001FBDDD /* Sattelite.mp3 */; };
+		512DB5841B12A067001FBDDD /* Star.wav in Resources */ = {isa = PBXBuildFile; fileRef = 512DB5811B12A067001FBDDD /* Star.wav */; };
+		512DB5851B12A067001FBDDD /* Restart.wav in Resources */ = {isa = PBXBuildFile; fileRef = 512DB5821B12A067001FBDDD /* Restart.wav */; };
 		5134AC911AFD335300A957DF /* FrontBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5134AC901AFD335300A957DF /* FrontBG.png */; };
 		5134AC931AFD34B000A957DF /* BackBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 5134AC921AFD34B000A957DF /* BackBG.png */; };
 		5134AC9E1AFD3BBC00A957DF /* restart_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5134AC9C1AFD3BBC00A957DF /* restart_button.png */; };
@@ -123,6 +129,12 @@
 		510BB9E91B06B93A009D8585 /* Space3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Space3.png; sourceTree = "<group>"; };
 		510BB9EB1B06B93A009D8585 /* Galaxy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Galaxy3.png; sourceTree = "<group>"; };
 		510BB9EF1B06B9C9009D8585 /* LostGalaxy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LostGalaxy.png; sourceTree = "<group>"; };
+		512DB5721B129472001FBDDD /* Explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Explosion.mp3; sourceTree = "<group>"; };
+		512DB5731B129472001FBDDD /* Meteor.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Meteor.wav; sourceTree = "<group>"; };
+		512DB5741B129472001FBDDD /* Vanish.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vanish.aif; sourceTree = "<group>"; };
+		512DB5801B12A067001FBDDD /* Sattelite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sattelite.mp3; sourceTree = "<group>"; };
+		512DB5811B12A067001FBDDD /* Star.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Star.wav; sourceTree = "<group>"; };
+		512DB5821B12A067001FBDDD /* Restart.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Restart.wav; sourceTree = "<group>"; };
 		5134AC901AFD335300A957DF /* FrontBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FrontBG.png; sourceTree = "<group>"; };
 		5134AC921AFD34B000A957DF /* BackBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackBG.png; sourceTree = "<group>"; };
 		5134AC9C1AFD3BBC00A957DF /* restart_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart_button.png; sourceTree = "<group>"; };
@@ -358,6 +370,12 @@
 		51DD09E61AF65ADC00FE4DD7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				512DB5801B12A067001FBDDD /* Sattelite.mp3 */,
+				512DB5811B12A067001FBDDD /* Star.wav */,
+				512DB5821B12A067001FBDDD /* Restart.wav */,
+				512DB5721B129472001FBDDD /* Explosion.mp3 */,
+				512DB5731B129472001FBDDD /* Meteor.wav */,
+				512DB5741B129472001FBDDD /* Vanish.aif */,
 				51D4F5051B0CECA4002D9B1B /* PuririnTheme.mp3 */,
 				514862D91AF6AE9100F77444 /* ok.aif */,
 				514862CF1AF693AF00F77444 /* charge.wav */,
@@ -475,7 +493,7 @@
 				TargetAttributes = {
 					516EF9131AF56B1D00A356CE = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = H8UTHN35FS;
+						DevelopmentTeam = N4F3C8PWS8;
 					};
 					516EF92C1AF56B1D00A356CE = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -509,6 +527,7 @@
 			files = (
 				5134AC911AFD335300A957DF /* FrontBG.png in Resources */,
 				51E36EF91B0E2A3B0077ADB4 /* Star3.png in Resources */,
+				512DB57A1B129472001FBDDD /* Vanish.aif in Resources */,
 				51E0B63D1B0F7DE8002BEF01 /* Asteroid.png in Resources */,
 				5187D5D61B08F5F100827CE0 /* BackBG3.png in Resources */,
 				513994D91B10FFF7003C408C /* Credits.png in Resources */,
@@ -521,6 +540,8 @@
 				941F0A661AF61BD7006B13EC /* qualquerCoisa.plist in Resources */,
 				5187D5DD1B08F83100827CE0 /* WallBG2.png in Resources */,
 				510BB9D31B064BB5009D8585 /* Space.png in Resources */,
+				512DB5791B129472001FBDDD /* Meteor.wav in Resources */,
+				512DB5841B12A067001FBDDD /* Star.wav in Resources */,
 				513994AB1B0FB0D7003C408C /* Star.png in Resources */,
 				513623211B0BC67800C37498 /* Galaxy2.png in Resources */,
 				51CD650E1AF69055009EA518 /* shot.wav in Resources */,
@@ -531,6 +552,7 @@
 				513994CC1B10E2EC003C408C /* NoMusicButton.png in Resources */,
 				51361BD21B05107C00630F5B /* NewGameScreen.png in Resources */,
 				513994BF1B0FC06D003C408C /* Anim3.png in Resources */,
+				512DB5781B129472001FBDDD /* Explosion.mp3 in Resources */,
 				5172079F1AF602C200702425 /* Vortex.png in Resources */,
 				510BB9DE1B06A92D009D8585 /* LoadImage.png in Resources */,
 				513994C11B0FC06D003C408C /* Anim1.png in Resources */,
@@ -557,6 +579,8 @@
 				51E36F031B0E59620077ADB4 /* Star.sks in Resources */,
 				51361BD51B05130800630F5B /* NewWall.png in Resources */,
 				51CD650C1AF68EB3009EA518 /* bounce.wav in Resources */,
+				512DB5851B12A067001FBDDD /* Restart.wav in Resources */,
+				512DB5831B12A067001FBDDD /* Sattelite.mp3 in Resources */,
 				513994BE1B0FC06D003C408C /* Anim4.png in Resources */,
 				51E0B63F1B0F7F34002BEF01 /* MAsteroid.png in Resources */,
 				5187D5D11B08F49C00827CE0 /* WallBG3.png in Resources */,

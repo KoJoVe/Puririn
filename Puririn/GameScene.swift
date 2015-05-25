@@ -30,9 +30,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBool = false
     var puririnTouched: Bool!
     
+    var backgroundSound = AVAudioPlayer()
+    
     var audioPlayer = AVAudioPlayer()
     var shotPlay = AVAudioPlayer()
     var bouncePlay = AVAudioPlayer()
+    var explodePlay = AVAudioPlayer()
+    var starPlay = AVAudioPlayer()
+    var meteorPlay = AVAudioPlayer()
+    var vanishPlay = AVAudioPlayer()
+    var sattelitePlay = AVAudioPlayer()
     
     var level: Int!
     var levelMatrix: Array<Array<Int>> = []
@@ -65,8 +72,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var bounceSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
         var error:NSError?
-        
         bouncePlay = AVAudioPlayer(contentsOfURL: bounceSound, error: &error)
+        
+        var alertSound2 = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Vanish", ofType: "aif")!)
+        var error3:NSError?
+        vanishPlay = AVAudioPlayer(contentsOfURL: alertSound2, error: &error3)
+        
+        var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Star", ofType: "wav")!)
+        var error2:NSError?
+        starPlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error2)
+        
+        var alertSound3 = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Sattelite", ofType: "mp3")!)
+        var error4:NSError?
+        sattelitePlay = AVAudioPlayer(contentsOfURL: alertSound3, error: &error4)
+        
+        var alertSound5 = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Meteor", ofType: "wav")!)
+        var error6:NSError?
+        meteorPlay = AVAudioPlayer(contentsOfURL: alertSound5, error: &error6)
 
         self.backgroundColor = UIColor.whiteColor()
         var mainemitter:SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(NSBundle.mainBundle().pathForResource("Trail", ofType: "sks")!)! as! SKEmitterNode
@@ -683,6 +705,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     arrayN++
                     
+                    playSound("star")
+                    
                     NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("deleteParticle:"), userInfo: emitter, repeats: false)
                     
         }
@@ -693,6 +717,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     var node:MovingObject?
                 
                     var node2:MovingObject?
+                
+                    playSound("sattelite")
                 
                     if(contact.bodyB.categoryBitMask == 1<<5) && (contact.bodyA.categoryBitMask == 1<<5){
                         
@@ -732,6 +758,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if ((contact.bodyB.categoryBitMask == 1<<6)) ||
             ((contact.bodyA.categoryBitMask == 1<<6)) {
                 
+                playSound("explode")
                 
                 if (contact.bodyB.categoryBitMask == 1<<6) {
                     
@@ -770,6 +797,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ((contact.bodyA.categoryBitMask == 1<<4) &&
                 (contact.bodyB.categoryBitMask == 1<<0)) {
                     
+                    playSound("vanish")
+                    
                     if(contact.bodyB.categoryBitMask == 1<<4) {
                         
                         var node = contact.bodyB.node as! GhostObject
@@ -780,6 +809,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         var node = contact.bodyA.node as! GhostObject
                         node.disappear()
                     }
+                    
+        } else if ((contact.bodyB.categoryBitMask == 1<<7)||(contact.bodyA.categoryBitMask == 1<<7))  {
+                    
+                    playSound("meteor")
                     
         } else {
             
@@ -838,6 +871,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func restart() {
         
         if(delay==false) {
+            
+            playSound("restart")
          
             for node in self.children {
                 node.removeFromParent()
@@ -956,6 +991,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //if(UserLevel.getSound() == 1) {
         
+        if(sound=="restart") {
+            
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Restart", ofType: "wav")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            
+            if(UserLevel.getSound() == 1) {
+                audioPlayer.volume = 0.025
+            } else {
+                audioPlayer.volume = 0
+            }
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+
+        
             if(sound=="vortex") {
                 
                 var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("vortex", ofType: "aiff")!)
@@ -1016,6 +1069,80 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bouncePlay.play()
                 }
             }
+        
+        if(sound=="star") {
+            
+            //if(!starPlay.playing) {
+                if(UserLevel.getSound() == 1) {
+                    starPlay.volume = 0.85
+                } else {
+                    starPlay.volume = 0
+                }
+                starPlay.currentTime = 0
+                starPlay.prepareToPlay()
+                starPlay.play()
+            //}
+        }
+        
+        if(sound=="vanish") {
+            
+            if(!vanishPlay.playing) {
+                if(UserLevel.getSound() == 1) {
+                    vanishPlay.volume = 0.6
+                } else {
+                    vanishPlay.volume = 0
+                }
+                vanishPlay.currentTime = 0
+                vanishPlay.prepareToPlay()
+                vanishPlay.play()
+            }
+        }
+        
+        if(sound=="explode") {
+            
+            var alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Explosion", ofType: "mp3")!)
+            //println(alertSound)
+            
+            var error:NSError?
+            explodePlay = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
+            
+            if(!explodePlay.playing) {
+                if(UserLevel.getSound() == 1) {
+                    explodePlay.volume = 0.15
+                } else {
+                    explodePlay.volume = 0
+                }
+                explodePlay.prepareToPlay()
+                explodePlay.play()
+            }
+        }
+        
+        if(sound=="sattelite") {
+            
+            if(!sattelitePlay.playing) {
+                if(UserLevel.getSound() == 1) {
+                    sattelitePlay.volume = 0.035
+                } else {
+                    sattelitePlay.volume = 0
+                }
+                sattelitePlay.prepareToPlay()
+                sattelitePlay.play()
+            }
+        }
+        
+        if(sound=="meteor") {
+            
+            if(!meteorPlay.playing) {
+                if(UserLevel.getSound() == 1) {
+                    meteorPlay.volume = 0.08
+                } else {
+                    meteorPlay.volume = 0
+                }
+                meteorPlay.currentTime = 0
+                meteorPlay.prepareToPlay()
+                meteorPlay.play()
+            }
+        }
         //}
     }
     
