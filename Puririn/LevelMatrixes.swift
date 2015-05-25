@@ -1233,83 +1233,496 @@ class LevelMatrixes {
         }
         if(level==67) {
             //Rock
+            
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,2,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([6,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,7])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==68) {
+            
+            
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([2,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,8,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,3,0])
+            
+            return nextMatrix
             
         }
         if(level==69) {
             
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([2,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,5,7,0,0])
+            nextMatrix.append([11,5,5,5,0,4,0])
+            nextMatrix.append([11,5,5,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,3,0])
+            
+            return nextMatrix
+            
         }
         if(level==70) {
+            
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,2,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([6,0,0,8,0,0,0])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,3,0])
+            
+            return nextMatrix
+
             
         }
         if(level==71) {
             
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([2,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,0,0,0,0,0,0])
+            nextMatrix.append([0,0,4,0,0,0,0])
+            nextMatrix.append([9,0,0,0,0,0,0])
+            nextMatrix.append([4,0,0,8,0,0,0])
+            nextMatrix.append([11,5,5,5,11,11,5])
+            nextMatrix.append([0,4,0,11,0,0,0])
+            nextMatrix.append([0,3,0,11,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==72) {
+            
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([2,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,9,0,0,0])
+            nextMatrix.append([6,0,4,0,0,0,7])
+            nextMatrix.append([0,0,0,0,0,7,0])
+            nextMatrix.append([6,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,8,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,3,0])
+            
+            return nextMatrix
+
             
         }
         if(level==73) {
             
+            var nextMatrix = [[2,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,5,5,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,3,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,4,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([6,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==74) {
+            
+            var nextMatrix = [[0,2,0,11,0,0,0]]
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,4,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,4,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,4,0,8,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,3,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,3,0])
+            
+            return nextMatrix
             
         }
         if(level==75) {
             
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([2,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,4,0,5,0,0,0])
+            nextMatrix.append([6,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,11,5,5,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,4,0,0,0,0])
+            nextMatrix.append([5,0,0,8,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==76) {
+            
+            var nextMatrix = [[0,2,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,4,0,5,0,0,0])
+            nextMatrix.append([6,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,7])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,0,3])
+            
+            return nextMatrix
+
             
         }
         if(level==77) {
             
+            var nextMatrix = [[2,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,3])
+            nextMatrix.append([0,4,0,11,0,4,0])
+            nextMatrix.append([0,0,0,0,0,5,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([6,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([11,11,11,11,11,11,11])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==78) {
+            
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,2,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,3])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([6,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,8,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            
+            return nextMatrix
             
         }
         if(level==79) {
             
+            var nextMatrix = [[2,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([5,5,11,11,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,3,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([6,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+
+            
         }
         if(level==80) {
+            
+            var nextMatrix = [[0,2,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,3])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,9,0,0,0])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,4,0,0])
+            nextMatrix.append([6,0,0,11,0,0,7])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,5,8,5,5,5])
+            nextMatrix.append([0,3,0,5,0,3,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            
+            return nextMatrix
             
         }
         if(level==81) {
             
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([2,0,0,5,0,0,3])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([6,0,0,0,0,0,0])
+            nextMatrix.append([0,4,0,0,7,0,0])
+            nextMatrix.append([0,6,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,7])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==82) {
+            
+            var nextMatrix = [[0,0,0,2,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,0,5,0,0,0,0])
+            nextMatrix.append([11,11,11,6,0,0,5])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,11,0,7,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,5,0,0,4,0,0])
+            nextMatrix.append([0,0,0,0,0,3,0])
+            
+            return nextMatrix
             
         }
         if(level==83) {
             
+            var nextMatrix = [[2,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,4])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,4,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([6,0,5,0,0,0,0])
+            nextMatrix.append([0,0,5,11,11,11,5])
+            nextMatrix.append([5,0,7,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,4,0])
+            nextMatrix.append([0,0,0,0,0,0,3])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==84) {
+            
+            var nextMatrix = [[0,2,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,5,6,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,7,5,5,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,4,0])
+            nextMatrix.append([5,5,5,6,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,3,0,0,4,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
             
         }
         if(level==85) {
             
+            var nextMatrix = [[2,0,0,0,5,0,3]]
+            nextMatrix.append([0,0,0,0,5,0,0])
+            nextMatrix.append([6,0,0,0,5,0,0])
+            nextMatrix.append([0,0,0,7,5,0,4])
+            nextMatrix.append([0,0,0,4,11,0,0])
+            nextMatrix.append([5,6,0,0,11,0,4])
+            nextMatrix.append([5,0,0,0,7,11,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,0,0,0,0,0])
+            nextMatrix.append([5,5,5,5,5,5,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+
+            
         }
         if(level==86) {
+            
+            var nextMatrix = [[2,0,0,5,0,3,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([6,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,4,0,5,0,0,7])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([6,0,0,11,0,4,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            
+            return nextMatrix
             
         }
         if(level==87) {
             
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,2,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,4,0,0,0,0])
+            nextMatrix.append([6,0,0,11,5,5,5])
+            nextMatrix.append([0,0,7,11,5,5,5])
+            nextMatrix.append([0,0,11,5,0,0,0])
+            nextMatrix.append([0,0,8,0,0,0,0])
+            nextMatrix.append([4,0,0,0,4,3,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,8,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==88) {
+            
+            var nextMatrix = [[0,0,0,5,5,0,0]]
+            nextMatrix.append([0,4,0,3,5,0,0])
+            nextMatrix.append([0,0,0,5,5,5,11])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,4,0])
+            nextMatrix.append([11,5,5,8,0,0,0])
+            nextMatrix.append([11,5,5,5,6,0,0])
+            nextMatrix.append([11,5,5,9,0,0,0])
+            nextMatrix.append([0,0,0,0,0,4,0])
+            nextMatrix.append([0,2,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,5,5,0,0,0])
+            
+            return nextMatrix
             
         }
         if(level==89) {
             
+            var nextMatrix = [[0,2,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([6,0,0,5,0,4,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([6,0,0,5,0,0,0])
+            nextMatrix.append([0,4,0,5,0,0,0])
+            nextMatrix.append([5,5,5,5,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([3,0,0,0,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==90) {
+            
+            var nextMatrix = [[2,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,5,11,11,5,0,8])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,0,4,0,6,5])
+            nextMatrix.append([0,0,11,0,0,0,0])
+            nextMatrix.append([0,0,11,0,4,0,0])
+            nextMatrix.append([0,0,5,0,0,0,0])
+            nextMatrix.append([3,4,5,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
             
         }
         if(level==91) {
             
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,2,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,0,0,0,0,0,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([5,5,5,5,5,5,11])
+            nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([8,0,0,0,0,0,8])
+            nextMatrix.append([5,0,4,0,4,0,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,4,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==92) {
             
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([6,0,0,5,0,0,7])
+            nextMatrix.append([0,4,0,5,0,0,0])
+            nextMatrix.append([0,0,0,5,0,3,0])
+            nextMatrix.append([0,2,0,5,0,0,4])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([6,0,0,11,0,0,7])
+            nextMatrix.append([0,0,4,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            nextMatrix.append([0,0,0,11,0,0,0])
+            
+            return nextMatrix
+            
         }
         if(level==93) {
+            
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,4,0])
+            nextMatrix.append([0,2,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,5,5,5,5,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,8,0,3,0])
+            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,4,0])
+            nextMatrix.append([0,0,0,8,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            return nextMatrix
+
             
         }
         if(level==94) {
