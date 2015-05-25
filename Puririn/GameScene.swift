@@ -528,7 +528,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func didEndContact(contact: SKPhysicsContact) {
+    func tryFix(contact: SKPhysicsContact) {
         
         var screenWidth = self.frame.size.width
         var screenHeight = self.frame.size.height
@@ -584,8 +584,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 fixDirection(contact.bodyB.node as! MovingObject)
             }
         }
+    }
+    
+    func didEndContact(contact: SKPhysicsContact) {
         
-        else if ((contact.bodyA.categoryBitMask == 1<<0) &&
+        tryFix(contact)
+        
+        if ((contact.bodyA.categoryBitMask == 1<<0) &&
             (contact.bodyB.categoryBitMask == 1<<4)) ||
             ((contact.bodyA.categoryBitMask == 1<<4) &&
                 (contact.bodyB.categoryBitMask == 1<<0)) {
@@ -628,6 +633,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            let secondNode = contact.bodyA.node as! SKSpriteNode
 //            
 //        }
+        tryFix(contact)
         
         if ((contact.bodyA.categoryBitMask == 1<<0) &&
             (contact.bodyB.categoryBitMask == 1<<1)) ||
