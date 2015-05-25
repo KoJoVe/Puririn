@@ -1719,7 +1719,7 @@ class LevelMatrixes {
             nextMatrix.append([0,4,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,4,0])
             nextMatrix.append([0,0,0,8,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0]) 
             
             return nextMatrix
 
