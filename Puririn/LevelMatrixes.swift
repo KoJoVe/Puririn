@@ -68,15 +68,15 @@ class LevelMatrixes {
             var nextMatrix = [[0,0,0,0,0,0,0]]
             nextMatrix.append([0,0,0,0,0,2,0])
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,4,0,0])
-            nextMatrix.append([0,4,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,5,5,5,5,5])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,5,0,0,0,3,0])
-            nextMatrix.append([0,0,0,4,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
             
@@ -224,32 +224,19 @@ class LevelMatrixes {
         
         if(level==9) {
             
-//            var nextMatrix = [[0,0,0,0,0,0,0]]
-//            nextMatrix.append([0,0,0,2,0,0,0])
-//            nextMatrix.append([0,0,5,0,5,0,0])
-//            nextMatrix.append([0,5,0,0,0,5,0])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([0,0,0,5,0,0,0])
-//            nextMatrix.append([0,5,0,0,0,5,0])
-//            nextMatrix.append([0,5,0,5,0,5,0])
-//            nextMatrix.append([0,5,0,0,0,5,0])
-//            nextMatrix.append([0,0,0,3,0,0,0])
-//            nextMatrix.append([5,5,0,0,0,5,5])
-//            nextMatrix.append([0,0,0,0,0,0,0])
-            
             var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,2,0,0,0])
+            nextMatrix.append([0,0,5,0,5,0,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([0,5,0,5,0,5,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([5,5,0,0,0,5,5])
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,5,5,5,0,0])
-            nextMatrix.append([0,3,0,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,2,5,0,0])
-            
+       
             return nextMatrix //REPETIDA
             
         }
@@ -416,31 +403,18 @@ class LevelMatrixes {
         
         if(level==15) {
             
-//            var nextMatrix = [[5,5,5,5,5,5,5]]
-//            nextMatrix.append([5,5,0,0,0,5,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,5,5,5,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,0,0,5,0,0,5])
-//            nextMatrix.append([5,3,0,5,0,2,5])
-            
-            var nextMatrix = [[0,0,0,0,0,0,0]]
-            nextMatrix.append([0,0,0,2,0,0,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([0,0,5,3,5,0,0])
-            nextMatrix.append([0,4,0,4,0,4,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([5,0,5,0,5,0,5])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
+            var nextMatrix = [[5,5,5,5,5,5,5]]
+            nextMatrix.append([5,5,0,0,0,5,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,5,5,5,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([5,3,0,5,0,2,5])
             
             return nextMatrix //REPETIDA
             
@@ -532,17 +506,30 @@ class LevelMatrixes {
         
         if(level==19) {
             
-            var nextMatrix = [[0,0,0,5,0,0,0]]
-            nextMatrix.append([0,5,0,0,0,2,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
+//            var nextMatrix = [[0,0,0,5,0,0,0]]
+//            nextMatrix.append([0,5,0,0,0,2,0])
+//            nextMatrix.append([0,0,0,5,0,0,0])
+//            nextMatrix.append([0,5,0,0,0,5,0])
+//            nextMatrix.append([0,0,0,5,4,0,0])
+//            nextMatrix.append([0,5,0,0,0,5,0])
+//            nextMatrix.append([3,0,4,5,0,0,0])
+//            nextMatrix.append([0,5,0,4,0,5,0])
+//            nextMatrix.append([0,0,0,5,0,0,0])
+//            nextMatrix.append([0,5,0,0,0,5,0])
+//            nextMatrix.append([0,0,0,5,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,2,0,5,0,5,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,5,0,5,0,5,0])
             nextMatrix.append([0,5,0,0,0,5,0])
-            nextMatrix.append([0,0,0,5,4,0,0])
-            nextMatrix.append([0,5,0,0,0,5,0])
-            nextMatrix.append([3,0,4,5,0,0,0])
-            nextMatrix.append([0,5,0,4,0,5,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([0,5,0,0,0,5,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,5,0,0,0,0])
+            nextMatrix.append([0,5,0,5,0,3,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
@@ -583,18 +570,18 @@ class LevelMatrixes {
 //            nextMatrix.append([0,0,0,3,0,0,0])
 //            nextMatrix.append([0,0,0,0,0,0,0])
             
-            var nextMatrix = [[4,0,0,0,0,0,0]]
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([0,0,5,0,5,0,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([5,0,0,5,0,0,5])
+            nextMatrix.append([0,0,5,5,5,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([0,4,0,5,0,0,0])
-            nextMatrix.append([0,0,0,5,0,4,0])
-            nextMatrix.append([0,0,0,5,0,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,5,0,5,0,0])
-            nextMatrix.append([0,0,0,5,3,0,0])
-            nextMatrix.append([0,0,2,5,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,2,0,0,0])
+            nextMatrix.append([5,5,0,0,0,5,5])
+            nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
             
@@ -832,17 +819,30 @@ class LevelMatrixes {
         
         if(level==30) {
             
-            var nextMatrix = [[0,0,0,2,0,0,0]]
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,5,5,5,5,5])
-            nextMatrix.append([0,0,5,5,5,5,5])
-            nextMatrix.append([0,0,0,0,0,0,0])
+//            var nextMatrix = [[0,0,0,2,0,0,0]]
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,5,5,5,5,5])
+//            nextMatrix.append([0,0,5,5,5,5,5])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([5,5,5,5,5,0,0])
+//            nextMatrix.append([5,5,5,5,5,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,3,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            var nextMatrix = [[0,0,0,0,0,0,0]]
+            nextMatrix.append([0,3,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([5,5,5,5,5,0,0])
-            nextMatrix.append([5,5,5,5,5,0,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,0,5,0,0,0,0])
+            nextMatrix.append([0,5,0,0,5,0,0])
+            nextMatrix.append([0,5,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,5,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([0,2,0,0,5,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix //REPETIDA
@@ -851,17 +851,30 @@ class LevelMatrixes {
         
         if(level==31) {
             
-            var nextMatrix = [[2,0,5,5,0,0,3]]
-            nextMatrix.append([0,0,5,5,0,0,0])
-            nextMatrix.append([0,0,5,5,0,0,0])
-            nextMatrix.append([0,0,5,5,0,4,0])
-            nextMatrix.append([0,4,5,5,0,0,0])
-            nextMatrix.append([0,0,5,5,0,0,0])
-            nextMatrix.append([0,0,5,5,5,0,0])
-            nextMatrix.append([0,0,5,5,5,0,0])
-            nextMatrix.append([0,0,5,5,5,0,0])
-            nextMatrix.append([0,0,4,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
+//            var nextMatrix = [[2,0,5,5,0,0,3]]
+//            nextMatrix.append([0,0,5,5,0,0,0])
+//            nextMatrix.append([0,0,5,5,0,0,0])
+//            nextMatrix.append([0,0,5,5,0,4,0])
+//            nextMatrix.append([0,4,5,5,0,0,0])
+//            nextMatrix.append([0,0,5,5,0,0,0])
+//            nextMatrix.append([0,0,5,5,5,0,0])
+//            nextMatrix.append([0,0,5,5,5,0,0])
+//            nextMatrix.append([0,0,5,5,5,0,0])
+//            nextMatrix.append([0,0,4,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+            
+            var nextMatrix = [[0,0,0,5,0,0,0]]
+            nextMatrix.append([0,5,0,0,0,2,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([0,0,0,5,4,0,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([3,0,4,5,0,0,0])
+            nextMatrix.append([0,5,0,4,0,5,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
+            nextMatrix.append([0,5,0,0,0,5,0])
+            nextMatrix.append([0,0,0,5,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
