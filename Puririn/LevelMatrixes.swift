@@ -48,6 +48,21 @@ class LevelMatrixes {
             
             return nextMatrix
             
+//            var nextMatrix = [[0,0,0,0,0,0,0]]
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            
+//            return nextMatrix
+            
         }
         
         if(level==2) {

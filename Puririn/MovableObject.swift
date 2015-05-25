@@ -26,7 +26,7 @@ class MovableObject: SKSpriteNode {
         self.physicsBody?.restitution = 0
         self.physicsBody?.linearDamping = 0.8
         self.physicsBody?.angularDamping = 0.5
-        self.physicsBody?.mass = 10
+        self.physicsBody?.mass = 4
         self.physicsBody?.categoryBitMask = 1 << 7
         self.zPosition = 2
         self.physicsBody?.contactTestBitMask = 1 << 5 | 1 << 0 | 1 << 7
