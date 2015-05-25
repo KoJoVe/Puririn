@@ -29,7 +29,7 @@ class MovableObject: SKSpriteNode {
         self.physicsBody?.mass = 10
         self.physicsBody?.categoryBitMask = 1 << 7
         self.zPosition = 2
-        self.physicsBody?.contactTestBitMask = 1 << 5 | 1 << 0
+        self.physicsBody?.contactTestBitMask = 1 << 5 | 1 << 0 | 1 << 7
         self.physicsBody?.collisionBitMask = 0xFFFFFFB
     }
     
