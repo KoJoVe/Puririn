@@ -42,7 +42,7 @@ class GhostObject: SKSpriteNode {
     
     func disappear() {
         
-        self.runAction(SKAction.fadeAlphaTo(0, duration: 0.2))
+        self.runAction(SKAction.fadeAlphaTo(0.1, duration: 0.2))
         
     }
 }

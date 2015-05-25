@@ -40,6 +40,8 @@ class StartScreen: SKScene {
         
         UserLevel.initializeArray()
         
+        UserLevel.setUserLevel(149)
+        
         var bc = SKSpriteNode(imageNamed: "NewGameScreen")
         
         var h = (self.frame.size.width*bc.size.height)/bc.size.width
