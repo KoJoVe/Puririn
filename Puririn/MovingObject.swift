@@ -23,7 +23,7 @@ class MovingObject: SKSpriteNode {
         velocity = 4 * size
         
         self.name = "sattelite"
-        self.physicsBody = SKPhysicsBody(circleOfRadius: (size)/2)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: (size-0.1)/2)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.dynamic = true
         self.physicsBody?.friction = 0.0
