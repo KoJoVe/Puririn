@@ -593,7 +593,8 @@ class LevelSelector: SKScene {
     }
     
     func gotoStore() {
-        var url = "itms-apps://itunes.apple.com/app/id991654758"
+        //var url = "itms-apps://itunes.apple.com/app/id991654758/reviews"
+        var url = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=991654758&onlyLatestVersion=true&pageNumber=0&sortOrdering=1)"
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
