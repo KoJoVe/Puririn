@@ -40,10 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             SKTexture.preloadTextures(textures2, withCompletionHandler: {})
             
-            self.setupFonts()
-            
         })
         
+        self.setupFonts()
         
         return true
     }

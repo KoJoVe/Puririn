@@ -642,6 +642,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                 playSound("vortex")
                     
+                if((1 + self.starsOnLevel) > UserLevel.getLevelStars(self.level)) {
+                    UserLevel.setLevelStars(self.level, stars: 1 + self.starsOnLevel)
+                }
+                
+                if(UserLevel.getUserLevel()<self.level + 1) {
+                    UserLevel.setUserLevel(self.level + 1)
+                }
+                    
                 animating = true
                 
                 var cleanPuririn = CleanPuririn(size: self.sizeClean)
@@ -1006,7 +1014,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             audioPlayer = AVAudioPlayer(contentsOfURL: alertSound, error: &error)
             
             if(UserLevel.getSound() == 1) {
-                audioPlayer.volume = 0.025
+                audioPlayer.volume = 0.040
             } else {
                 audioPlayer.volume = 0
             }

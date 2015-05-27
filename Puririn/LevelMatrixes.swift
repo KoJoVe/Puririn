@@ -21,11 +21,11 @@ class LevelMatrixes {
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,4,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,4,0,0,0])
-            nextMatrix.append([0,0,0,0,0,0,0])
             nextMatrix.append([0,0,0,3,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
+            nextMatrix.append([0,0,0,0,0,0,0])
             
             return nextMatrix
             
@@ -3049,7 +3049,20 @@ class LevelMatrixes {
             nextMatrix.append([11,0,11,3,11,11,5])
             
             return nextMatrix
-            
+//            var nextMatrix = [[0,0,0,0,0,0,0]]
+//            nextMatrix.append([0,0,0,4,0,0,0])
+//            nextMatrix.append([0,0,0,2,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,4,0,0,0])
+//            nextMatrix.append([0,0,0,4,0,0,0])
+//            nextMatrix.append([0,0,0,3,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            nextMatrix.append([0,0,0,0,0,0,0])
+//            
+//            return nextMatrix
         }
         
         var nextMatrix = [[0,0,0,0,0,0,0]]
