@@ -85,6 +85,14 @@ class LevelSelector: SKScene {
         
         self.addChild(ng)
         
+        var rt = SKSpriteNode(imageNamed: "RateButton")
+        rt.size = CGSizeMake(rt.frame.size.width/3, rt.frame.size.height/3)
+        rt.position = CGPointMake(self.frame.size.width - rt.frame.size.width/2, rt.frame.size.height/2)
+        rt.name = "Rate"
+        rt.zPosition = 2
+        
+        self.addChild(rt)
+        
         drawNames()
         
         drawSpaces()
@@ -515,6 +523,10 @@ class LevelSelector: SKScene {
                         loadGalaxy(2)
                     }
                     
+                } else if(theName != nil && theName == "Rate") {
+                    
+                    gotoStore()
+                
                 } else if(theName != nil && theName != "Back") {
                  
                     if(UserLevel.getUserLevel() >= (theName!.toInt()!)) {
@@ -578,6 +590,11 @@ class LevelSelector: SKScene {
         
         }
         
+    }
+    
+    func gotoStore() {
+        var url = "itms-apps://itunes.apple.com/app/id991654758"
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
     func doVolumeFade()
